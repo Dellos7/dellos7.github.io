@@ -1,0 +1,121 @@
+.rrss-navbar {
+    //height: 10vh;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin-top: 2rem;
+
+    &-list {
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        width: fit-content;
+        margin-top: 1rem;
+
+        &.not-animated > * {
+            animation-duration: 0s !important;
+            -webkit-animation-duration: 0s !important;
+        }
+
+        &-elem {
+            display: inline-block;
+            font-size: 4rem;
+            padding: .5rem;
+            color: white;
+            transition: all .5s ease;
+            animation: rotacionGuayReverse 2s;
+
+            & a {
+                color: inherit;
+                &:visited {
+                    color: inherit;
+                }
+            }
+            
+            &:hover {
+                //font-size: 5rem;
+                animation: rotacionGuay 2s forwards;
+                -webkit-filter: drop-shadow(4px 0px 1px black);
+                -moz-filter: drop-shadow(4px 0px 1px black);
+                filter: drop-shadow(.5px .5px 2px black);
+            }
+
+            &__twitter {
+                &:hover {
+                    color: rgb(41, 163, 239	);
+                }
+            }
+            &__github {
+                &:hover {
+                    color: gold;
+                }
+            }
+            &__codepen {
+                &:hover {
+                    color: rgb(78, 205, 119	);
+                }
+            }
+            &__linkedin {
+                &:hover {
+                    color: rgb(16, 116, 175	);
+                }
+            }
+        }
+    }
+}
+
+@keyframes rotacionGuay {
+    0% {
+        transform: rotate(0) translateY(0);
+    }
+    20% {
+        transform: rotate(200deg) translateY(-20%);
+    }
+    40% {
+        transform: rotate(160deg) translateY(-20%);
+    }
+    60% {
+        transform: rotate(190deg) translateY(-20%);
+    }
+    80% {
+        transform: rotate(170deg) translateY(-20%);
+    }
+    100% {
+        transform: rotate(180deg) translateY(-20%);
+    }
+}
+
+@keyframes rotacionGuayReverse {
+    100% {
+        transform: rotate(0) translateY(0);
+    }
+    80% {
+        transform: rotate(200deg) translateY(-20%);
+    }
+    60% {
+        transform: rotate(160deg) translateY(-20%);
+    }
+    40% {
+        transform: rotate(190deg) translateY(-20%);
+    }
+    20% {
+        transform: rotate(170deg) translateY(-20%);
+    }
+    0% {
+        transform: rotate(180deg) translateY(-20%);
+    }
+}
+
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    
+    .rrss-navbar {
+        &-list {
+            left: 0;
+            transform: translate( 10%, -50% );
+        }
+    }
+
+  }

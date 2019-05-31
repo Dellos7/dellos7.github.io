@@ -1,0 +1,24 @@
+{
+  "name": "dlopezcastellote.dev",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Stencil App Starter",
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "build-site": "npm run build && cp -r www/* ../personal-website-deploy"
+  },
+  "dependencies": {
+    "@stencil/core": "one",
+    "@stencil/router": "one",
+    "@stencil/sass": "^0.2.3",
+    "dlc-css-terminal": "0.0.4",
+    "ionicons": "^4.5.8"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "workbox-build": "4.3.1"
+  }
+}

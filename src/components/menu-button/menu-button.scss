@@ -1,0 +1,31 @@
+.menu-toggle {
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__button {
+        position: fixed;
+        //10 vh es lo que ocupa la barra de iconos, 2rem es el margen de la barra con lo de arriba,
+        //dividimos entre 2 para buscar el centro y le quitamos 0.5rem que es la mitad de lo que ocupa un icono
+        top: calc( (10vh + 2rem) / 2 - 0.5rem);
+        right: 2rem;
+        height: 4rem;
+        width: 4rem;
+        z-index: 2000;
+        border-radius: 50%;
+        color: black;
+        font-size: 3rem;
+        background-color: white;
+        box-shadow: 0 1rem 3rem rgba(black, .25);
+        cursor: pointer;
+
+        &-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate( -50%, -50% );
+        }
+    }
+
+}

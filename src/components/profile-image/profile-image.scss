@@ -1,0 +1,31 @@
+.profile-image {
+    position: absolute;
+    left: 2rem;
+    top: calc( (10vh + 5rem) / 2 - 5rem);
+
+    &__image {
+        border-radius: 50%;
+        width: 10rem;
+        box-shadow: 0rem 1rem 3rem rgba(black, .3);
+        transition: all .5s ease-in-out;
+    }
+
+}
+
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    
+    .profile-image {
+        
+        left: 0;
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+
+        &__image {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+  }

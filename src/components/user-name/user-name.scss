@@ -1,0 +1,18 @@
+.user-name {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 3rem;
+        color: white;
+
+    &__title {
+        font-family: 'Pacifico', cursive;
+        font-size: 3.5rem;
+        text-align: center;
+        letter-spacing: .2rem;
+        padding: 1rem;
+        border-bottom: 1.5px solid white;
+        border-top: 1.5px solid white;
+        border-radius: .1rem;
+    }
+}
