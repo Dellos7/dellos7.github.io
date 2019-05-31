@@ -27,11 +27,11 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "index-org.html",
-    "revision": "80c637f76adf2ce2571841384e135266"
+    "revision": "f4c7ba575209f7e09ee5b5a3011ec8bb"
   },
   {
     "url": "index.html",
-    "revision": "80c637f76adf2ce2571841384e135266"
+    "revision": "f4c7ba575209f7e09ee5b5a3011ec8bb"
   },
   {
     "url": "build/p-0xz0rwso.entry.js"
