@@ -14,6 +14,10 @@ export const config: Config = {
       // serviceWorker: null
     }
   ],
+  copy: [
+    { src: '__blog/' },
+    { src: 'posts.json' }
+  ],
   plugins: [
     sass({
       injectGlobalPaths: [

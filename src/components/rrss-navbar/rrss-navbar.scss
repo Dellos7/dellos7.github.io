@@ -1,16 +1,9 @@
 .rrss-navbar {
-    //height: 10vh;
-    height: 100%;
-    width: 100%;
-    position: relative;
     margin-top: 2rem;
+    text-align: center;
 
     &-list {
         display: inline-block;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate( -50%, -50% );
         width: fit-content;
         margin-top: 1rem;
 
@@ -34,36 +27,74 @@
                 }
             }
             
-            &:hover {
-                //font-size: 5rem;
-                animation: rotacionGuay 2s forwards;
-                -webkit-filter: drop-shadow(4px 0px 1px black);
-                -moz-filter: drop-shadow(4px 0px 1px black);
-                filter: drop-shadow(.5px .5px 2px black);
-            }
+            // &:hover {
+            //     //font-size: 5rem;
+            //     animation: rotacionGuay 2s forwards;
+            //     -webkit-filter: drop-shadow(4px 0px 1px black);
+            //     -moz-filter: drop-shadow(4px 0px 1px black);
+            //     filter: drop-shadow(.5px .5px 2px black);
+            // }
 
-            &__twitter {
+            // &__twitter {
+            //     &:hover {
+            //         color: rgb(41, 163, 239	);
+            //     }
+            // }
+            // &__github {
+            //     &:hover {
+            //         color: gold;
+            //     }
+            // }
+            // &__codepen {
+            //     &:hover {
+            //         color: rgb(78, 205, 119	);
+            //     }
+            // }
+            // &__linkedin {
+            //     &:hover {
+            //         color: rgb(16, 116, 175	);
+            //     }
+            // }
+        }
+    }
+}
+
+@media all and ( hover: hover ){
+    .rrss-navbar{
+        &-list {
+            &-elem {
                 &:hover {
-                    color: rgb(41, 163, 239	);
+                    //font-size: 5rem;
+                    animation: rotacionGuay 2s forwards;
+                    -webkit-filter: drop-shadow(4px 0px 1px black);
+                    -moz-filter: drop-shadow(4px 0px 1px black);
+                    filter: drop-shadow(.5px .5px 2px black);
                 }
-            }
-            &__github {
-                &:hover {
-                    color: gold;
+                &__twitter {
+                    &:hover {
+                        color: rgb(41, 163, 239	);
+                    }
                 }
-            }
-            &__codepen {
-                &:hover {
-                    color: rgb(78, 205, 119	);
+                &__github {
+                    &:hover {
+                        color: gold;
+                    }
                 }
-            }
-            &__linkedin {
-                &:hover {
-                    color: rgb(16, 116, 175	);
+                &__codepen {
+                    &:hover {
+                        color: rgb(78, 205, 119	);
+                    }
                 }
+                &__linkedin {
+                    &:hover {
+                        color: rgb(16, 116, 175	);
+                    }
+                }
+
             }
         }
     }
+
 }
 
 @keyframes rotacionGuay {
@@ -112,10 +143,7 @@
   @media screen and (max-width: 600px) {
     
     .rrss-navbar {
-        &-list {
-            left: 0;
-            transform: translate( 10%, -50% );
-        }
+        //text-align-last: left;
     }
 
   }

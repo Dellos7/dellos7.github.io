@@ -22,12 +22,14 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-  height: 100%;
+  min-height: 100%;
 }
 
 :root {
   --primary-color: #24909c;
   --secondary-color: #206c75;
+  --tertiary-color: #61bdc5;
+  --amarillo: #d6a023;
 }
 
 body {
