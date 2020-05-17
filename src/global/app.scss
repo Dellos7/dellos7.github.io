@@ -12,7 +12,10 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }*/
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/tomorrow-night-blue.min.css');
 
 * {
   padding: 0;
@@ -29,11 +32,83 @@ html {
   --primary-color: #24909c;
   --secondary-color: #206c75;
   --tertiary-color: #61bdc5;
-  --amarillo: #d6a023;
+  --amarillo: #fdbb2d;
 }
 
 body {
-  font-family: 'IBM Plex Mono', monospace;
+  //font-family: 'IBM Plex Mono', monospace;
+  //font-family: "Poppins";
+  font-family: "Lato", sans-serif;
   font-size: 2.3rem;
   background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
+}
+
+.texto-gradiente-1{
+    width: fit-content;
+    color: transparent;
+    background: rgb(19,243,185);
+    background: linear-gradient(90deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.texto-gradiente-2{
+  width: fit-content;
+  color: transparent;
+  background: rgba(88,120,243,1);
+  background: linear-gradient(270deg, rgba(88,120,243,1) 0%, rgba(253,187,45,1) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.link{
+  color: var(--tertiary-color);
+  position: relative;
+
+  &:link{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  &:active{
+    color: inherit;
+  }
+  
+  &:visited{
+    color: inherit;
+  }
+
+  &::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 70%;
+    left: -0.1px;
+    right: -0.1px;
+    bottom: 0;
+    transition: all .1s ease-in-out;
+    background-color: var(--primary-color);
+  }
+
+  &:hover{
+    color: white;
+    &::after{
+      top: 0;
+    }
+
+  }
+
+}
+
+a:link{
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active{
+  color: inherit;
+}
+
+a:visited{
+  color: inherit;
 }

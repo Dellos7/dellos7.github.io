@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { BlogService } from '../../services/blog-service';
 
@@ -9,6 +9,14 @@ import { BlogService } from '../../services/blog-service';
 export class BlogPage {
 
   @Prop() history: RouterHistory;
+
+ @State() imgFilterFromColor: string;
+ @State() imgFilterToColor: string; 
+
+  componentWillLoad(){
+    this.imgFilterFromColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+    this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+  }
 
   formateDate( date: string ) {
     return new Date(date).toLocaleDateString();
@@ -21,12 +29,11 @@ export class BlogPage {
         {(BlogService).posts.map((post) =>
           <li class="posts-list__item">
             <stencil-route-link url={"/" + BlogService.config.posts_route + "/" + post.unique_link}>
-                <h2 class="posts-list__item-title">{post.metadata.title}</h2>
+              <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src="https://images.unsplash.com/photo-1587058745379-d17c450fdeee?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600"></image-filter>
+              <h2 class="posts-list__item-title">{post.metadata.title}</h2>
             </stencil-route-link>
-              <p class="posts-list__item-date">{this.formateDate(post.metadata.date)}</p>
-              {/* <p class="posts-list__item-summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dicta ut reiciendis qui tenetur dolores suscipit dicta ut reiciendis qui tenetur dolores suscipit dicta ut reiciendis qui tenetur dolores suscipit...</p> */}
-              <p class="posts-list__item-summary">{post.metadata.summary}</p>
-              <div class="posts-list__item-image"></div>
+              <div class="posts-list__item-date texto-gradiente-2">{this.formateDate(post.metadata.date)}</div>
+              <div class="posts-list__item-summary">{post.metadata.summary}</div>
           </li>
         )}
       </ul>

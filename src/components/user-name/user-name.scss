@@ -1,8 +1,11 @@
 .user-name {
         position: relative;
         width: 80%;
+        border-bottom: 1.5px solid white;
+        border-top: 1.5px solid white;
+        border-radius: .1rem;
         margin: 0 auto;
-        color: white;
+        //color: white;
 
     &__title {
         font-family: 'Pacifico', cursive;
@@ -10,8 +13,29 @@
         text-align: center;
         letter-spacing: .2rem;
         padding: 1rem;
-        border-bottom: 1.5px solid white;
-        border-top: 1.5px solid white;
-        border-radius: .1rem;
+        width: fit-content;
+        margin: 0 auto;
+
+        position: relative;
+        color: transparent;
+        animation: colorTexto 1s forwards;
+        animation-delay: 2s;
+        //background: linear-gradient(to right, white 0%, #61bdc5 30%, #24909c 50%, #61bdc5 70%, white 100%) 100% 0 / 200% 200% white;
+        background: white;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+}
+
+@keyframes colorTexto{
+    to{
+        background-position: 0 0;
+        //background: linear-gradient(to right, white 0%, #61bdc5 30%, #24909c 50%, #61bdc5 70%, white 100%) 100% 0 / 200% 200% white;
+        background: rgb(36,144,156);
+        background: rgb(255,255,255);
+        //background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(102,191,199,1) 50%, rgba(255,255,255,1) 100%);
+        background: linear-gradient(90deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 }

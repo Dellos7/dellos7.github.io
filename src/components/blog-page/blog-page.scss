@@ -1,37 +1,50 @@
 .blog-page{
-    width: 90%;
+    width: 95%;
     margin: 2rem auto;
 
     & ul.posts-list{
         list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: column;
+        justify-content: space-around;
     }
 
 }
 
 .posts-list__item{
-    padding: 3rem 0;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
+    -moz-box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
+    box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
+    font-size: 1.8rem;
 
-    &:not(:last-child){
-        border-bottom: 1px solid white;
+    & image-filter::part(img){
+        padding-top: 56.25%;
     }
 }
 
-h2.posts-list__item-title{
+.posts-list__item-title{
+    padding: 1rem 1.5rem .3rem 1.5rem;
     color: var(--tertiary-color);
-    letter-spacing: -1px;
 }
 
-p.posts-list__item-date{
+.posts-list__item-date{
     font-weight: bold;
     margin-top: .5rem;
-    color: var(--amarillo);
+    padding: .3rem 1.5rem;
 }
 
-p.posts-list__item-summary{
+.posts-list__item-summary{
     text-align: justify;
     color: white;
-    font-size: 2rem;
+    font-size: 1.6rem;
     margin-top: .5rem;
+    padding: .3rem 1.5rem;
+    padding-bottom: 2rem;
 }
 
 a:link{
@@ -44,4 +57,27 @@ a:active{
 
 a:visited{
     color: inherit;
+}
+
+@media all and( min-width: 1124px ){
+    .blog-page{
+        width: 90%;
+    }
+}
+
+@media all and ( min-width: 768px ){
+    .blog-page ul.posts-list{
+        flex-flow: row;
+        flex-wrap: wrap;
+    }
+
+    .posts-list__item{
+        width: 45%;
+    }
+}
+
+@media all and ( max-width: 768px ) and ( min-width: 500px ) {
+    .blog-page{
+        width: 70%;
+    }
 }

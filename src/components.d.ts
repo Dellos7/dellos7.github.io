@@ -35,9 +35,16 @@ export namespace Components {
     }
     interface DlcTerminal {
     }
+    interface ImageFilter {
+        "fromColor": string;
+        "src": string;
+        "toColor": string;
+    }
     interface MenuButton {
     }
     interface NavigationBar {
+    }
+    interface PageNotFound {
     }
     interface ProfileImage {
     }
@@ -113,6 +120,12 @@ declare global {
         prototype: HTMLDlcTerminalElement;
         new (): HTMLDlcTerminalElement;
     };
+    interface HTMLImageFilterElement extends Components.ImageFilter, HTMLStencilElement {
+    }
+    var HTMLImageFilterElement: {
+        prototype: HTMLImageFilterElement;
+        new (): HTMLImageFilterElement;
+    };
     interface HTMLMenuButtonElement extends Components.MenuButton, HTMLStencilElement {
     }
     var HTMLMenuButtonElement: {
@@ -124,6 +137,12 @@ declare global {
     var HTMLNavigationBarElement: {
         prototype: HTMLNavigationBarElement;
         new (): HTMLNavigationBarElement;
+    };
+    interface HTMLPageNotFoundElement extends Components.PageNotFound, HTMLStencilElement {
+    }
+    var HTMLPageNotFoundElement: {
+        prototype: HTMLPageNotFoundElement;
+        new (): HTMLPageNotFoundElement;
     };
     interface HTMLProfileImageElement extends Components.ProfileImage, HTMLStencilElement {
     }
@@ -160,8 +179,10 @@ declare global {
         "blog-post-wrapper": HTMLBlogPostWrapperElement;
         "contact-page": HTMLContactPageElement;
         "dlc-terminal": HTMLDlcTerminalElement;
+        "image-filter": HTMLImageFilterElement;
         "menu-button": HTMLMenuButtonElement;
         "navigation-bar": HTMLNavigationBarElement;
+        "page-not-found": HTMLPageNotFoundElement;
         "profile-image": HTMLProfileImageElement;
         "rrss-navbar": HTMLRrssNavbarElement;
         "section-title": HTMLSectionTitleElement;
@@ -197,9 +218,16 @@ declare namespace LocalJSX {
     }
     interface DlcTerminal {
     }
+    interface ImageFilter {
+        "fromColor"?: string;
+        "src"?: string;
+        "toColor"?: string;
+    }
     interface MenuButton {
     }
     interface NavigationBar {
+    }
+    interface PageNotFound {
     }
     interface ProfileImage {
     }
@@ -224,8 +252,10 @@ declare namespace LocalJSX {
         "blog-post-wrapper": BlogPostWrapper;
         "contact-page": ContactPage;
         "dlc-terminal": DlcTerminal;
+        "image-filter": ImageFilter;
         "menu-button": MenuButton;
         "navigation-bar": NavigationBar;
+        "page-not-found": PageNotFound;
         "profile-image": ProfileImage;
         "rrss-navbar": RrssNavbar;
         "section-title": SectionTitle;
@@ -246,8 +276,10 @@ declare module "@stencil/core" {
             "blog-post-wrapper": LocalJSX.BlogPostWrapper & JSXBase.HTMLAttributes<HTMLBlogPostWrapperElement>;
             "contact-page": LocalJSX.ContactPage & JSXBase.HTMLAttributes<HTMLContactPageElement>;
             "dlc-terminal": LocalJSX.DlcTerminal & JSXBase.HTMLAttributes<HTMLDlcTerminalElement>;
+            "image-filter": LocalJSX.ImageFilter & JSXBase.HTMLAttributes<HTMLImageFilterElement>;
             "menu-button": LocalJSX.MenuButton & JSXBase.HTMLAttributes<HTMLMenuButtonElement>;
             "navigation-bar": LocalJSX.NavigationBar & JSXBase.HTMLAttributes<HTMLNavigationBarElement>;
+            "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
             "profile-image": LocalJSX.ProfileImage & JSXBase.HTMLAttributes<HTMLProfileImageElement>;
             "rrss-navbar": LocalJSX.RrssNavbar & JSXBase.HTMLAttributes<HTMLRrssNavbarElement>;
             "section-title": LocalJSX.SectionTitle & JSXBase.HTMLAttributes<HTMLSectionTitleElement>;

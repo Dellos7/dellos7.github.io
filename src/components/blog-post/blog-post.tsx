@@ -3,10 +3,9 @@ import { MatchResults, RouterHistory } from '@stencil/router';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { BlogService } from '../../services/blog-service';
 
-
 @Component({
   tag: 'blog-post',
-  styleUrl: 'blog-post.css'
+  styleUrl: 'blog-post.scss'
 })
 export class BlogPost {
 
@@ -18,9 +17,15 @@ export class BlogPost {
   @Prop({ mutable: true }) metadata: string;
 
   @State() postContent: string;
+  @State() highlighted: boolean = false;
 
   componentWillLoad() {
-    return this.loadContent();
+    // return this.loadContent();
+    this.loadContent();
+  }
+
+  componentDidLoad(){
+    
   }
 
   private _getUniqueLink() {

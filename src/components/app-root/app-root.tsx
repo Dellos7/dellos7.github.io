@@ -1,11 +1,9 @@
 import { Component, h, State } from '@stencil/core';
 import { BlogService } from '../../services/blog-service';
 
-
 @Component({
   tag: 'app-root',
-  styleUrl: 'app-root.scss',
-  shadow: true
+  styleUrl: 'app-root.scss'
 })
 export class AppRoot {
 
@@ -34,13 +32,11 @@ export class AppRoot {
                   <stencil-route url={['/blog', '/blog/']} component='blog-page' exact={true}/>
                   <stencil-route url={['/about', '/about/']} component='about-page' exact={true}/>
                   <stencil-route url={['/contact', '/contact/']} component='contact-page' exact={true}/>
-                  <stencil-route url={'/' + this.postsRoute + '/:unique_link'}
-                  routeRender={(props: { [key: string]: any }) => {
-                    return (
-                      <blog-post-wrapper uniqueLink={props.match.params.unique_link}></blog-post-wrapper>
-                    );
-                  }}>
-                </stencil-route>
+                  <stencil-route url={'/blog/:unique_link'}
+                    routeRender={({ match }) => (
+                      <blog-post-wrapper uniqueLink={match.params.unique_link}></blog-post-wrapper>
+                    )}/>
+                  <stencil-route component="page-not-found"></stencil-route>
                 </stencil-route-switch>
               </stencil-router>
             </blog-component>
