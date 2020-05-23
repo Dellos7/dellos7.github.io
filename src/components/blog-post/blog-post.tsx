@@ -2,6 +2,7 @@ import { Component, Prop, State, Element, h } from '@stencil/core';
 import { MatchResults, RouterHistory } from '@stencil/router';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { BlogService } from '../../services/blog-service';
+import Prism from 'prismjs';
 
 @Component({
   tag: 'blog-post',
@@ -21,11 +22,18 @@ export class BlogPost {
 
   componentWillLoad() {
     // return this.loadContent();
-    this.loadContent();
+    this.loadContent().then();
   }
 
   componentDidLoad(){
     
+  }
+
+  // Como no va, hacerlo en el script que parsea los blogs, reemplazando las etiquetas del html de
+  // <pre><code>...</code></pre> por el contenido parseado.
+  componentDidUpdate(){
+    console.log('componentDidUpdate Prism');
+    Prism.highlightAll();
   }
 
   private _getUniqueLink() {

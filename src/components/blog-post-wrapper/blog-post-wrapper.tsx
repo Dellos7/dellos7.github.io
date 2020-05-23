@@ -32,18 +32,20 @@ export class BlogPostWrapper {
       return (
         <div class="blog-post-wrapper">
           <div class="back-button">
-            <stencil-route-link class="link" url="/blog">&larr;Back to blog</stencil-route-link>
+            <stencil-route-link class="link" url="/blog">&larr;Volver al blog</stencil-route-link>
           </div>
           <blog-post uniqueLink={this.uniqueLink}>
             <div slot="before">
-            <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src="https://images.unsplash.com/photo-1545746993-1ef2b0432a05?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600">              
-              <div class="post-title" slot="inside">
-                <h2>{this.metadata.title}</h2>
+              <div class="image-filter-wrapper">
+                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src="https://images.unsplash.com/photo-1545746993-1ef2b0432a05?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600">              
+                  <div class="post-title" slot="inside">
+                    <h2>{this.metadata.title}</h2>
+                  </div>
+                </image-filter>
               </div>
-            </image-filter>
-            <h3 class="post-date">
-              {this.formateDate(this.metadata.date)}
-            </h3>
+              <h3 class="post-date">
+                {this.formateDate(this.metadata.date)}
+              </h3>
             </div>
             {/* <div class="post-footer" slot="after">Created by David at {this.formateDate(this.metadata.date)}</div> */}
           </blog-post>

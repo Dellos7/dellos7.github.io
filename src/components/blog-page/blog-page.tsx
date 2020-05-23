@@ -32,7 +32,8 @@ export class BlogPage {
               <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src="https://images.unsplash.com/photo-1587058745379-d17c450fdeee?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600"></image-filter>
               <h2 class="posts-list__item-title">{post.metadata.title}</h2>
             </stencil-route-link>
-              <div class="posts-list__item-date texto-gradiente-2">{this.formateDate(post.metadata.date)}</div>
+              {/* <div class="posts-list__item-date texto-gradiente-2">{this.formateDate(post.metadata.date)}</div> */}
+              <div class="posts-list__item-date texto-gradiente-1">{this.formateDate(post.metadata.date)}</div>
               <div class="posts-list__item-summary">{post.metadata.summary}</div>
           </li>
         )}

@@ -1,10 +1,8 @@
-rrss-navbar {
-  //height: 10vh;
+@import "../../style/mixins.scss";
+@import "../../style/link.scss";
+@import "../../style/gradientes.scss";
+
+body{
+  //background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
+  background-image: linear-gradient(to left bottom, #61bdc5, #238792);
 }
-
-  /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
-    
-   
-
-  }

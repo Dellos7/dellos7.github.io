@@ -9,9 +9,9 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'www',
-      empty: false
+      empty: false,
       // uncomment the following line to disable service workers in production
-      // serviceWorker: null
+       serviceWorker: false
     }
   ],
   copy: [
