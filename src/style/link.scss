@@ -1,8 +1,27 @@
-stencil-route-link a{
+stencil-route-link a:not(.no-decorar){
     display: inline;
   }
+
+  a.no-decorar{
+
+    &:link{
+      color: inherit;
+    }
   
-  a{
+    &:active{
+      color: inherit;
+    }
+
+    &:visited{
+      color: inherit;
+    }
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  a:not(.no-decorar){
     @include word-wrap;
     color: white;
     font-weight: bold;
@@ -23,11 +42,11 @@ stencil-route-link a{
   
   // Solo cuando no sea táctil (normalmente pantallas grandes)
   @media screen and ( hover: hover ) {
-    a{
+    a:not(.no-decorar){
       display: inline-block; // Para que funcione bien la transición de los enlaces en escritorio
     }
   
-    a, .link{
+    a:not(.no-decorar), .link:not(.no-decorar){
       position: relative;
       
       // Transición

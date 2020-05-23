@@ -10,6 +10,11 @@
         justify-content: space-around;
     }
 
+    // Por defecto los enlaces (en modo hover) tienen subrayado, lo quitamos
+    stencil-route-link a:link{
+        text-decoration: none;
+    }
+
 }
 
 .posts-list__item{
@@ -45,18 +50,6 @@
     margin-top: .5rem;
     padding: .3rem 1.5rem;
     padding-bottom: 2rem;
-}
-
-a:link{
-    text-decoration: none;
-}
-
-a:active{
-    color: inherit;
-}
-
-a:visited{
-    color: inherit;
 }
 
 @media all and( min-width: 1124px ){

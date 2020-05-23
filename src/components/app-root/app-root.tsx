@@ -21,8 +21,6 @@ export class AppRoot {
           <navigation-bar></navigation-bar>
           <header>
             <user-name></user-name>
-            {/* <menu-button></menu-button> */}
-            
           </header>
           <main>
             <blog-component>

@@ -1,5 +1,5 @@
 .menu-toggle {
-
+    display: none;
     &__checkbox {
         display: none;
     }
@@ -10,8 +10,8 @@
         //dividimos entre 2 para buscar el centro y le quitamos 0.5rem que es la mitad de lo que ocupa un icono
         top: calc( (10vh + 2rem) / 2 - 0.5rem);
         right: 2rem;
-        height: 4rem;
-        width: 4rem;
+        height: 5rem;
+        width: 5rem;
         z-index: 2000;
         border-radius: 50%;
         color: black;
@@ -19,6 +19,7 @@
         background-color: white;
         box-shadow: 0 1rem 3rem rgba(black, .25);
         cursor: pointer;
+        transition: transform .3s linear;
 
         &-icon {
             position: absolute;
@@ -28,4 +29,10 @@
         }
     }
 
+}
+
+@media all and ( max-width: 768px ){
+    .menu-toggle{
+        display: block;
+    }
 }

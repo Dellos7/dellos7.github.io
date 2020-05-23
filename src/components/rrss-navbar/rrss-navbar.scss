@@ -139,11 +139,9 @@
     }
 }
 
-  /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
-    
-    .rrss-navbar {
-        //text-align-last: left;
+@media all and ( max-width: 500px ){
+    .rrss-navbar{
+        text-align: left;
+        padding-left: 2rem;
     }
-
-  }
+}

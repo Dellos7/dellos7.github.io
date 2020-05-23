@@ -8,8 +8,9 @@
   Any global CSS variables should also be applied here.
 */
 
+@import "../style/mixins.scss";
+
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
-@import url('//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/tomorrow-night-blue.min.css');
 
 * {
   padding: 0;
@@ -34,4 +35,9 @@ html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 2.3rem;
+}
+
+// Para links dentro de párrafos, listas, etc. que se sobrepasan del contenedor si no les ponemos esto
+p, li{
+  @include word-wrap;
 }

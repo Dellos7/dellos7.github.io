@@ -35,22 +35,115 @@ nav{
             }
         }
     }
+
+    a:link{
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    a:active{
+        color: inherit;
+    }
+    
+    a:visited{
+        color: inherit;
+    }
+    
+    a.link-active{
+        background-color: white;
+        color: var(--secondary-color);
+    }
 }
 
-a:link{
-    text-decoration: none;
-    color: inherit;
+.menu-toggle {
+    display: none;
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__button, &__navigation-background {
+        position: fixed;
+        //10 vh es lo que ocupa la barra de iconos, 2rem es el margen de la barra con lo de arriba,
+        //dividimos entre 2 para buscar el centro y le quitamos 0.5rem que es la mitad de lo que ocupa un icono
+        //top: calc( (10vh + 2rem) / 2 - 0.5rem);
+        top: 3rem;
+        right: 2rem;
+        height: 5rem;
+        width: 5rem;
+        z-index: 2000;
+        border-radius: 50%;
+        color: black;
+        font-size: 3rem;
+        background-color: white;
+        box-shadow: 0 1rem 3rem rgba(black, .25);
+        cursor: pointer;
+
+        &-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate( -50%, -50% );
+        }
+    }
+
+    &__navigation-background{
+        visibility: hidden;
+        height: 5rem;
+        width: 5rem;
+        z-index: 1000;
+        background-image: radial-gradient( var(--primary-color), var(--tertiary-color));
+        transition: all .3s ease-in-out;
+        cursor: inherit;
+        transform: scale(1);
+    }
+
+    &__checkbox:checked ~ &__navigation-background{
+        visibility: visible;
+        -ms-transform: scale(80);
+        -webkit-transform: scale(80);
+        transform: scale(80);
+    }
+
 }
 
-a:active{
-    color: inherit;
-}
+/* Mostrar botón para menú para pantallas pequeñas */
+@media all and ( max-width: 768px ){
+    nav{
+        position: fixed;
+        left: -100%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 0;
+        transition: all .5s ease-in-out;
 
-a:visited{
-    color: inherit;
-}
+        & ul{
+            flex-flow: column;
+            align-items: center;
 
-a.link-active{
-    background-color: white;
-    color: var(--secondary-color);
+            & li{
+                font-size: 3rem;
+                margin: 2rem;
+            }
+        }
+    }
+    .menu-toggle{
+        display: inherit;
+        &__checkbox:checked ~ nav{
+            left: 50%;
+            opacity: 1;
+            width: 100%;
+            z-index: 1500;
+
+            & ul{
+                & li{
+                    z-index: 1500;
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+    
 }

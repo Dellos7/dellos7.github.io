@@ -10,7 +10,9 @@ export class UserName {
     render() {
         return (
             <div class="user-name">
-                <h1 class="user-name__title">david lópez castellote</h1>
+                <h1 class="user-name__title">
+                    <a class="no-decorar" href="/">david lópez castellote</a>
+                </h1>
             </div>
         );
     }

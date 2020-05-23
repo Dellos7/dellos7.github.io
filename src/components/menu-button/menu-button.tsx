@@ -11,7 +11,7 @@ export class MenuButton {
         return (
             <div class="menu-toggle">
                 <input type="checkbox" class="menu-toggle__checkbox" id="menu-toggle"/>
-                <label htmlFor="menu-toggle" class="menu-toggle__button"><ion-icon class="menu-toggle__button-icon" name="more"></ion-icon></label>
+                <label htmlFor="menu-toggle" class="menu-toggle__button"><ion-icon class="menu-toggle__button-icon" name="ellipsis-vertical-outline"></ion-icon></label>
             </div>
         );
     }
