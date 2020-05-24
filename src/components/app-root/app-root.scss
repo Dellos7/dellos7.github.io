@@ -5,3 +5,19 @@ body{
   //background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
   background-image: linear-gradient(to left bottom, #61bdc5, #238792);
 }
+
+main{
+  margin: 0 auto;
+}
+
+@media all and ( min-width: 1024px ){
+  main{
+    width: 70%;
+  }
+}
+
+@media all and ( max-width: 1024px ) and  ( min-width: 768px ){
+  main{
+    width: 90%;
+  }
+}

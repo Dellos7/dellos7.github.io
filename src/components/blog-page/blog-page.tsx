@@ -1,6 +1,7 @@
 import { Component, Prop, h, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { BlogService } from '../../services/blog-service';
+import{ Helmet } from '@stencil/helmet';
 
 @Component({
   tag: 'blog-page',
@@ -25,6 +26,9 @@ export class BlogPage {
   render() {
     return (
       <div class="blog-page">
+        <Helmet>
+          <title>📖 Blog | David López Castellote 💻 👨‍🏫</title>
+        </Helmet>
         <ul class="posts-list">
         {(BlogService).posts.map((post) =>
           <li class="posts-list__item">
