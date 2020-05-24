@@ -51,7 +51,7 @@ export class BlogPostWrapper {
           <blog-post uniqueLink={this.uniqueLink}>
             <div slot="before">
               <div class="image-filter-wrapper">
-                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src="https://images.unsplash.com/photo-1545746993-1ef2b0432a05?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600">              
+                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}>              
                   <div class="post-title" slot="inside">
                     <h2>{this.metadata.title}</h2>
                   </div>

@@ -2,7 +2,6 @@ const fs = require('fs');
 const matter = require('gray-matter');
 const Remarkable = require('remarkable');
 const md = new Remarkable();
-loadLanguages(languages);
 
 const readConfigFile = () => {
     return new Promise( (resolve, reject) => {
