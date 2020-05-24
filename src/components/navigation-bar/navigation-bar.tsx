@@ -23,7 +23,8 @@ export class NavigationBar {
       <div>
         <input type="checkbox" class="menu-toggle__checkbox" id="menu-toggle"/>
         <label htmlFor="menu-toggle" class="menu-toggle menu-toggle__button">
-          <ion-icon class="menu-toggle menu-toggle__button-icon" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-icon class="menu-toggle menu-toggle__button-icon menu-toggle__button-icon__default" name="ellipsis-vertical"></ion-icon>
+          <ion-icon class="menu-toggle menu-toggle__button-icon menu-toggle__button-icon__checked" name="close"></ion-icon>
         </label>
         <div class="menu-toggle__navigation-background">&nbsp;</div>
         <nav>

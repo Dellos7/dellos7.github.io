@@ -84,6 +84,18 @@ nav{
             left: 50%;
             top: 50%;
             transform: translate( -50%, -50% );
+            color: var(--primary-color);
+            transform-origin: 0 0;
+
+            &__default{
+                transition: opacity .3s, transform .3s;
+            }
+
+            &__checked{
+                transition: opacity .3s, transform .3s;
+                transform: rotate(-90deg) scale(.5) translate( -50%, -50% );
+                opacity: 0;
+            }
         }
     }
 
@@ -103,6 +115,17 @@ nav{
         -ms-transform: scale(80);
         -webkit-transform: scale(80);
         transform: scale(80);
+    }
+
+    &__checkbox:checked ~ &__button > &__button-icon{
+        &__default{
+            transform: rotate(90deg) scale(.5)  translate( -50%, -50% );
+            opacity: 0;
+        }
+        &__checked{
+            transform: rotate(0deg) scale(1)  translate( -50%, -50% );
+            opacity: 1;
+        }
     }
 
 }

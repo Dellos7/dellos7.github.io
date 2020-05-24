@@ -19,7 +19,7 @@ export class DlcTerminal {
                     David López Castellote
     </dlc-cssterminal-block>
                 <dlc-cssterminal-block command="whoami" delay={15}>
-                    Programador y proyecto de futuro profesor 😎
+                    Programador y proyecto de futuro profesor 💻 👨‍🏫
     </dlc-cssterminal-block> 
                 <dlc-cssterminal-block shell="~ david$" command="&nbsp;" delay={26}></dlc-cssterminal-block>
             </dlc-cssterminal>

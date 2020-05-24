@@ -1,5 +1,5 @@
 .rrss-navbar {
-    margin-top: 2rem;
+    margin: 2rem 0;
     text-align: center;
 
     &-list {
@@ -26,35 +26,6 @@
                     color: inherit;
                 }
             }
-            
-            // &:hover {
-            //     //font-size: 5rem;
-            //     animation: rotacionGuay 2s forwards;
-            //     -webkit-filter: drop-shadow(4px 0px 1px black);
-            //     -moz-filter: drop-shadow(4px 0px 1px black);
-            //     filter: drop-shadow(.5px .5px 2px black);
-            // }
-
-            // &__twitter {
-            //     &:hover {
-            //         color: rgb(41, 163, 239	);
-            //     }
-            // }
-            // &__github {
-            //     &:hover {
-            //         color: gold;
-            //     }
-            // }
-            // &__codepen {
-            //     &:hover {
-            //         color: rgb(78, 205, 119	);
-            //     }
-            // }
-            // &__linkedin {
-            //     &:hover {
-            //         color: rgb(16, 116, 175	);
-            //     }
-            // }
         }
     }
 }
