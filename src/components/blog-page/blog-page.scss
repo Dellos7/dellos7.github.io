@@ -52,6 +52,19 @@
     padding-bottom: 2rem;
 }
 
+.pager{
+    position: relative;
+    min-height: 4rem;
+    &__next{
+        cursor: pointer;
+        position: absolute !important;
+        right: 0;
+    }
+    &__prev{
+        cursor: pointer;
+    }
+}
+
 @media all and( min-width: 1124px ){
     .blog-page{
         width: 90%;
@@ -66,6 +79,12 @@
 
     .posts-list__item{
         width: 45%;
+    }
+
+    .pager{
+        &__prev{
+            display: block;
+        }
     }
 }
 

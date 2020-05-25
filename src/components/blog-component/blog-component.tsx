@@ -8,7 +8,7 @@ import { BlogService } from '../../services/blog-service';
 export class BlogComponent {
 
   async componentWillLoad() {
-    console.log( await BlogService.readData() );
+    //await BlogService.readPosts();
   }
 
   render() {

@@ -7,13 +7,22 @@ export class BlogService {
     public static config: Config;
     public static posts: Post[];
 
-    public static readData(): Promise<{ config: Config, posts: Post[] }> {
+    private static readPostsFile(): Promise<{ config: Config, posts: Post[] }>{
         return new Promise<{ config: Config, posts: Post[] }>((resolve, reject) => {
             if (!this.config) {
                 fetch(postsDataFile)
                     .then(response => response.json())
                     .then(data => {
                         if (data) {
+                            // Convertimos la fecha de string en una fecha de js
+                            data.posts = data.posts.map( (post: Post) => {
+                                post.metadata.date = new Date(post.metadata.date);
+                                return post;
+                            });
+                            // Ordenamos los posts de forma descendente (más recientes primero)
+                            data.posts.sort( (p1: Post, p2: Post) => {
+                                return p2.metadata.date - p1.metadata.date;
+                            });
                             BlogService.posts = data.posts;
                             BlogService.config = {
                                 posts_route: data.postsRoute
@@ -28,6 +37,21 @@ export class BlogService {
             else {
                 resolve({ config: BlogService.config, posts: BlogService.posts });
             }
+        });
+    }
+
+    public static readPosts( idxStart = 0, idxEnd? ): Promise<Post[]> {
+        console.log('idxStart', idxStart);
+        console.log('idxEnd', idxEnd);
+        return new Promise<Post[]>( async(resolve, reject) => {
+            let posts, slicedPosts;
+            if( !BlogService.posts ){
+                ({ posts } = await this.readPostsFile());
+            } else{
+                posts = BlogService.posts;
+            }
+            slicedPosts = posts.slice( idxStart, idxEnd ? idxEnd : posts.length );
+            resolve(slicedPosts);
         });
     }
 

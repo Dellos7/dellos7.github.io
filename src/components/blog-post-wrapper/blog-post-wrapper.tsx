@@ -20,8 +20,8 @@ export class BlogPostWrapper {
     this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
   }
 
-  formateDate( date: string ) {
-    return new Date(date).toLocaleDateString();
+  formatDate( date: Date ) {
+    return date.toLocaleDateString();
   }
 
   render() {
@@ -59,7 +59,7 @@ export class BlogPostWrapper {
                 </image-filter>
               </div>
               <h3 class="post-date">
-                {this.formateDate(this.metadata.date)}
+                {this.formatDate(this.metadata.date)}
               </h3>
             </div>
             {/* <div class="post-footer" slot="after">Created by David at {this.formateDate(this.metadata.date)}</div> */}

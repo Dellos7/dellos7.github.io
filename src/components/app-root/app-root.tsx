@@ -7,10 +7,10 @@ import { BlogService } from '../../services/blog-service';
 })
 export class AppRoot {
 
-  @State() postsRoute: string;
+  //@State() postsRoute: string;
 
   componentDidLoad(){
-    this.postsRoute = BlogService.config.posts_route;
+    //this.postsRoute = BlogService.config.posts_route;
   }
 
   render() {
