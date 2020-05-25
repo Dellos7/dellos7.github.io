@@ -26,6 +26,29 @@ const readConfigFile = () => {
     });
 };
 
+const existsImageForPost = (postName, imagesDir) => {
+    return new Promise( (resolve, reject) => {
+        fs.readdir( imagesDir, (err, files) => {
+            if( err ){
+                console.err(err);
+                reject(err);
+            }
+            if( files && files.length > 0 ){
+                const f = files.filter( (file) => {
+                    return file.includes(postName);
+                });
+                if( f && f.length > 0 ){
+                    resolve(f[0]);
+                } else{
+                    resolve(false);
+                }
+            } else{
+                resolve(false);
+            }
+        });
+    });
+};
+
 const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogDir, imagesContentDir) => {
     const blogDirPath = blogDir;
     const imagesDirPath = imagesContentDir;
@@ -33,7 +56,7 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
     imagesContentDir = `${projectSrc}/${imagesContentDir}`;
     console.log(blogDir);
     console.log(`Starting blog parse... `);
-    fs.readdir(blogMdDir, (err, files) => {
+    fs.readdir(blogMdDir, async(err, files) => {
         console.log(`> Reading files from ${blogMdDir}`);
         if (err) {
             console.error(err);
@@ -43,10 +66,16 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             if (!fs.existsSync(blogDir)) {
                 fs.mkdirSync(blogDir);
             }
+            if (!fs.existsSync(imagesBlogDir)) {
+                fs.mkdirSync(imagesBlogDir);
+            }
+            if( !fs.existsSync(imagesContentDir) ){
+                fs.mkdirSync(imagesContentDir);
+            }
         }
         let i = 0;
         let fileNames = [];
-        files.forEach( async(_file) => {
+        for( let _file of files ){
             let fileContent = fs.readFileSync(`${blogMdDir}/${_file}`, 'utf8');
             let contentMatter = matter(fileContent);
             let contentHtml = md.render(contentMatter.content);
@@ -54,36 +83,42 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
                 let metadata = contentMatter.data;
                 let fileNameNoExtension = _file.substring(0,_file.lastIndexOf('.')); 
                 let fileName = fileNameNoExtension + '.html';
+                // Guardar el html en el directorio correspondiente
                 fs.writeFileSync(`${blogDir}/${fileName}`, contentHtml);
                 i++;
                 let file = `/${blogDirPath}/${fileName}`;
-                // TODO 1: copiar siempre la imagen del blog si es de "content/blog-imgs" a donde toque
-                // (no solo las descargadas)
-                // TODO 2: guardar de alguna forma la imagen para cada blog, si lo dejamos así, se genera
-                // una imagen random diferente para cada blog que no tiene imagen. ¿Modificar el markdown?
+                let imageSourcePath = `${imagesBlogDir}/${fileNameNoExtension}.jpg`;
+                let imageContentDir = `${imagesContentDir}/${fileNameNoExtension}.jpg`;
+                let image = '';
+                // No tiene asociada una imagen en el frontmatter
                 if( !metadata.image ){
-                    if (!fs.existsSync(imagesBlogDir)) {
-                        fs.mkdirSync(imagesBlogDir);
+                    // Comprobamos si existe una imagen guardada en el directorio de imágenes de este post
+                    const imageForPost = await existsImageForPost( fileNameNoExtension, imagesBlogDir );
+                    if( imageForPost ){
+                        image = `/${imagesDirPath}/${imageForPost}`;
+                    } else{
+                        // Descargamos una imagen aleatoria de unsplash y la guardamos en el directorio de imágenes
+                        await unsplashRandomImage.download( imageSourcePath );
+                        image = `/${imagesDirPath}/${fileNameNoExtension}.jpg`;
                     }
-                    if( !fs.existsSync(imagesContentDir) ){
-                        fs.mkdirSync(imagesContentDir);
-                    }
-                    const randomStr = randomString();
-                    const imageSourcePath = `${imagesBlogDir}/${randomStr}.jpg`;
-                    const imageContentDir = `${imagesContentDir}/${randomStr}.jpg`;
-                    unsplashRandomImage.download( imageSourcePath ).then( () => {
-                        fs.copyFileSync( imageSourcePath, imageContentDir );
-                    });
-                    const image = `/${imagesDirPath}/${randomStr}.jpg`;
-                    metadata.image = image;
+                } else if( !metadata.image.startsWith('http://') && !metadata.image.startsWith('https://') ){
+                    imageSourcePath = `${imagesBlogDir}/${metadata.image}`;
+                    imageContentDir = `${imagesContentDir}/${metadata.image}`;
+                    image = `/${imagesDirPath}/${metadata.image}`;
+                } else{
+                    image = metadata.image;
                 }
+                if( fs.existsSync(imageSourcePath) && !fs.existsSync( imageContentDir ) ){
+                    fs.copyFileSync( imageSourcePath, imageContentDir );
+                }
+                metadata.image = image;
                 fileNames.push({
                     unique_link: fileNameNoExtension,
                     file,
                     metadata
                 });
             } catch (err) { console.error(err); }
-        });
+        }
         if (fileNames && fileNames.length > 0) {
             let posts = {
                 posts: fileNames,
@@ -109,3 +144,10 @@ readConfigFile()
 .catch( (error) => {
     console.error(error);
 });
+
+
+// (async () => {
+//     console.log('before');
+//     const res = await existsImageForPost( 'index', 'content/blog-imgs' );
+//     console.log('after', res);
+// })();

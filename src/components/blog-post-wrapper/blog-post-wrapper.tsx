@@ -33,17 +33,18 @@ export class BlogPostWrapper {
         <div class="blog-post-wrapper">
           <Helmet>
             <title>{this.metadata.title} | David López Castellote 💻 👨‍🏫</title>
+            <link rel="canonical" href={window.location.origin+window.location.pathname}/>
             <meta name="og:title" property="og:title" content={this.metadata.title} />
             { this.metadata.summary ? <meta name="description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="og:description" property="og:description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="twitter:description" content={this.metadata.summary} /> : '' }
-            <meta name="og:image" property="og:image" content={this.metadata.image} />
+            <meta name="og:image" property="og:image" content={window.location.origin+this.metadata.image} />
             {/* <meta property="og:url" content={this.metadata.image} /> */}
             <meta name="twitter:title" content={this.metadata.title} />
             <meta name="twitter:card" content="summary_large_image" />
             {/* TODO: parametrizar usuario de twitter */}
             <meta name="twitter:site" content="@_dlopezcast" />
-            <meta name="twitter:image" content={this.metadata.image} />
+            <meta name="twitter:image" content={window.location.origin+this.metadata.image}/>
           </Helmet>
           <div class="back-button">
             <stencil-route-link class="link" url="/blog">&larr;Volver al blog</stencil-route-link>
