@@ -26,6 +26,8 @@
     -moz-box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
     box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
     font-size: 1.8rem;
+    -webkit-animation: fadeIn 1s linear;
+    animation: fadeIn 1s linear;
 
     & image-filter::part(img){
         padding-top: 56.25%;
@@ -55,6 +57,11 @@
 .pager{
     position: relative;
     min-height: 4rem;
+
+    & a[class*="pager__"]{
+        text-decoration: underline;
+    }
+
     &__next{
         cursor: pointer;
         position: absolute !important;
@@ -62,6 +69,8 @@
     }
     &__prev{
         cursor: pointer;
+        position: absolute !important;
+        left: 0;
     }
 }
 
@@ -81,11 +90,6 @@
         width: 45%;
     }
 
-    .pager{
-        &__prev{
-            display: block;
-        }
-    }
 }
 
 @media all and ( max-width: 768px ) and ( min-width: 500px ) {
@@ -93,3 +97,32 @@
         width: 70%;
     }
 }
+
+@media screen and ( hover: hover ){
+    .pager{
+        & a[class*="pager__"]{
+            text-decoration: none;
+        }
+
+    }
+}
+
+/* Fading entrances  */
+@-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }

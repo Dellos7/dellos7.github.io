@@ -11,31 +11,19 @@
     & h1 {
         font-weight: 900;
         width: fit-content;
-        
-        /*color: transparent;
-        background: rgb(19,243,185);
-        background: linear-gradient(90deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;*/
-
         color: var(--fifth-color);
     }
 
     & h2 {
         font-weight: 900;
         width: fit-content;
-        
-        /*color: transparent;
-        background: rgba(88,120,243,1);
-        background: linear-gradient(270deg, rgba(88,120,243,1) 0%, rgba(253,187,45,1) 70%);
-        -webkit-background-clip: text;
-        background-clip: text;*/
-        color: var(--quaternary-color);
+        color: var(--fifth-color);
     }
 
     & h3 {
         font-weight: 800;
-        color: #3c3c3c;
+        width: fit-content;
+        color: var(--quaternary-color);
     }
 
     & p {
