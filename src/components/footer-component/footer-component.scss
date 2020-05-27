@@ -1,15 +1,22 @@
 .footer{
+    color: white;
     width: 90;
 
     .copyright{
         font-family: 'Pacifico', cursive;
         width: 90%;
-        margin: 3rem auto;
+        margin: 2rem auto;
         text-align: center;
-        color: white;
         font-weight: 100;
         letter-spacing: 1px;
         border-top: 1px solid white;
         padding-top: 1rem;
+    }
+
+    .oos-site{
+        font-size: 2rem;
+        width: 90%;
+        text-align: center;
+        margin: 2rem auto;
     }
 }

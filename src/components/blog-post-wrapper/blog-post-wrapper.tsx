@@ -22,6 +22,13 @@ export class BlogPostWrapper {
     this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
   }
 
+  imageUrl( image: string ){
+    if( image.startsWith('http://') || image.startsWith('https://') ){
+      return image;
+    }
+    return window.location.origin + image;
+  }
+
   formatDate( date: Date ) {
     return date.toLocaleDateString();
   }
@@ -41,13 +48,13 @@ export class BlogPostWrapper {
             { this.metadata.summary ? <meta name="description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="og:description" property="og:description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="twitter:description" content={this.metadata.summary} /> : '' }
-            <meta name="og:image" property="og:image" content={window.location.origin+this.metadata.image} />
+            <meta name="og:image" property="og:image" content={this.imageUrl(this.metadata.image)} />
             {/* <meta property="og:url" content={this.metadata.image} /> */}
             <meta name="twitter:title" content={this.metadata.title} />
             <meta name="twitter:card" content="summary_large_image" />
             {/* TODO: parametrizar usuario de twitter */}
             <meta name="twitter:site" content={seoConfig.twitterUser} />
-            <meta name="twitter:image" content={window.location.origin+this.metadata.image}/>
+            <meta name="twitter:image" content={this.imageUrl(this.metadata.image)}/>
           </Helmet>
           <div class="back-button">
             <stencil-route-link class="link" url="/blog">&larr;Volver al blog</stencil-route-link>
@@ -68,7 +75,6 @@ export class BlogPostWrapper {
                 
               </div>
             </div>
-            {/* <div class="post-footer" slot="after">Created by David at {this.formateDate(this.metadata.date)}</div> */}
           </blog-post>
         </div>
       );
