@@ -1,6 +1,16 @@
-:host {
-    //--dlc-cssterminal-content-bgcolor: var(--secondary-color);
+dlc-cssterminal {
     --dlc-cssterminal-content-bgcolor: #27656d;
+    --dlc-cssterminal-hem: 1rem;
+    --dlc-cssterminal-primary-font-color: #fff;
+
+    &::part(terminal-content){
+        font-size: 1.8rem;
+        padding: .5rem;
+        background-color: #27656d;
+    }
+    &::part(terminal-content-command) {
+        color: #fff;
+    }
 }
 
 div.wrapper {

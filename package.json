@@ -8,12 +8,12 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "build-site": "npm run build && cp -r www/* ../personal-website-deploy",
+    "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
     "blog": "NODE_ENV=production node scripts/parse-blog.js"
   },
   "dependencies": {
-    "dlc-css-terminal": "0.0.4",
+    "dlc-css-terminal": "0.0.6",
     "ionicons": "5.0.1"
   },
   "license": "MIT",
