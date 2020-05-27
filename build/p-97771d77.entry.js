@@ -1,0 +1,1 @@
+import{r,h as p}from"./p-b091af4d.js";const a=class{constructor(p){r(this,p)}render(){return p("div",{class:"app-home"},p("dlc-terminal",null))}};a.style=".app-home{padding:10px;margin-top:1rem}";export{a as app_home}
