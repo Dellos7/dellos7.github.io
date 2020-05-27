@@ -59,9 +59,9 @@ export namespace Components {
     interface SectionTitle {
     }
     interface UserName {
+        "content": string;
         "link": string;
         "showDomain": boolean;
-        "title": string;
     }
 }
 declare global {
@@ -254,9 +254,9 @@ declare namespace LocalJSX {
     interface SectionTitle {
     }
     interface UserName {
+        "content"?: string;
         "link"?: string;
         "showDomain"?: boolean;
-        "title"?: string;
     }
     interface IntrinsicElements {
         "about-page": AboutPage;

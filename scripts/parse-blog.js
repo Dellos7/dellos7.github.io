@@ -59,7 +59,9 @@ const existsImageForPost = (postName, imagesDir) => {
 const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogDir, imagesContentDir) => {
     const blogDirPath = blogDir;
     const imagesDirPath = imagesContentDir;
+    const blogDirWww = `www/${blogDir}`;
     blogDir = `${projectSrc}/${blogDir}`;
+    const imagesContentDirWww = `www/${imagesContentDir}`;
     imagesContentDir = `${projectSrc}/${imagesContentDir}`;
     console.log(`Starting blog parse... `);
     fs.readdir(blogMdDir, async(err, files) => {
@@ -67,18 +69,24 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
         if (err) {
             console.error(err);
         }
+        // Crear o vaciar los directorios donde va el contenido
         if (!fs.existsSync(blogDir)) {
             fs.mkdirSync(blogDir);
         } else{
             fs.emptyDirSync(blogDir);
+            fs.emptyDirSync(blogDirWww);
         }
+        if( !fs.existsSync(imagesContentDir) ){
+            fs.mkdirSync(imagesContentDir);
+        } else{
+            fs.emptyDirSync(imagesContentDir);
+            fs.emptyDirSync(imagesContentDirWww);
+        }
+
         if (files && files.length > 0) {
             console.log(`> ${files.length} files found!`);
             if (!fs.existsSync(imagesBlogDir)) {
                 fs.mkdirSync(imagesBlogDir);
-            }
-            if( !fs.existsSync(imagesContentDir) ){
-                fs.mkdirSync(imagesContentDir);
             }
         }
         let i = 0;

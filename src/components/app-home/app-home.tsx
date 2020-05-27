@@ -19,7 +19,7 @@ export class AppHome {
           <meta property="og:description" content={seoConfig.mainPageDescription} />
         </Helmet>
         <header>
-          <user-name title="david lópez castellote" link="/"></user-name>
+          <user-name content="david lópez castellote" link="/"></user-name>
         </header>
         <main>
           <dlc-terminal></dlc-terminal>

@@ -15,7 +15,7 @@ export class ContactPage {
           <title>Sobre mí {seoConfig.pageTitleSuffix}</title>
         </Helmet>
         <header>
-          <user-name title="Contacto" showDomain={true}></user-name>
+          <user-name content="Contacto" showDomain={true}></user-name>
         </header>
         <p style={ {textAlign: 'center'} }>🔨</p>
       </div>

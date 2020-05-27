@@ -9,13 +9,12 @@ import { HTMLStencilElement } from '@stencil/core/internal';
 export class UserName {
 
     @Element() el: HTMLStencilElement;
-    @Prop() title: string;
+    @Prop() content: string;
     @Prop() link: string;
     @Prop() showDomain: boolean;
 
     componentDidLoad(){
-        if( this.showDomain ){
-            console.log(this.el);
+        if( this.showDomain && this.el ){
             this.el.querySelector('.user-name__title').classList.add('show-domain');
         }
     }
@@ -24,7 +23,7 @@ export class UserName {
         return (
             <div class="user-name">
                 <h1 class="user-name__title">
-                    { this.link ? <a class="no-decorar" href={this.link}>{this.title}</a> : <span>{this.title}</span> }
+                    { this.link ? <a class="no-decorar" href={this.link}>{this.content}</a> : <span>{this.content}</span> }
                 </h1>
             </div>
         );

@@ -22,9 +22,11 @@ export class RrssNavbar {
     }
 
     private removeNotAnimatedClasses() {
-        let notAnimatedEls = this.el.shadowRoot.querySelector('.not-animated');
-        if( notAnimatedEls ) {
-            notAnimatedEls.classList.remove('not-animated');
+        if( this.el && this.el.shadowRoot ){
+            let notAnimatedEls = this.el.shadowRoot.querySelector('.not-animated');
+            if( notAnimatedEls ) {
+                notAnimatedEls.classList.remove('not-animated');
+            }
         }
     }
 

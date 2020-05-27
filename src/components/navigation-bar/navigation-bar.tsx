@@ -10,11 +10,13 @@ export class NavigationBar {
 
   @Element() el: HTMLStencilElement;
 
-  navElementClick(e: UIEvent){
-    const checkboxElLabelBtn: HTMLElement = this.el.shadowRoot.querySelector('.menu-toggle__button');
-    const checkboxElLabelCheck = this.el.shadowRoot.querySelector('.menu-toggle__checkbox') as any;
-    if( checkboxElLabelCheck.checked ){
-      checkboxElLabelBtn.click();
+  navElementClick(_: UIEvent){
+    if( this.el && this.el.shadowRoot ){
+      const checkboxElLabelBtn: HTMLElement = this.el.shadowRoot.querySelector('.menu-toggle__button');
+      const checkboxElLabelCheck = this.el.shadowRoot.querySelector('.menu-toggle__checkbox') as any;
+      if( checkboxElLabelCheck.checked ){
+        checkboxElLabelBtn.click();
+      }
     }
   }
 

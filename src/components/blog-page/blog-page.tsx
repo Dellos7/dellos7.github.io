@@ -64,7 +64,7 @@ export class BlogPage {
           <title>📖 Blog {seoConfig.pageTitleSuffix}</title>
         </Helmet>
         <header>
-          <user-name title="Blog" showDomain={true}></user-name>
+          <user-name content="Blog" showDomain={true}></user-name>
         </header>
         <main>
           <div class="pager">

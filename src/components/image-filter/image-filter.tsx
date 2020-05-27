@@ -15,7 +15,9 @@ export class ImageFilter {
   @Prop() toColor: string;
 
   componentDidLoad(){
-    this.imgFilterEl = this.el.shadowRoot.querySelector('.img-filter');
+    if( this.el && this.el.shadowRoot ){
+      this.imgFilterEl = this.el.shadowRoot.querySelector('.img-filter');
+    }
   }
 
   render() {

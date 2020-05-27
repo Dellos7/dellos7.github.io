@@ -15,7 +15,7 @@ export class AboutPage {
           <title>Sobre mí {seoConfig.pageTitleSuffix}</title>
         </Helmet>
         <header>
-          <user-name title="Sobre mí" showDomain={true}></user-name>
+          <user-name content="Sobre mí" showDomain={true}></user-name>
         </header>
         <p style={ {textAlign: 'center'} }>🔨</p>
       </div>

@@ -8,7 +8,7 @@ export class BlogService {
     public static posts: Post[] = [];
 
     private static readPostsFile(): Promise<{ config: Config, posts: Post[] }>{
-        return new Promise<{ config: Config, posts: Post[] }>((resolve, reject) => {
+        return new Promise<{ config: Config, posts: Post[] }>((resolve, _) => {
             fetch(postsDataFile)
                 .then(response => response.json())
                 .then(data => {
@@ -34,7 +34,7 @@ export class BlogService {
     }
 
     public static readPosts( idxStart = 0, idxEnd? ): Promise<Post[]> {
-        return new Promise<Post[]>( async(resolve, reject) => {
+        return new Promise<Post[]>( async(resolve, _) => {
             let posts, slicedPosts;
             if( !BlogService.posts || BlogService.posts.length == 0 ){
                 ({ posts } = await this.readPostsFile());
