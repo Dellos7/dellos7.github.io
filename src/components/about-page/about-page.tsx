@@ -17,6 +17,7 @@ export class AboutPage {
         <header>
           <user-name title="Sobre mí" showDomain={true}></user-name>
         </header>
+        <p style={ {textAlign: 'center'} }>🔨</p>
       </div>
     );
   }

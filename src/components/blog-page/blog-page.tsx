@@ -72,7 +72,8 @@ export class BlogPage {
             { this.postsPage < this.maxPages ? <a class="pager__next" onClick={() => this.nextPage()}>Anteriores &rarr;</a> : '' }
           </div>
           <ul class="posts-list">
-            {this.posts.map((post) =>
+            {this.posts.length > 0 ?
+              this.posts.map((post) =>
               <li class="posts-list__item">
                 <stencil-route-link url={"/" + BlogService.config.posts_route + "/" + post.unique_link}>
                   <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={post.metadata.image}></image-filter>
@@ -82,7 +83,7 @@ export class BlogPage {
                   <div class="posts-list__item-date texto-gradiente-1">{this.formatDate(post.metadata.date)}</div>
                   <div class="posts-list__item-summary">{post.metadata.summary}</div>
               </li>
-            )}
+            ) : <p class="no-posts">- No hay posts -</p>}
           </ul>
         </main>
       </div>

@@ -4,46 +4,39 @@ import { Config, Post } from '../model/interfaces';
 
 export class BlogService {
 
-    public static config: Config;
-    public static posts: Post[];
+    public static config: Config = { posts_route: 'blog' };
+    public static posts: Post[] = [];
 
     private static readPostsFile(): Promise<{ config: Config, posts: Post[] }>{
         return new Promise<{ config: Config, posts: Post[] }>((resolve, reject) => {
-            if (!this.config) {
-                fetch(postsDataFile)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data) {
-                            // Convertimos la fecha de string en una fecha de js
-                            data.posts = data.posts.map( (post: Post) => {
-                                post.metadata.date = new Date(post.metadata.date);
-                                return post;
-                            });
-                            // Ordenamos los posts de forma descendente (más recientes primero)
-                            data.posts.sort( (p1: Post, p2: Post) => {
-                                return p2.metadata.date - p1.metadata.date;
-                            });
-                            BlogService.posts = data.posts;
-                            BlogService.config = {
-                                posts_route: data.postsRoute
-                            };
-                            resolve({ config: BlogService.config, posts: BlogService.posts });
-                        }
-                        else {
-                            reject(`Could not read data from ${postsDataFile} file.`);
-                        }
-                    });
-            }
-            else {
-                resolve({ config: BlogService.config, posts: BlogService.posts });
-            }
+            fetch(postsDataFile)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.posts) {
+                        // Convertimos la fecha de string en una fecha de js
+                        data.posts = data.posts.map( (post: Post) => {
+                            post.metadata.date = new Date(post.metadata.date);
+                            return post;
+                        });
+                        // Ordenamos los posts de forma descendente (más recientes primero)
+                        data.posts.sort( (p1: Post, p2: Post) => {
+                            return p2.metadata.date - p1.metadata.date;
+                        });
+                        BlogService.posts = data.posts;
+                        BlogService.config = {
+                            posts_route: data.postsRoute
+                        };
+                        
+                    }
+                    resolve({ config: BlogService.config, posts: BlogService.posts });
+                });
         });
     }
 
     public static readPosts( idxStart = 0, idxEnd? ): Promise<Post[]> {
         return new Promise<Post[]>( async(resolve, reject) => {
             let posts, slicedPosts;
-            if( !BlogService.posts ){
+            if( !BlogService.posts || BlogService.posts.length == 0 ){
                 ({ posts } = await this.readPostsFile());
             } else{
                 posts = BlogService.posts;

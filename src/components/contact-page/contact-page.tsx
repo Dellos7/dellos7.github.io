@@ -17,6 +17,7 @@ export class ContactPage {
         <header>
           <user-name title="Contacto" showDomain={true}></user-name>
         </header>
+        <p style={ {textAlign: 'center'} }>🔨</p>
       </div>
     );
   }

@@ -1,7 +1,8 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const matter = require('gray-matter');
 const Remarkable = require('remarkable');
 const crypto = require('crypto');
+const dotenv = require('dotenv');
 const unsplashRandomImage = require('./unsplash-random-image');
 const md = new Remarkable();
 
@@ -13,7 +14,13 @@ const randomString = () => {
 
 const readConfigFile = () => {
     return new Promise( (resolve, reject) => {
-        const configFileName = 'blog.config.json';
+        let configFileName = 'blog.config.json';
+        dotenv.config();
+        console.log('NODE_ENV', process.env.NODE_ENV);
+        console.log('BLOG_CONFIG_FILE', process.env.BLOG_CONFIG_FILE);
+        if( process.env.NODE_ENV == 'DEVELOPMENT' ){
+            configFileName = process.env.BLOG_CONFIG_FILE;
+        }
         fs.readFile(configFileName, 'utf-8', (err, data) => {
             if( err ) {
                 const error = `Something went wrong when reading the ${configFileName} config file: ${err}`;
@@ -54,18 +61,19 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
     const imagesDirPath = imagesContentDir;
     blogDir = `${projectSrc}/${blogDir}`;
     imagesContentDir = `${projectSrc}/${imagesContentDir}`;
-    console.log(blogDir);
     console.log(`Starting blog parse... `);
     fs.readdir(blogMdDir, async(err, files) => {
         console.log(`> Reading files from ${blogMdDir}`);
         if (err) {
             console.error(err);
         }
+        if (!fs.existsSync(blogDir)) {
+            fs.mkdirSync(blogDir);
+        } else{
+            fs.emptyDirSync(blogDir);
+        }
         if (files && files.length > 0) {
             console.log(`> ${files.length} files found!`);
-            if (!fs.existsSync(blogDir)) {
-                fs.mkdirSync(blogDir);
-            }
             if (!fs.existsSync(imagesBlogDir)) {
                 fs.mkdirSync(imagesBlogDir);
             }
@@ -125,6 +133,8 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
                 postsRoute: postsRoute
             };
             fs.writeFileSync(`${projectSrc}/posts.json`, JSON.stringify(posts));
+        } else{
+            fs.writeFileSync(`${projectSrc}/posts.json`,JSON.stringify({}));
         }
         console.log(`> ${i} files parsed and created in ${blogDir}!`);
     });
@@ -134,7 +144,7 @@ readConfigFile()
 .then( async (config) => {
     await parseBlog(
         config.blog_src_dir ? config.blog_src_dir : 'blog-md', 
-        config.blog_content_dir ? config.blog_content_dir : 'blog',
+        config.blog_content_dir ? config.blog_content_dir : '__blog',
         config.project_src ? config.project_src : 'src',
         config.posts_route ? config.posts_route : 'post',
         config.images_src_dir ? config.images_src_dir : 'content/blog-imgs',

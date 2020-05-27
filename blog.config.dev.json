@@ -1,8 +1,8 @@
 {
-    "blog_src_dir": "content/blog-md",
+    "blog_src_dir": "content/blog-md-test",
     "blog_content_dir": "__blog",
     "posts_route": "blog",
     "project_src": "src",
-    "images_src_dir": "content/blog-imgs",
+    "images_src_dir": "content/blog-imgs-test",
     "images_content_dir": "assets/blog"
 }
