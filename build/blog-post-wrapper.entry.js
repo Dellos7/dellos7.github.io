@@ -16,6 +16,12 @@ const BlogPostWrapper = class {
         this.imgFilterFromColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
         this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
     }
+    imageUrl(image) {
+        if (image.startsWith('http://') || image.startsWith('https://')) {
+            return image;
+        }
+        return window.location.origin + image;
+    }
     formatDate(date) {
         return date.toLocaleDateString();
     }
@@ -24,7 +30,7 @@ const BlogPostWrapper = class {
             return (h("div", null, "Loading..."));
         }
         else {
-            return (h("div", { class: "blog-post-wrapper" }, h(Helmet, null, h("title", null, this.metadata.title, " ", seoConfig.pageTitleSuffix), h("link", { rel: "canonical", href: window.location.origin + window.location.pathname }), this.metadata.tags ? h("meta", { name: "keywords", content: this.metadata.tags }) : '', h("meta", { name: "og:title", property: "og:title", content: this.metadata.title }), this.metadata.summary ? h("meta", { name: "description", content: this.metadata.summary }) : '', this.metadata.summary ? h("meta", { name: "og:description", property: "og:description", content: this.metadata.summary }) : '', this.metadata.summary ? h("meta", { name: "twitter:description", content: this.metadata.summary }) : '', h("meta", { name: "og:image", property: "og:image", content: window.location.origin + this.metadata.image }), h("meta", { name: "twitter:title", content: this.metadata.title }), h("meta", { name: "twitter:card", content: "summary_large_image" }), h("meta", { name: "twitter:site", content: seoConfig.twitterUser }), h("meta", { name: "twitter:image", content: window.location.origin + this.metadata.image })), h("div", { class: "back-button" }, h("stencil-route-link", { class: "link", url: "/blog" }, "\u2190Volver al blog")), h("blog-post", { uniqueLink: this.uniqueLink }, h("div", { slot: "before" }, h("div", { class: "image-filter-wrapper" }, h("image-filter", { fromColor: this.imgFilterFromColor, toColor: this.imgFilterToColor, src: this.metadata.image }, h("div", { class: "post-title", slot: "inside" }, h("h1", null, this.metadata.title)))), h("h3", { class: "post-date" }, this.formatDate(this.metadata.date)), h("div", { innerHTML: tagsToHtmlList(this.metadata.tags) })))));
+            return (h("div", { class: "blog-post-wrapper" }, h(Helmet, null, h("title", null, this.metadata.title, " ", seoConfig.pageTitleSuffix), h("link", { rel: "canonical", href: window.location.origin + window.location.pathname }), this.metadata.tags ? h("meta", { name: "keywords", content: this.metadata.tags }) : '', h("meta", { name: "og:title", property: "og:title", content: this.metadata.title }), this.metadata.summary ? h("meta", { name: "description", content: this.metadata.summary }) : '', this.metadata.summary ? h("meta", { name: "og:description", property: "og:description", content: this.metadata.summary }) : '', this.metadata.summary ? h("meta", { name: "twitter:description", content: this.metadata.summary }) : '', h("meta", { name: "og:image", property: "og:image", content: this.imageUrl(this.metadata.image) }), h("meta", { name: "twitter:title", content: this.metadata.title }), h("meta", { name: "twitter:card", content: "summary_large_image" }), h("meta", { name: "twitter:site", content: seoConfig.twitterUser }), h("meta", { name: "twitter:image", content: this.imageUrl(this.metadata.image) })), h("div", { class: "back-button" }, h("stencil-route-link", { class: "link", url: "/blog" }, "\u2190Volver al blog")), h("blog-post", { uniqueLink: this.uniqueLink }, h("div", { slot: "before" }, h("div", { class: "image-filter-wrapper" }, h("image-filter", { fromColor: this.imgFilterFromColor, toColor: this.imgFilterToColor, src: this.metadata.image }, h("div", { class: "post-title", slot: "inside" }, h("h1", null, this.metadata.title)))), h("h3", { class: "post-date" }, this.formatDate(this.metadata.date)), h("div", { innerHTML: tagsToHtmlList(this.metadata.tags) })))));
         }
     }
 };
