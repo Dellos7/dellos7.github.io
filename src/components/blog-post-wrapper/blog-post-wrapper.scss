@@ -18,7 +18,8 @@ image-filter::part(img){
 }
 
 .post-title{
-    & h2{
+    & h1{
+        font-size: 3.5rem;
         width: calc(100% - 4rem + 1px);
         text-align: center;
         color: white;
@@ -47,9 +48,9 @@ image-filter::part(img){
     }
 }
 
-@media all and( max-width: 500px ){
+@media all and( max-width: 600px ){
     .post-title{
-        & h2{
+        & h1{
             font-size: 2.5rem;
         }
     }

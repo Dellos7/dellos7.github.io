@@ -1,5 +1,6 @@
 import { Component, h } from '@stencil/core';
-
+import{ Helmet } from '@stencil/helmet';
+import seoConfig from '../../global/seo-config';
 
 @Component({
   tag: 'about-page',
@@ -10,7 +11,12 @@ export class AboutPage {
   render() {
     return (
       <div>
-        About page
+        <Helmet>
+          <title>Sobre mí {seoConfig.pageTitleSuffix}</title>
+        </Helmet>
+        <header>
+          <user-name title="Sobre mí" showDomain={true}></user-name>
+        </header>
       </div>
     );
   }

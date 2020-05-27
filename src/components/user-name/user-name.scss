@@ -1,10 +1,10 @@
 .user-name {
         position: relative;
-        width: 80%;
+        width: 90%;
         border-bottom: 1.5px solid white;
         border-top: 1.5px solid white;
         border-radius: .1rem;
-        margin: 0 auto;
+        margin: 3rem auto;
         //color: white;
 
     &__title {
@@ -15,15 +15,17 @@
         padding: 1rem;
         width: fit-content;
         margin: 0 auto;
-
         position: relative;
-        color: transparent;
-        //animation: colorTexto 1s forwards;
-        animation-delay: 2s;
-        //background: linear-gradient(to right, white 0%, #61bdc5 30%, #24909c 50%, #61bdc5 70%, white 100%) 100% 0 / 200% 200% white;
-        background: white;
-        -webkit-background-clip: text;
-        background-clip: text;
+        color: white;
+
+        &.show-domain::after{
+            content: "dlopezcastellote.dev";
+            font-size: 40%;
+            position: absolute;
+            bottom: 0;
+            left: 80%;
+            opacity: .6;
+        }
     }
 }
 
@@ -37,5 +39,13 @@
         background: linear-gradient(90deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);
         -webkit-background-clip: text;
         background-clip: text;
+    }
+}
+
+@media all and ( max-width: 450px ){
+    .user-name {
+        &__title {
+            margin-left: 10%;
+        }
     }
 }

@@ -72,40 +72,40 @@
             color: #3c3c3c;
         }
         &[class*="-c"]::before{
-            background-color: #419a49;
+            background-color: var(--c);
             content: "c";
         }
         &[class*="-java"]::before{
-            background-color: #f73737;
+            background-color: var(--java);
             content: "java";
         }
         &[class*="javascript"]::before{
-            background-color: #f7df1e;
+            background-color: var(--javascript);
             content: "javascript";
         }
         &[class*="css"]::before{
-            background-color: #2caddd;
+            background-color: var(--css);
             content: "css";
         }
         &[class*="html"]::before{
-            background-color: #ff4800;
+            background-color: var(--html);
             content: "html";
         }
         &[class*="typescript"]::before{
-            background-color: #006fc5;
+            background-color: var(--typescript);
             content: "typescript";
         }
         &[class*="cpp"]::before{
-            background-color: #5a92cd;
+            background-color: var(--cpp);
             content: "c++";
         }
         &[class*="python"]::before{
-            background-image: linear-gradient( to right, #2d6396, #ffce39 );
+            background-image: var(--python);
             content: "python";
         }
         &[class*="shell"]::before{
             color: white;
-            background-color: #222245;
+            background-color: var(--shell);
             border: .5px solid white;
         }
     }

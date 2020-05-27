@@ -1,6 +1,8 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { BlogService } from '../../services/blog-service';
 import { Helmet } from '@stencil/helmet';
+import seoConfig from '../../global/seo-config';
+import { tagsToHtmlList } from '../../global/utils';
 
 @Component({
   tag: 'blog-post-wrapper',
@@ -32,8 +34,9 @@ export class BlogPostWrapper {
       return (
         <div class="blog-post-wrapper">
           <Helmet>
-            <title>{this.metadata.title} | David López Castellote 💻 👨‍🏫</title>
+            <title>{this.metadata.title} {seoConfig.pageTitleSuffix}</title>
             <link rel="canonical" href={window.location.origin+window.location.pathname}/>
+            { this.metadata.tags ? <meta name="keywords" content={this.metadata.tags}/> : ''}
             <meta name="og:title" property="og:title" content={this.metadata.title} />
             { this.metadata.summary ? <meta name="description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="og:description" property="og:description" content={this.metadata.summary} /> : '' }
@@ -43,7 +46,7 @@ export class BlogPostWrapper {
             <meta name="twitter:title" content={this.metadata.title} />
             <meta name="twitter:card" content="summary_large_image" />
             {/* TODO: parametrizar usuario de twitter */}
-            <meta name="twitter:site" content="@_dlopezcast" />
+            <meta name="twitter:site" content={seoConfig.twitterUser} />
             <meta name="twitter:image" content={window.location.origin+this.metadata.image}/>
           </Helmet>
           <div class="back-button">
@@ -54,13 +57,16 @@ export class BlogPostWrapper {
               <div class="image-filter-wrapper">
                 <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}>              
                   <div class="post-title" slot="inside">
-                    <h2>{this.metadata.title}</h2>
+                    <h1>{this.metadata.title}</h1>
                   </div>
                 </image-filter>
               </div>
               <h3 class="post-date">
                 {this.formatDate(this.metadata.date)}
               </h3>
+              <div innerHTML={tagsToHtmlList(this.metadata.tags)}>
+                
+              </div>
             </div>
             {/* <div class="post-footer" slot="after">Created by David at {this.formateDate(this.metadata.date)}</div> */}
           </blog-post>

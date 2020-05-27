@@ -5,3 +5,51 @@ body{
   //background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
   background-image: linear-gradient(to left bottom, #61bdc5, #238792);
 }
+
+.no-footer{
+  min-height: 100vh;
+}
+
+.tag-list{
+  list-style-type: none;
+
+  & li[class*="tag-"]{
+      border-radius: 5px;
+      display: inline-block;
+      padding: .2rem 1rem;
+      margin: .5rem;
+      color: #3c3c3c;
+  }
+  & li[class*="c"]{
+      background: var(--c);
+  }
+  & li[class*="java"]{
+      background: var(--java);
+  }
+  & li[class*="javascript"]{
+      background: var(--javascript);
+  }
+  & li[class*="html"]{
+      background: var(--html);
+  }
+  & li[class*="css"]{
+      background: var(--css);
+  }
+  & li[class*="typescript"]{
+      background: var(--typescript);
+  }
+  & li[class*="cpp"]{
+      background: var(--cpp);
+  }
+  & li[class*="c++"]{
+    background: var(--cpp);
+}
+  & li[class*="python"]{
+      background: var(--python);
+  }
+  & li[class*="shell"]{
+      background: var(--shell);
+      color: white;
+      border: .5px solid white;
+  }
+}

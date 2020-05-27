@@ -35,6 +35,8 @@ export namespace Components {
     }
     interface DlcTerminal {
     }
+    interface FooterComponent {
+    }
     interface ImageFilter {
         "fromColor": string;
         "src": string;
@@ -57,6 +59,9 @@ export namespace Components {
     interface SectionTitle {
     }
     interface UserName {
+        "link": string;
+        "showDomain": boolean;
+        "title": string;
     }
 }
 declare global {
@@ -120,6 +125,12 @@ declare global {
         prototype: HTMLDlcTerminalElement;
         new (): HTMLDlcTerminalElement;
     };
+    interface HTMLFooterComponentElement extends Components.FooterComponent, HTMLStencilElement {
+    }
+    var HTMLFooterComponentElement: {
+        prototype: HTMLFooterComponentElement;
+        new (): HTMLFooterComponentElement;
+    };
     interface HTMLImageFilterElement extends Components.ImageFilter, HTMLStencilElement {
     }
     var HTMLImageFilterElement: {
@@ -179,6 +190,7 @@ declare global {
         "blog-post-wrapper": HTMLBlogPostWrapperElement;
         "contact-page": HTMLContactPageElement;
         "dlc-terminal": HTMLDlcTerminalElement;
+        "footer-component": HTMLFooterComponentElement;
         "image-filter": HTMLImageFilterElement;
         "menu-button": HTMLMenuButtonElement;
         "navigation-bar": HTMLNavigationBarElement;
@@ -218,6 +230,8 @@ declare namespace LocalJSX {
     }
     interface DlcTerminal {
     }
+    interface FooterComponent {
+    }
     interface ImageFilter {
         "fromColor"?: string;
         "src"?: string;
@@ -240,6 +254,9 @@ declare namespace LocalJSX {
     interface SectionTitle {
     }
     interface UserName {
+        "link"?: string;
+        "showDomain"?: boolean;
+        "title"?: string;
     }
     interface IntrinsicElements {
         "about-page": AboutPage;
@@ -252,6 +269,7 @@ declare namespace LocalJSX {
         "blog-post-wrapper": BlogPostWrapper;
         "contact-page": ContactPage;
         "dlc-terminal": DlcTerminal;
+        "footer-component": FooterComponent;
         "image-filter": ImageFilter;
         "menu-button": MenuButton;
         "navigation-bar": NavigationBar;
@@ -276,6 +294,7 @@ declare module "@stencil/core" {
             "blog-post-wrapper": LocalJSX.BlogPostWrapper & JSXBase.HTMLAttributes<HTMLBlogPostWrapperElement>;
             "contact-page": LocalJSX.ContactPage & JSXBase.HTMLAttributes<HTMLContactPageElement>;
             "dlc-terminal": LocalJSX.DlcTerminal & JSXBase.HTMLAttributes<HTMLDlcTerminalElement>;
+            "footer-component": LocalJSX.FooterComponent & JSXBase.HTMLAttributes<HTMLFooterComponentElement>;
             "image-filter": LocalJSX.ImageFilter & JSXBase.HTMLAttributes<HTMLImageFilterElement>;
             "menu-button": LocalJSX.MenuButton & JSXBase.HTMLAttributes<HTMLMenuButtonElement>;
             "navigation-bar": LocalJSX.NavigationBar & JSXBase.HTMLAttributes<HTMLNavigationBarElement>;

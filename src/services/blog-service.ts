@@ -41,8 +41,6 @@ export class BlogService {
     }
 
     public static readPosts( idxStart = 0, idxEnd? ): Promise<Post[]> {
-        console.log('idxStart', idxStart);
-        console.log('idxEnd', idxEnd);
         return new Promise<Post[]>( async(resolve, reject) => {
             let posts, slicedPosts;
             if( !BlogService.posts ){

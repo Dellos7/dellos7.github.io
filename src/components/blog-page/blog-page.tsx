@@ -3,6 +3,8 @@ import { RouterHistory } from '@stencil/router';
 import { BlogService } from '../../services/blog-service';
 import { Post } from '../../model/interfaces';
 import{ Helmet } from '@stencil/helmet';
+import seoConfig from '../../global/seo-config';
+import { tagsToHtmlList } from '../../global/utils';
 
 @Component({
   tag: 'blog-page',
@@ -16,7 +18,7 @@ export class BlogPage {
   @State() imgFilterToColor: string;
   @State() idxCurrentFirstPost = 0;
   postsPage = 0;
-  maxPosts = 2;
+  maxPosts = 6;
   maxPages: number;
 
   posts: Post[];
@@ -26,6 +28,7 @@ export class BlogPage {
     this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
     this.posts = await this.readPosts();
     this.maxPages = Math.floor(BlogService.posts.length / this.maxPosts);
+    console.log('maxPages', this.maxPages);
   }
   
   async componentWillUpdate(){
@@ -58,25 +61,30 @@ export class BlogPage {
     return (
       <div class="blog-page">
         <Helmet>
-          <title>📖 Blog | David López Castellote 💻 👨‍🏫</title>
+          <title>📖 Blog {seoConfig.pageTitleSuffix}</title>
         </Helmet>
-        {/* TODO: arreglar pager en movil */}
-        <div class="pager">
-          { this.postsPage > 0 ? <a class="pager__prev" onClick={() => this.prevPage()}>&larr; Más nuevos</a> : '' }
-          { this.postsPage < this.maxPages ? <a class="pager__next" onClick={() => this.nextPage()}>Anteriores &rarr;</a> : '' }
-        </div>
-        <ul class="posts-list">
-          {this.posts.map((post) =>
-            <li class="posts-list__item">
-              <stencil-route-link url={"/" + BlogService.config.posts_route + "/" + post.unique_link}>
-                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={post.metadata.image}></image-filter>
-                <h2 class="posts-list__item-title">{post.metadata.title}</h2>
-              </stencil-route-link>
-                <div class="posts-list__item-date texto-gradiente-1">{this.formatDate(post.metadata.date)}</div>
-                <div class="posts-list__item-summary">{post.metadata.summary}</div>
-            </li>
-          )}
-        </ul>
+        <header>
+          <user-name title="Blog" showDomain={true}></user-name>
+        </header>
+        <main>
+          <div class="pager">
+            { this.postsPage > 0 ? <a class="pager__prev" onClick={() => this.prevPage()}>&larr; Más nuevos</a> : '' }
+            { this.postsPage < this.maxPages ? <a class="pager__next" onClick={() => this.nextPage()}>Anteriores &rarr;</a> : '' }
+          </div>
+          <ul class="posts-list">
+            {this.posts.map((post) =>
+              <li class="posts-list__item">
+                <stencil-route-link url={"/" + BlogService.config.posts_route + "/" + post.unique_link}>
+                  <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={post.metadata.image}></image-filter>
+                  <h2 class="posts-list__item-title">{post.metadata.title}</h2>
+                </stencil-route-link>
+                  <div class="posts-list__item-tags" innerHTML={tagsToHtmlList(post.metadata.tags)}></div>
+                  <div class="posts-list__item-date texto-gradiente-1">{this.formatDate(post.metadata.date)}</div>
+                  <div class="posts-list__item-summary">{post.metadata.summary}</div>
+              </li>
+            )}
+          </ul>
+        </main>
       </div>
     );
   }

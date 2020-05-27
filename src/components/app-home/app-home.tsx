@@ -1,10 +1,10 @@
 import { Component, h } from '@stencil/core';
+import seoConfig from '../../global/seo-config';
 import{ Helmet } from '@stencil/helmet';
 
 @Component({
   tag: 'app-home',
-  styleUrl: 'app-home.scss',
-  shadow: true
+  styleUrl: 'app-home.scss'
 })
 export class AppHome {
 
@@ -12,9 +12,18 @@ export class AppHome {
     return (
       <div class='app-home'>
         <Helmet>
-          <title>David López Castellote 💻 👨‍🏫</title>
+          <title>{seoConfig.mainPageTitle}</title>
+          <meta name="description" content={seoConfig.mainPageDescription} />
+          <meta property="og:title" content={seoConfig.mainPageTitle} />
+          <meta property="og:image" content={seoConfig.mainPageImage} />
+          <meta property="og:description" content={seoConfig.mainPageDescription} />
         </Helmet>
-        <dlc-terminal></dlc-terminal>
+        <header>
+          <user-name title="david lópez castellote" link="/"></user-name>
+        </header>
+        <main>
+          <dlc-terminal></dlc-terminal>
+        </main>
       </div>
     );
   }
