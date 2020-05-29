@@ -14,7 +14,7 @@ jobs:
       #  run: npm run build:deploy
       #- run: npm install --only=dev
       - name: Install dependencies
-        run: npm install --only=dev
+        run: npm install
       - name: Parse blog
         run: npm run blog
       - name: Build static site
