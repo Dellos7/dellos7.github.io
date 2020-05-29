@@ -45,7 +45,6 @@ export class NavigationBar {
             </li>
           </ul>
         </nav>
-        {/* <menu-button></menu-button> */}
       </div>
     );
   }

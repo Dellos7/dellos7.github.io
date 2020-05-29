@@ -1,3 +1,4 @@
+# Solo disparar el workflow cuando se haya un push con un tag etiquetado con "deloy-site..."
 on:
   push:
     tags:
