@@ -2,7 +2,7 @@
   "name": "dlopezcastellote.dev",
   "private": true,
   "version": "0.0.1",
-  "description": "Stencil App Starter",
+  "description": "David López Castellote Personal Website",
   "scripts": {
     "build": "stencil build --prerender",
     "start": "stencil build --dev --watch --serve",
@@ -10,7 +10,8 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
-    "blog": "NODE_ENV=production node scripts/parse-blog.js"
+    "blog": "NODE_ENV=production node scripts/parse-blog.js",
+    "build:deploy": "npm run blog && npm run build && npm run deploy"
   },
   "dependencies": {
     "dlc-css-terminal": "0.0.6",
