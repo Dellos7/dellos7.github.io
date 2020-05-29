@@ -1,6 +1,10 @@
 @import "../../style/link.scss";
 @import "../../style/gradientes.scss";
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
   //background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
   background-image: linear-gradient(to left bottom, #61bdc5, #238792);

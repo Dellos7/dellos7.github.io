@@ -5,15 +5,11 @@ on:
 
 jobs:
   deploy:
-    #runs-on: ubuntu-18.04
     #runs-on: macos-latest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #- if: contains(github.event.head_commit.message, 'DEPLOY SITE')
-      #  run: npm run build:deploy
-      #- run: npm install --only=dev
       - name: Install dependencies
         run: npm install
       - name: Parse blog
@@ -27,9 +23,9 @@ jobs:
       #     git commit -m "deployed site to master"
       #     git push --set-upstream origin master
       - name: Deploy
-        uses: s0/git-publish-subdir-action@master
+        uses: s0/git-publish-subdir-action@master # https://github.com/s0/git-publish-subdir-action
         env:
           REPO: self
-          BRANCH: deploy-test
+          BRANCH: master
           FOLDER: www
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

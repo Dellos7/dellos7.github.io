@@ -31,6 +31,7 @@ export class AppRoot {
             </stencil-route-switch>
           </stencil-router>
         </div>
+        <scroll-to-top-button></scroll-to-top-button>
         <footer>
           <footer-component></footer-component>
         </footer>

@@ -56,6 +56,8 @@ export namespace Components {
         "linkedinUser": string;
         "twitterUser": string;
     }
+    interface ScrollToTopButton {
+    }
     interface SectionTitle {
     }
     interface UserName {
@@ -167,6 +169,12 @@ declare global {
         prototype: HTMLRrssNavbarElement;
         new (): HTMLRrssNavbarElement;
     };
+    interface HTMLScrollToTopButtonElement extends Components.ScrollToTopButton, HTMLStencilElement {
+    }
+    var HTMLScrollToTopButtonElement: {
+        prototype: HTMLScrollToTopButtonElement;
+        new (): HTMLScrollToTopButtonElement;
+    };
     interface HTMLSectionTitleElement extends Components.SectionTitle, HTMLStencilElement {
     }
     var HTMLSectionTitleElement: {
@@ -197,6 +205,7 @@ declare global {
         "page-not-found": HTMLPageNotFoundElement;
         "profile-image": HTMLProfileImageElement;
         "rrss-navbar": HTMLRrssNavbarElement;
+        "scroll-to-top-button": HTMLScrollToTopButtonElement;
         "section-title": HTMLSectionTitleElement;
         "user-name": HTMLUserNameElement;
     }
@@ -251,6 +260,8 @@ declare namespace LocalJSX {
         "linkedinUser"?: string;
         "twitterUser"?: string;
     }
+    interface ScrollToTopButton {
+    }
     interface SectionTitle {
     }
     interface UserName {
@@ -276,6 +287,7 @@ declare namespace LocalJSX {
         "page-not-found": PageNotFound;
         "profile-image": ProfileImage;
         "rrss-navbar": RrssNavbar;
+        "scroll-to-top-button": ScrollToTopButton;
         "section-title": SectionTitle;
         "user-name": UserName;
     }
@@ -301,6 +313,7 @@ declare module "@stencil/core" {
             "page-not-found": LocalJSX.PageNotFound & JSXBase.HTMLAttributes<HTMLPageNotFoundElement>;
             "profile-image": LocalJSX.ProfileImage & JSXBase.HTMLAttributes<HTMLProfileImageElement>;
             "rrss-navbar": LocalJSX.RrssNavbar & JSXBase.HTMLAttributes<HTMLRrssNavbarElement>;
+            "scroll-to-top-button": LocalJSX.ScrollToTopButton & JSXBase.HTMLAttributes<HTMLScrollToTopButtonElement>;
             "section-title": LocalJSX.SectionTitle & JSXBase.HTMLAttributes<HTMLSectionTitleElement>;
             "user-name": LocalJSX.UserName & JSXBase.HTMLAttributes<HTMLUserNameElement>;
         }

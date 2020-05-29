@@ -1,0 +1,30 @@
+.button{
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    height: 5rem;
+    width: 5rem;
+    z-index: 2000;
+    border-radius: 50%;
+    color: black;
+    font-size: 3rem;
+    background-color: white;
+    box-shadow: 0 1rem 3rem rgba(black, .25);
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+
+    &.invisible{
+       pointer-events: none;
+       opacity: 0;
+    }
+
+    &__icon{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        color: var(--primary-color);
+        transform-origin: 0 0;
+    }
+}
