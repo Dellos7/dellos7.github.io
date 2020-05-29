@@ -11,7 +11,7 @@
     "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
     "blog": "NODE_ENV=production node scripts/parse-blog.js",
-    "build:deploy": "npm run blog && npm run build && npm run deploy"
+    "build:deploy": "npm run blog && npm run deploy"
   },
   "dependencies": {
     "dlc-css-terminal": "0.0.6",
