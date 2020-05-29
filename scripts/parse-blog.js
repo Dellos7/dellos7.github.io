@@ -63,6 +63,9 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
     blogDir = `${projectSrc}/${blogDir}`;
     const imagesContentDirWww = `www/${imagesContentDir}`;
     imagesContentDir = `${projectSrc}/${imagesContentDir}`;
+    if (!fs.existsSync(blogMdDir)) {
+        fs.mkdirSync(blogMdDir);
+    }
     console.log(`Starting blog parse... `);
     fs.readdir(blogMdDir, async(err, files) => {
         console.log(`> Reading files from ${blogMdDir}`);
