@@ -1,0 +1,13 @@
+{
+  "name": "David López Castellote",
+  "short_name": "David López Castellote",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/icon/icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#61bdc5",
+  "theme_color": "#61bdc5"
+}
