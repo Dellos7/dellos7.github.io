@@ -29,6 +29,6 @@ jobs:
         uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
-          BRANCH: master
+          BRANCH: deploy-test
           FOLDER: www
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
