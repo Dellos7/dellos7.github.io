@@ -8,9 +8,20 @@ jobs:
     #runs-on: ubuntu-18.04
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       #- if: contains(github.event.head_commit.message, 'DEPLOY SITE')
       #  run: npm run build:deploy
       #- run: npm install --only=dev
-      - run: npm install
-      - run: npm run build:deploy
+      - name: Install dependencies
+        run: npm install --only=dev
+      - name: Parse blog
+        run: npm run blog
+      - name: Build static site
+        run: npm run build
+      - name: Push site to Github Pages
+        working-directory: ./www
+        run: |
+          git add --all
+          git commit -m "deployed site to master"
+          git push --set-upstream origin master
