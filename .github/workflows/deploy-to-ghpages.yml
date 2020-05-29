@@ -31,3 +31,5 @@ jobs:
           publish_dir: ./www
           publish_branch: master
           cname: dlopezcastellote.dev
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
