@@ -1,1 +1,0 @@
-import{r as o,h as r}from"./p-c9891ee7.js";const s=class{constructor(r){o(this,r)}render(){return r("div",null,r("slot",null))}};s.style="";export{s as blog_component}

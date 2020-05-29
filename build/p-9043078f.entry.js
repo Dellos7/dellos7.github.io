@@ -1,1 +1,0 @@
-import{r as e,h as r}from"./p-c9891ee7.js";import{H as t,s}from"./p-beb6e670.js";const n=class{constructor(r){e(this,r)}render(){return r("div",null,r(t,null,r("title",null,"Sobre mí ",s.pageTitleSuffix)),r("header",null,r("user-name",{content:"Sobre mí",showDomain:!0})),r("p",{style:{textAlign:"center"}},"🔨"))}};n.style="";export{n as about_page}

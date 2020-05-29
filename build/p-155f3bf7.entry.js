@@ -1,1 +1,0 @@
-import{r as e,h as t}from"./p-c9891ee7.js";import{H as n,s as r}from"./p-beb6e670.js";const o=class{constructor(t){e(this,t)}render(){return t("div",null,t(n,null,t("title",null,"Sobre mí ",r.pageTitleSuffix)),t("header",null,t("user-name",{content:"Contacto",showDomain:!0})),t("p",{style:{textAlign:"center"}},"🔨"))}};o.style="";export{o as contact_page}

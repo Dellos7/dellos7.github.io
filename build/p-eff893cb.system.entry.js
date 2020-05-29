@@ -1,1 +1,0 @@
-System.register(["./p-b5f4d4fb.system.js"],(function(t){"use strict";var e,n;return{setters:[function(t){e=t.r;n=t.h}],execute:function(){var r=".app-home{padding:10px;margin-top:1rem}";var i=t("app_home",function(){function t(t){e(this,t)}t.prototype.render=function(){return n("div",{class:"app-home"},n("dlc-terminal",null))};return t}());i.style=r}}}));
