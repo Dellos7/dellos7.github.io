@@ -10,4 +10,5 @@ jobs:
       - uses: actions/checkout@v2
       #- if: contains(github.event.head_commit.message, 'DEPLOY SITE')
       #  run: npm run build:deploy
+      - run: npm install --only=dev
       - run: npm run build:deploy
