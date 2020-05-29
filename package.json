@@ -1,7 +1,7 @@
 {
   "name": "dlopezcastellote.dev",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "David López Castellote Personal Website",
   "scripts": {
     "build": "stencil build --prerender",
