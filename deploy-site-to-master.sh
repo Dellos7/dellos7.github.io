@@ -7,7 +7,6 @@ cd www
 # We do a commit and push the deployed site to the 'master' branch
 git add --all
 git commit -m "deployed site to master"
-git tag-deploysite
-git push --set-upstream --tags origin master
+git push --set-upstream origin master
 # Switch back to the main folder of the repo. If we do right now 'git branch' it should point to the 'source' branch
 cd ..
