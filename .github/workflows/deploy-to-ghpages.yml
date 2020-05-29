@@ -5,10 +5,12 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    #runs-on: ubuntu-18.04
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       #- if: contains(github.event.head_commit.message, 'DEPLOY SITE')
       #  run: npm run build:deploy
-      - run: npm install --only=dev
+      #- run: npm install --only=dev
+      - run: npm install
       - run: npm run build:deploy
