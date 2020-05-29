@@ -17,16 +17,17 @@ jobs:
         run: npm run blog
       - name: Build static site
         run: npm run build
-      # - name: Push site to Github Pages
-      #   working-directory: ./www
-      #   run: |
-      #     git add --all
-      #     git commit -m "deployed site to master"
-      #     git push --set-upstream origin master
-      - name: Deploy
-        uses: s0/git-publish-subdir-action@master # https://github.com/s0/git-publish-subdir-action
-        env:
-          REPO: self
-          BRANCH: master
-          FOLDER: www
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Deploy
+      #   uses: s0/git-publish-subdir-action@master # https://github.com/s0/git-publish-subdir-action
+      #   env:
+      #     REPO: self
+      #     BRANCH: master
+      #     FOLDER: www
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Depoy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./www
+            publish_branch: master  # deploying branch
+            cname: dlopezcastellote.dev

@@ -18,8 +18,7 @@ export const config: Config = {
   copy: [
     { src: '__blog/' },
     { src: 'posts.json' },
-    { src: 'assets/blog/' },
-    { src: 'CNAME' }
+    { src: 'assets/blog/' }
   ],
   plugins: [
     sass({
