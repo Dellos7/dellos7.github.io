@@ -2,7 +2,7 @@ import { Component, Prop, State, Element, h } from '@stencil/core';
 import { MatchResults, RouterHistory } from '@stencil/router';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { BlogService } from '../../services/blog-service';
-import Prism from 'prismjs';
+//import Prism from 'prismjs';
 
 @Component({
   tag: 'blog-post',
@@ -33,7 +33,7 @@ export class BlogPost {
   // <pre><code>...</code></pre> por el contenido parseado.
   componentDidUpdate(){
     console.log('componentDidUpdate Prism');
-    Prism.highlightAll();
+    //Prism.highlightAll();
   }
 
   private _getUniqueLink() {

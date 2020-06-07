@@ -4,6 +4,7 @@ const Remarkable = require('remarkable');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
 const unsplashRandomImage = require('./unsplash-random-image');
+const codehightlight = require('./codehighlight');
 const md = new Remarkable();
 
 const randomString = () => {
@@ -16,8 +17,6 @@ const readConfigFile = () => {
     return new Promise( (resolve, reject) => {
         let configFileName = 'blog.config.json';
         dotenv.config();
-        console.log('NODE_ENV', process.env.NODE_ENV);
-        console.log('BLOG_CONFIG_FILE', process.env.BLOG_CONFIG_FILE);
         if( process.env.NODE_ENV == 'DEVELOPMENT' ){
             configFileName = process.env.BLOG_CONFIG_FILE;
         }
@@ -98,6 +97,7 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             let fileContent = fs.readFileSync(`${blogMdDir}/${_file}`, 'utf8');
             let contentMatter = matter(fileContent);
             let contentHtml = md.render(contentMatter.content);
+            contentHtml = codehightlight.highlight( contentHtml );
             try {
                 let metadata = contentMatter.data;
                 let fileNameNoExtension = _file.substring(0,_file.lastIndexOf('.')); 
