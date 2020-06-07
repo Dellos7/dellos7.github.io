@@ -27,6 +27,8 @@ export class AppRoot {
                 routeRender={({ match }) => (
                   <blog-post-wrapper uniqueLink={match.params.unique_link}></blog-post-wrapper>
                 )}/>
+              <stencil-route url={['/contact-form-error', '/contact-form-error/']} component="contact-form-error"></stencil-route>
+              <stencil-route url={['/contact-form-submited', '/contact-form-submited/']} component="contact-form-submited"></stencil-route>
               <stencil-route component="page-not-found"></stencil-route>
             </stencil-route-switch>
           </stencil-router>

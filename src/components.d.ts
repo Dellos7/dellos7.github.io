@@ -31,6 +31,10 @@ export namespace Components {
         "metadata": any;
         "uniqueLink": string;
     }
+    interface ContactFormError {
+    }
+    interface ContactFormSubmited {
+    }
     interface ContactPage {
     }
     interface DlcTerminal {
@@ -115,6 +119,18 @@ declare global {
         prototype: HTMLBlogPostWrapperElement;
         new (): HTMLBlogPostWrapperElement;
     };
+    interface HTMLContactFormErrorElement extends Components.ContactFormError, HTMLStencilElement {
+    }
+    var HTMLContactFormErrorElement: {
+        prototype: HTMLContactFormErrorElement;
+        new (): HTMLContactFormErrorElement;
+    };
+    interface HTMLContactFormSubmitedElement extends Components.ContactFormSubmited, HTMLStencilElement {
+    }
+    var HTMLContactFormSubmitedElement: {
+        prototype: HTMLContactFormSubmitedElement;
+        new (): HTMLContactFormSubmitedElement;
+    };
     interface HTMLContactPageElement extends Components.ContactPage, HTMLStencilElement {
     }
     var HTMLContactPageElement: {
@@ -196,6 +212,8 @@ declare global {
         "blog-page": HTMLBlogPageElement;
         "blog-post": HTMLBlogPostElement;
         "blog-post-wrapper": HTMLBlogPostWrapperElement;
+        "contact-form-error": HTMLContactFormErrorElement;
+        "contact-form-submited": HTMLContactFormSubmitedElement;
         "contact-page": HTMLContactPageElement;
         "dlc-terminal": HTMLDlcTerminalElement;
         "footer-component": HTMLFooterComponentElement;
@@ -234,6 +252,10 @@ declare namespace LocalJSX {
     interface BlogPostWrapper {
         "metadata"?: any;
         "uniqueLink"?: string;
+    }
+    interface ContactFormError {
+    }
+    interface ContactFormSubmited {
     }
     interface ContactPage {
     }
@@ -278,6 +300,8 @@ declare namespace LocalJSX {
         "blog-page": BlogPage;
         "blog-post": BlogPost;
         "blog-post-wrapper": BlogPostWrapper;
+        "contact-form-error": ContactFormError;
+        "contact-form-submited": ContactFormSubmited;
         "contact-page": ContactPage;
         "dlc-terminal": DlcTerminal;
         "footer-component": FooterComponent;
@@ -304,6 +328,8 @@ declare module "@stencil/core" {
             "blog-page": LocalJSX.BlogPage & JSXBase.HTMLAttributes<HTMLBlogPageElement>;
             "blog-post": LocalJSX.BlogPost & JSXBase.HTMLAttributes<HTMLBlogPostElement>;
             "blog-post-wrapper": LocalJSX.BlogPostWrapper & JSXBase.HTMLAttributes<HTMLBlogPostWrapperElement>;
+            "contact-form-error": LocalJSX.ContactFormError & JSXBase.HTMLAttributes<HTMLContactFormErrorElement>;
+            "contact-form-submited": LocalJSX.ContactFormSubmited & JSXBase.HTMLAttributes<HTMLContactFormSubmitedElement>;
             "contact-page": LocalJSX.ContactPage & JSXBase.HTMLAttributes<HTMLContactPageElement>;
             "dlc-terminal": LocalJSX.DlcTerminal & JSXBase.HTMLAttributes<HTMLDlcTerminalElement>;
             "footer-component": LocalJSX.FooterComponent & JSXBase.HTMLAttributes<HTMLFooterComponentElement>;
