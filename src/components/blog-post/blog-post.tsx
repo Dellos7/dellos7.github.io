@@ -2,7 +2,6 @@ import { Component, Prop, State, Element, h } from '@stencil/core';
 import { MatchResults, RouterHistory } from '@stencil/router';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { BlogService } from '../../services/blog-service';
-//import Prism from 'prismjs';
 
 @Component({
   tag: 'blog-post',
