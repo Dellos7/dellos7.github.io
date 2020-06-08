@@ -12,7 +12,8 @@ export const config: Config = {
       empty: false,
       // uncomment the following line to disable service workers in production
        serviceWorker: false,
-       baseUrl: 'https://dlopezcastellote.dev'
+       baseUrl: 'https://dlopezcastellote.dev',
+       prerenderConfig: './prerender.config.ts',
     }
   ],
   copy: [
