@@ -1,0 +1,1 @@
+System.register(["./p-77b44803.system.js"],(function(t){"use strict";var n,e;return{setters:[function(t){n=t.r;e=t.h}],execute:function(){var r="";var u=function(){function t(t){n(this,t)}t.prototype.render=function(){return e("div",null,e("slot",null))};return t}();t("blog_component",u);u.style=r}}}));

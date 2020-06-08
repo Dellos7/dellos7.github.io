@@ -1,0 +1,1 @@
+import{r,h as o}from"./p-d3b1049f.js";class s{constructor(o){r(this,o)}render(){return o("div",null,o("slot",null))}}s.style="";export{s as blog_component}

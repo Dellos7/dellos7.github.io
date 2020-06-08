@@ -1,1 +1,0 @@
-import{r as n,h as o}from"./p-fd429f32.js";const r=class{constructor(o){n(this,o)}render(){return o("div",null,o("h3",null,"404: Page not found!!"))}};r.style="";export{r as page_not_found}
