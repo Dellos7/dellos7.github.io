@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const dotenv = require('dotenv');
 const unsplashRandomImage = require('./unsplash-random-image');
 const codehightlight = require('./codehighlight');
+const processImages = require('./processImages');
 const md = new Remarkable();
 
 const randomString = () => {
@@ -97,6 +98,7 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             let fileContent = fs.readFileSync(`${blogMdDir}/${_file}`, 'utf8');
             let contentMatter = matter(fileContent);
             let contentHtml = md.render(contentMatter.content);
+            contentHtml = processImages.process( contentHtml, `/${imagesDirPath}`, true );
             contentHtml = codehightlight.highlight( contentHtml );
             try {
                 let metadata = contentMatter.data;
@@ -127,9 +129,9 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
                 } else{
                     image = metadata.image;
                 }
-                if( fs.existsSync(imageSourcePath) && !fs.existsSync( imageContentDir ) ){
-                    fs.copyFileSync( imageSourcePath, imageContentDir );
-                }
+                // if( fs.existsSync(imageSourcePath) && !fs.existsSync( imageContentDir ) ){
+                //     fs.copyFileSync( imageSourcePath, imageContentDir );
+                // }
                 metadata.image = image;
                 fileNames.push({
                     unique_link: fileNameNoExtension,
@@ -148,6 +150,11 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             fs.writeFileSync(`${projectSrc}/posts.json`,JSON.stringify({}));
         }
         console.log(`> ${i} files parsed and created in ${blogDir}!`);
+        fs.copy( imagesBlogDir, imagesContentDir, (err) => {
+            if( err ){
+                console.error(`ERROR COPYING IMAGES FROM ${imagesBlogDir} to ${imagesContentDir}`, err);
+            }
+        });
     });
 };
 
