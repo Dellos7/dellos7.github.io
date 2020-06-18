@@ -4,13 +4,13 @@ import seoConfig from '../../global/seo-config';
 
 @Component({
   tag: 'about-page',
-  styleUrl: 'about-page.css'
+  styleUrl: 'about-page.scss'
 })
 export class AboutPage {
 
   render() {
     return (
-      <div>
+      <div class="about-page">
         <Helmet>
         <title>{seoConfig.about.title}</title>
           <meta property="og:title" content={seoConfig.about.title} />
@@ -28,7 +28,9 @@ export class AboutPage {
         <header>
           <user-name content="Sobre mí" showDomain={true}></user-name>
         </header>
-        <p style={ {textAlign: 'center'} }>🔨</p>
+        <main>
+          <p style={ {textAlign: 'center'} }>🔨</p>
+        </main>
       </div>
     );
   }

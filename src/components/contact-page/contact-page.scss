@@ -1,59 +1,60 @@
-:root{
+.contact-page{
     color: white;
-}
-main{
-    margin: 0 10%;
-}
-.form-wrapper{
-    & form{
-        input:not([type="hidden"]), textarea{
-            font-family: inherit;
-            display: block;
-            width: 100%;
-            font-size: 2rem;
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border: 3px solid var(--tertiary-color);
-            -webkit-box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
-            -moz-box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
-            box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
-            transition: all .2s ease-in-out;
-        }
 
-        input:not([type="hidden"])::placeholder, textarea::placeholder{
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        input:not([type="hidden"]):focus, textarea:focus{
-            outline-color:var(--amarillo);
-            outline-width: 1rem;
-        }
-
-        button[type="submit"]{
-            font-family: inherit;
-            font-size: 2rem;
-            display: block;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            //letter-spacing: 2px;
-            // background-color: var(--tertiary-color);
-            // border: 4px solid var(--secondary-color);
-            background-color: var(--tertiary-color);
-            border: 4px solid var(--secondary-color);
-            color: var(--secondary-color);
-            transition: all .2s ease-in-out;
-            -webkit-box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
-            -moz-box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
-            box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
-            font-weight: bold;
-        }
-        button[type="submit"]:hover{
-            cursor: pointer;
-            transform: translateY(-.2rem);
-            -webkit-box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
-            -moz-box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
-            box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
+    main{
+        margin: 0 10%;
+    }
+    .form-wrapper{
+        & form{
+            input:not([type="hidden"]), textarea{
+                font-family: inherit;
+                display: block;
+                width: 100%;
+                font-size: 2rem;
+                margin-top: 1.5rem;
+                padding: 1rem;
+                border: 3px solid var(--tertiary-color);
+                -webkit-box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
+                -moz-box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
+                box-shadow: 4px 5px 9px -2px rgba(0,0,0,0.75);
+                transition: all .2s ease-in-out;
+            }
+    
+            input:not([type="hidden"])::placeholder, textarea::placeholder{
+                font-weight: bold;
+                color: var(--secondary-color);
+            }
+    
+            input:not([type="hidden"]):focus, textarea:focus{
+                outline-color:var(--amarillo);
+                outline-width: 1rem;
+            }
+    
+            button[type="submit"]{
+                font-family: inherit;
+                font-size: 2rem;
+                display: block;
+                margin: 2rem auto;
+                padding: 1rem 2rem;
+                //letter-spacing: 2px;
+                // background-color: var(--tertiary-color);
+                // border: 4px solid var(--secondary-color);
+                background-color: var(--tertiary-color);
+                border: 4px solid var(--secondary-color);
+                color: var(--secondary-color);
+                transition: all .2s ease-in-out;
+                -webkit-box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
+                -moz-box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
+                box-shadow: 1px 3px 6px -2px rgba(0,0,0,0.75);
+                font-weight: bold;
+            }
+            button[type="submit"]:hover{
+                cursor: pointer;
+                transform: translateY(-.2rem);
+                -webkit-box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
+                -moz-box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
+                box-shadow: 1px 5px 9px -2px rgba(0,0,0,0.75);
+            }
         }
     }
 }

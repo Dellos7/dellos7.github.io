@@ -1,16 +1,20 @@
 .app-home{
-  margin: 0 auto;
   margin-top: 3rem;
-}
 
-@media all and ( min-width: 1024px ){
-  .app-home{
-    width: 80%;
+  main{
+    margin: 0 auto;
   }
-}
 
-@media all and ( max-width: 1024px ) and  ( min-width: 768px ){
-  .app-home{
-    width: 90%;
+  @media all and ( min-width: 1024px ){
+    main{
+      width: 60%;
+    }
   }
+
+  @media all and ( max-width: 1024px ) and  ( min-width: 768px ){
+    main{
+      width: 90%;
+    }
+  }
+
 }

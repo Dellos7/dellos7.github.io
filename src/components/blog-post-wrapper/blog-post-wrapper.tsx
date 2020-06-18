@@ -74,7 +74,7 @@ export class BlogPostWrapper {
               <h3 class="post-date">
                 {this.formatDate(this.metadata.date)}
               </h3>
-              <div innerHTML={tagsToHtmlList(this.metadata.tags)}>
+              <div class="tag-list-wrapper" innerHTML={tagsToHtmlList(this.metadata.tags)}>
               </div>
             </div>
           </blog-post>

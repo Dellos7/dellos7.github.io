@@ -10,7 +10,7 @@ export class ContactPage {
 
   render() {
     return (
-      <div>
+      <div class="contact-page">
         <Helmet>
           <title>{seoConfig.contact.title}</title>
           <meta property="og:title" content={seoConfig.contact.title} />
