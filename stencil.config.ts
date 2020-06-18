@@ -9,11 +9,11 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'www',
-      empty: false,
+      //empty: false,
       // uncomment the following line to disable service workers in production
-       serviceWorker: false,
-       baseUrl: 'https://dlopezcastellote.dev',
-       prerenderConfig: './prerender.config.ts',
+      serviceWorker: null,
+      baseUrl: 'https://dlopezcastellote.dev',
+      prerenderConfig: './prerender.config.ts',
     }
   ],
   copy: [
