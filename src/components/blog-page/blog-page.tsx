@@ -28,7 +28,6 @@ export class BlogPage {
     this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
     this.posts = await this.readPosts();
     this.maxPages = Math.floor(BlogService.posts.length / this.maxPosts);
-    console.log('maxPages', this.maxPages);
   }
   
   async componentWillUpdate(){
@@ -61,7 +60,18 @@ export class BlogPage {
     return (
       <div class="blog-page">
         <Helmet>
-          <title>📖 Blog {seoConfig.pageTitleSuffix}</title>
+          <title>{seoConfig.blog.title}</title>
+          <meta property="og:title" content={seoConfig.blog.title} />
+          <meta property="og:image" content={seoConfig.blog.image} />
+          <meta property="og:url" content={window.location.origin+window.location.pathname} />
+          <link rel="canonical" href={window.location.origin+window.location.pathname}/>
+          { seoConfig.blog.description ? <meta name="description" content={seoConfig.blog.description} /> : '' }
+          { seoConfig.blog.description ? <meta name="og:description" property="og:description" content={seoConfig.blog.description} /> : '' }
+          { seoConfig.blog.description ? <meta name="twitter:description" content={seoConfig.blog.description} /> : '' }
+          <meta name="twitter:title" content={seoConfig.blog.title} />
+          <meta name="twitter:card" content={seoConfig.blog.image} />
+          <meta name="twitter:site" content={seoConfig.twitterUser} />
+          <meta name="twitter:image" content={seoConfig.blog.image} />
         </Helmet>
         <header>
           <user-name content="Blog" showDomain={true}></user-name>

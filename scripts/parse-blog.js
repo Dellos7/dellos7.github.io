@@ -7,6 +7,9 @@ const unsplashRandomImage = require('./unsplash-random-image');
 const codehightlight = require('./codehighlight');
 const processImages = require('./processImages');
 const md = new Remarkable();
+md.set({
+    html: true
+});
 
 const randomString = () => {
     const curDate = (new Date()).valueOf().toString();
@@ -98,7 +101,7 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             let fileContent = fs.readFileSync(`${blogMdDir}/${_file}`, 'utf8');
             let contentMatter = matter(fileContent);
             let contentHtml = md.render(contentMatter.content);
-            contentHtml = processImages.process( contentHtml, `/${imagesDirPath}`, true );
+            contentHtml = processImages.convertImagesSources( contentHtml, `/${imagesDirPath}`, true );
             contentHtml = codehightlight.highlight( contentHtml );
             try {
                 let metadata = contentMatter.data;

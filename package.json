@@ -11,7 +11,8 @@
     "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
     "blog": "NODE_ENV=production node scripts/parse-blog.js",
-    "build:deploy": "npm run blog && npm run deploy"
+    "build:deploy": "npm run blog && npm run deploy",
+    "scripts:test": "jest --verbose ./scripts/tests"
   },
   "dependencies": {
     "dlc-css-terminal": "0.0.6",
@@ -30,6 +31,7 @@
     "gray-matter": "^4.0.1",
     "highlight.js": "^9.18.1",
     "html-entities": "^1.3.1",
+    "jest": "^26.0.1",
     "prismjs": "^1.20.0",
     "remarkable": "^1.7.1",
     "workbox-build": "4.3.1"

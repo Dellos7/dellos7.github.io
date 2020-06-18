@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
+      - name: Run tests
+        run: npm run scripts:test
       - name: Parse blog
         run: npm run blog
       - name: Build static site

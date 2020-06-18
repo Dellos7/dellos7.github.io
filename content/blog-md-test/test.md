@@ -146,6 +146,22 @@ will perform the PHP build and deploy the APP!
 git push -u heroku master
 ```
 
+```docker
+FROM php:7.3.3-apache
+RUN apt-get update \
+   && apt-get upgrade -y
+RUN docker-php-ext-install mysqli
+EXPOSE 80
+ENV APACHE_DOCUMENT_ROOT /var/www/html
+```
+
+```sql
+DROP DATABASE IF EXISTS biblioteca;
+DROP DATABASE IF EXISTS ciclismo;
+DROP DATABASE IF EXISTS musica;
+DROP USER IF EXISTS 'david'@'%';
+```
+
 # License
 
 [GPL 3.0 License](https://choosealicense.com/licenses/gpl-3.0/)

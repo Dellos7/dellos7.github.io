@@ -24,17 +24,6 @@ export class BlogPost {
     this.loadContent().then();
   }
 
-  componentDidLoad(){
-    
-  }
-
-  // Como no va, hacerlo en el script que parsea los blogs, reemplazando las etiquetas del html de
-  // <pre><code>...</code></pre> por el contenido parseado.
-  componentDidUpdate(){
-    console.log('componentDidUpdate Prism');
-    //Prism.highlightAll();
-  }
-
   private _getUniqueLink() {
     let uniqueLink = this.match && this.match.params && this.match.params.unique_link
       ? this.match.params.unique_link

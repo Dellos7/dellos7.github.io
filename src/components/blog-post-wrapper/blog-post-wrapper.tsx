@@ -41,7 +41,7 @@ export class BlogPostWrapper {
       return (
         <div class="blog-post-wrapper">
           <Helmet>
-            <title>{this.metadata.title} {seoConfig.pageTitleSuffix}</title>
+            <title>{this.metadata.title} {seoConfig.titleSuffix}</title>
             <link rel="canonical" href={window.location.origin+window.location.pathname}/>
             { this.metadata.tags ? <meta name="keywords" content={this.metadata.tags}/> : ''}
             <meta name="og:title" property="og:title" content={this.metadata.title} />
@@ -49,10 +49,9 @@ export class BlogPostWrapper {
             { this.metadata.summary ? <meta name="og:description" property="og:description" content={this.metadata.summary} /> : '' }
             { this.metadata.summary ? <meta name="twitter:description" content={this.metadata.summary} /> : '' }
             <meta name="og:image" property="og:image" content={this.imageUrl(this.metadata.image)} />
-            {/* <meta property="og:url" content={this.metadata.image} /> */}
+            <meta property="og:url" content={window.location.origin+window.location.pathname} />
             <meta name="twitter:title" content={this.metadata.title} />
-            <meta name="twitter:card" content="summary_large_image" />
-            {/* TODO: parametrizar usuario de twitter */}
+            <meta name="twitter:card" content={this.imageUrl(this.metadata.image)} />
             <meta name="twitter:site" content={seoConfig.twitterUser} />
             <meta name="twitter:image" content={this.imageUrl(this.metadata.image)}/>
           </Helmet>
@@ -62,17 +61,20 @@ export class BlogPostWrapper {
           <blog-post uniqueLink={this.uniqueLink}>
             <div slot="before">
               <div class="image-filter-wrapper">
-                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}>              
+                {/* <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}>              
                   <div class="post-title" slot="inside">
                     <h1>{this.metadata.title}</h1>
                   </div>
-                </image-filter>
+                </image-filter> */}
+                <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}></image-filter>
+                <div class="post-title">
+                    <h1>{this.metadata.title}</h1>
+                </div>
               </div>
               <h3 class="post-date">
                 {this.formatDate(this.metadata.date)}
               </h3>
               <div innerHTML={tagsToHtmlList(this.metadata.tags)}>
-                
               </div>
             </div>
           </blog-post>

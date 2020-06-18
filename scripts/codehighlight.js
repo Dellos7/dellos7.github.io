@@ -1,4 +1,4 @@
-const langArray = ['javascript', 'typescript', 'html', 'css', 'shell', 'scss', 'java', 'cpp', 'c', 'python'];
+const langArray = ['javascript', 'typescript', 'html', 'css', 'shell', 'scss', 'java', 'cpp', 'c', 'python', 'docker', 'sql'];
 
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();

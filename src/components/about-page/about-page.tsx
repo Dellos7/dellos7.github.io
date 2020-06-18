@@ -12,7 +12,18 @@ export class AboutPage {
     return (
       <div>
         <Helmet>
-          <title>Sobre mí {seoConfig.pageTitleSuffix}</title>
+        <title>{seoConfig.about.title}</title>
+          <meta property="og:title" content={seoConfig.about.title} />
+          <meta property="og:image" content={seoConfig.about.image} />
+          <meta property="og:url" content={window.location.origin+window.location.pathname} />
+          <link rel="canonical" href={window.location.origin+window.location.pathname}/>
+          { seoConfig.about.description ? <meta name="description" content={seoConfig.about.description} /> : '' }
+          { seoConfig.about.description ? <meta name="og:description" property="og:description" content={seoConfig.about.description} /> : '' }
+          { seoConfig.about.description ? <meta name="twitter:description" content={seoConfig.about.description} /> : '' }
+          <meta name="twitter:title" content={seoConfig.about.title} />
+          <meta name="twitter:card" content={seoConfig.about.image} />
+          <meta name="twitter:site" content={seoConfig.twitterUser} />
+          <meta name="twitter:image" content={seoConfig.about.image} />
         </Helmet>
         <header>
           <user-name content="Sobre mí" showDomain={true}></user-name>

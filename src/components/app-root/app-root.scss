@@ -27,6 +27,8 @@ body{
     --cpp: #5a92cd;
     --python: linear-gradient( to right, #2d6396, #ffce39 );
     --shell: #222245;
+    --docker: rgb(52,153,239);
+    --sql: rgb(0,103,191);
   
     // --dlc-cssterminal-content-bgcolor: #27656d;
     // --dlc-cssterminal-hem: 1rem;
@@ -78,5 +80,9 @@ body{
       background: var(--shell);
       color: white;
       border: .5px solid white;
+  }
+  & li[class*="docker"], & li[class*="dockerfile"]{
+      background: var(--docker);
+      color: white;
   }
 }

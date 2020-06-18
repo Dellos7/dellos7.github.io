@@ -94,5 +94,17 @@ Heroku PHP getting started guide at <a href="https://devcenter.heroku.com/articl
 will perform the PHP build and deploy the APP!</p>
 <pre><code class="language-shell"><span class="token function">git</span> push -u heroku master
 </code></pre>
+<pre><code class="language-docker"><span class="token keyword">FROM</span> php<span class="token punctuation">:</span>7.3.3<span class="token punctuation">-</span>apache
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get update \
+   &amp;&amp; apt<span class="token punctuation">-</span>get upgrade <span class="token punctuation">-</span>y
+<span class="token keyword">RUN</span> docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>install mysqli
+<span class="token keyword">EXPOSE</span> 80
+<span class="token keyword">ENV</span> APACHE_DOCUMENT_ROOT /var/www/html
+</code></pre>
+<pre><code class="language-sql"><span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> biblioteca<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> ciclismo<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> musica<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">USER</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token string">'david'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+</code></pre>
 <h1>License</h1>
 <p><a href="https://choosealicense.com/licenses/gpl-3.0/">GPL 3.0 License</a></p>

@@ -6,6 +6,28 @@
 <p>Probandoooooo</p>
 <p><img src="/assets/blog/index.jpg" loading="lazy" alt="una imagen de prueba">
 <img src="/assets/blog/test.png" loading="lazy" alt="otra imagen de prueba"></p>
+<p><img src="/assets/blog/index.jpg" loading="lazy" alt="imagen en source img" style="max-height: 40rem"></p>
+<p><details>
+<summary>Click para ver la solución</summary>
+<br>
+<p>Hola! La solución es: <b>3</b></p>
+</details></p>
+<pre><code class="language-docker"><span class="token keyword">FROM</span> php<span class="token punctuation">:</span>7.3.3<span class="token punctuation">-</span>apache
+<span class="token keyword">RUN</span> apt<span class="token punctuation">-</span>get update \
+   &amp;&amp; apt<span class="token punctuation">-</span>get upgrade <span class="token punctuation">-</span>y
+<span class="token keyword">RUN</span> docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>install mysqli
+<span class="token keyword">EXPOSE</span> 80
+<span class="token keyword">ENV</span> APACHE_DOCUMENT_ROOT /var/www/html
+</code></pre>
+<pre><code class="language-sql"><span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> biblioteca<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> ciclismo<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> musica<span class="token punctuation">;</span>
+<span class="token keyword">DROP</span> <span class="token keyword">USER</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> <span class="token string">'david'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+</code></pre>
 <blockquote>
 <p><strong>Nota:</strong> esto es una nota</p>
 </blockquote>
+<iframe height="265" style="width: 100%;" scrolling="no" title="Personal site" src="https://codepen.io/dellos7/embed/preview/xxZGgEq?height=265&theme-id=dark&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/dellos7/pen/xxZGgEq'>Personal site</a> by David López Castellote
+  (<a href='https://codepen.io/dellos7'>@dellos7</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
