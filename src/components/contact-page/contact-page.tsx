@@ -1,6 +1,24 @@
 import { Component, h } from '@stencil/core';
-import { Helmet } from '@stencil/helmet';
 import seoConfig from '../../global/seo-config';
+import { SeoTagsData } from 'dlc-seo-tags';
+
+const seoData: SeoTagsData = {
+  title: seoConfig.contact.title,
+  meta: [
+    { name: 'description', content: seoConfig.contact.description },
+    { property: 'og:description', content: seoConfig.contact.description },
+    { property: 'og:image', content: seoConfig.contact.image },
+    { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },
+    { name: 'twitter:title', content: seoConfig.contact.title },
+    { name: 'twitter:description', content: seoConfig.contact.description },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:site', content: seoConfig.twitterUser },
+    { name: 'twitter:creator', content: seoConfig.twitterUser },
+  ],
+  links: [
+    { rel: 'canonical', href: `${window.location.origin}${window.location.pathname}` }
+  ]
+};
 
 @Component({
   tag: 'contact-page',
@@ -11,20 +29,7 @@ export class ContactPage {
   render() {
     return (
       <div class="contact-page">
-        <Helmet>
-          <title>{seoConfig.contact.title}</title>
-          <meta property="og:title" content={seoConfig.contact.title} />
-          <meta property="og:image" content={seoConfig.contact.image} />
-          <meta property="og:url" content={window.location.origin+window.location.pathname} />
-          <link rel="canonical" href={window.location.origin+window.location.pathname}/>
-          { seoConfig.contact.description ? <meta name="description" content={seoConfig.contact.description} /> : '' }
-          { seoConfig.contact.description ? <meta name="og:description" property="og:description" content={seoConfig.contact.description} /> : '' }
-          { seoConfig.contact.description ? <meta name="twitter:description" content={seoConfig.contact.description} /> : '' }
-          <meta name="twitter:title" content={seoConfig.contact.title} />
-          <meta name="twitter:card" content={seoConfig.contact.image} />
-          <meta name="twitter:site" content={seoConfig.twitterUser} />
-          <meta name="twitter:image" content={seoConfig.contact.image} />
-        </Helmet>
+        <dlc-seo-tags data={seoData}></dlc-seo-tags>
         <header>
           <user-name content="Contacto" showDomain={true}></user-name>
         </header>
