@@ -95,6 +95,10 @@ export class BlogPage {
               </li>
             ) : <p class="no-posts">- No hay posts -</p>}
           </ul>
+          <div class="pager">
+            { this.postsPage > 0 ? <a class="pager__prev" onClick={() => this.prevPage()}>&larr; Más nuevos</a> : '' }
+            { this.postsPage < this.maxPages ? <a class="pager__next" onClick={() => this.nextPage()}>Anteriores &rarr;</a> : '' }
+          </div>
         </main>
       </div>
     );

@@ -1,8 +1,9 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Listen, Element } from '@stencil/core';
 import { BlogService } from '../../services/blog-service';
-import { Helmet } from '@stencil/helmet';
 import seoConfig from '../../global/seo-config';
 import { tagsToHtmlList } from '../../global/utils';
+import { HTMLStencilElement } from '@stencil/core/internal';
+import { SeoTagsData } from 'dlc-seo-tags';
 
 @Component({
   tag: 'blog-post-wrapper',
@@ -10,16 +11,34 @@ import { tagsToHtmlList } from '../../global/utils';
 })
 export class BlogPostWrapper {
 
+  @Element() el: HTMLStencilElement;
   @Prop() uniqueLink: string;
   @Prop({mutable: true}) metadata: any;
   @State() imgFilterFromColor: string;
   @State() imgFilterToColor: string; 
+
+  postTitleEl: HTMLElement;
+  postTitleElInitialOffsetTop: number;
+  scrollIndicatorEl: HTMLElement;
+  scrollIndicatorInitialLeft: number;
+  computedStyleLeftPercentage = false;
 
   componentWillLoad() {
     //Maybe we have not passed the metadata as property, then we load the metadata using the blog-component
     if( !this.metadata ) this.metadata = BlogService.getMetadataForPost( this.uniqueLink );
     this.imgFilterFromColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
     this.imgFilterToColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+  }
+
+  componentDidLoad(){
+    this.postTitleEl = this.el.querySelector('.post-title');
+    this.postTitleElInitialOffsetTop = this.postTitleEl.offsetTop;
+    this.scrollIndicatorEl = this.el.querySelector('.scroll-indicator');
+    const computedStyleLeft = getComputedStyle( this.scrollIndicatorEl ).left;
+    if( computedStyleLeft.includes('%') ) this.computedStyleLeftPercentage = true;
+    this.scrollIndicatorInitialLeft = Number.parseInt( ( this.computedStyleLeftPercentage ? computedStyleLeft.split('%') : computedStyleLeft.split('px') )[0]);
+    
+    setTimeout( _ => window.scrollTo(0,0) , 100 );
   }
 
   imageUrl( image: string ){
@@ -33,39 +52,72 @@ export class BlogPostWrapper {
     return date.toLocaleDateString();
   }
 
+  @Listen('scroll', { target: 'window' })
+  handleWindowScroll(){
+    this.handleStickyPostTitle();
+    this.handleScrollIndicator();
+  }
+
+  handleStickyPostTitle(){
+    if( this.postTitleEl ){
+      if( this.postTitleElInitialOffsetTop == 0 ){
+        this.postTitleElInitialOffsetTop = this.postTitleEl.offsetTop;
+      }
+      if( window.pageYOffset > ( this.postTitleElInitialOffsetTop - 30 ) ){
+        this.postTitleEl.classList.add('sticky');
+      } else{
+        this.postTitleEl.classList.remove('sticky');
+      }
+    }
+  }
+
+  handleScrollIndicator(){
+    if( this.scrollIndicatorEl ){
+      const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = ( windowScroll / height );
+      if( this.computedStyleLeftPercentage ){
+        this.scrollIndicatorEl.style.left = ( this.scrollIndicatorInitialLeft + scrolled*100 ) + '%';
+      } else{
+        this.scrollIndicatorEl.style.left = this.scrollIndicatorInitialLeft + ( scrolled * Math.abs( this.scrollIndicatorInitialLeft ) ) + 'px';
+      }
+    }
+  }
+
   render() {
     if( !this.uniqueLink || !this.metadata ) {
       return (<div>Loading...</div>);
     }
     else {
+      const seoData: SeoTagsData = {
+        title: this.metadata.title + seoConfig.titleSuffix,
+        meta: [
+          { name: 'keywords', content: this.metadata.tags },
+          { name: 'description', content: this.metadata.summary },
+          { property: 'og:title', content: this.metadata.title },
+          { property: 'og:description', content: this.metadata.summary },
+          { property: 'og:image', content: this.imageUrl(this.metadata.image) },
+          { property: 'og:url', content: window.location.origin+window.location.pathname },
+          { name: 'twitter:title', content: this.metadata.title },
+          { name: 'twitter:description', content: this.metadata.summary },
+          { name: 'twitter:card', content: 'summary' },
+          { name: 'twitter:site', content: seoConfig.twitterUser },
+          { name: 'twitter:creator', content: seoConfig.twitterUser },
+        ],
+        links: [
+          { rel: 'canonical', href: window.location.origin+window.location.pathname }
+        ]
+      };
       return (
         <div class="blog-post-wrapper">
-          <Helmet>
-            <title>{this.metadata.title} {seoConfig.titleSuffix}</title>
-            <link rel="canonical" href={window.location.origin+window.location.pathname}/>
-            { this.metadata.tags ? <meta name="keywords" content={this.metadata.tags}/> : ''}
-            <meta name="og:title" property="og:title" content={this.metadata.title} />
-            { this.metadata.summary ? <meta name="description" content={this.metadata.summary} /> : '' }
-            { this.metadata.summary ? <meta name="og:description" property="og:description" content={this.metadata.summary} /> : '' }
-            { this.metadata.summary ? <meta name="twitter:description" content={this.metadata.summary} /> : '' }
-            <meta name="og:image" property="og:image" content={this.imageUrl(this.metadata.image)} />
-            <meta property="og:url" content={window.location.origin+window.location.pathname} />
-            <meta name="twitter:title" content={this.metadata.title} />
-            <meta name="twitter:card" content={this.imageUrl(this.metadata.image)} />
-            <meta name="twitter:site" content={seoConfig.twitterUser} />
-            <meta name="twitter:image" content={this.imageUrl(this.metadata.image)}/>
-          </Helmet>
+          <dlc-seo-tags data={seoData}></dlc-seo-tags>
+          <div class="scroll-indicator"></div>
           <div class="back-button">
             <stencil-route-link class="link" url="/blog">&larr;Volver al blog</stencil-route-link>
           </div>
           <blog-post uniqueLink={this.uniqueLink}>
             <div slot="before">
               <div class="image-filter-wrapper">
-                {/* <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}>              
-                  <div class="post-title" slot="inside">
-                    <h1>{this.metadata.title}</h1>
-                  </div>
-                </image-filter> */}
                 <image-filter fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}></image-filter>
                 <div class="post-title">
                     <h1>{this.metadata.title}</h1>

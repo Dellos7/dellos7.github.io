@@ -18,7 +18,7 @@ export class AppRoot {
           <rrss-navbar githubUser="Dellos7" twitterUser="_dlopezcast" codepenUser="dellos7" linkedinUser="david-lopez-castellote"></rrss-navbar>
           <navigation-bar></navigation-bar>
           <stencil-router>
-            <stencil-route-switch scrollTopOffset={0}>
+            <stencil-route-switch>
               <stencil-route url='/' exact={true} component="app-home"></stencil-route>
               <stencil-route url={['/blog', '/blog/']} component='blog-page' exact={true}/>
               <stencil-route url={['/about', '/about/']} component='about-page' exact={true}></stencil-route>

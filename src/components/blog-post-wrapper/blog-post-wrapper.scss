@@ -2,12 +2,26 @@
     width: 90%;
     margin: 2rem auto;
 
-    .back-button{
+    & .scroll-indicator{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2rem;
+        background: linear-gradient(270deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);
+        //background: linear-gradient(270deg, rgba(88,120,243,1) 0%, rgba(253,187,45,1) 70%);
+        z-index: 999;
+        // -webkit-box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+        // -moz-box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+        // box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+    }
+
+    & .back-button{
         color: white;
         margin: 2rem 0;
     }
     
-    image-filter::part(img){
+    & image-filter::part(img){
         padding-top: 56.25%;
         //border-radius: 8px;
         border-radius: 8px 8px 0px 0px;
@@ -17,42 +31,46 @@
         box-shadow: 0px 7px 36px -15px rgba(97,189,197,1);
     }
     
-    // .post-title{
-    //     & h1{
-    //         font-size: 3.5rem;
-    //         width: calc(100% - 4rem + 1px);
-    //         text-align: center;
-    //         color: white;
-    //         background-color: rgba(#206c75,.8);
-    //         position: absolute;
-    //         bottom: 0;
-    //         left: 50%;
-    //         transform: translateX(-50%);
-    //         //text-transform: uppercase;
-    //         padding: 2rem;
-    //     }
-    // }
-    
-    .image-filter-wrapper{
+    & .image-filter-wrapper{
         -webkit-box-shadow: 4px 4px 15px -2px rgba(0,0,0,0.75);
         -moz-box-shadow: 4px 4px 15px -2px rgba(0,0,0,0.75);
         box-shadow: 4px 4px 15px -2px rgba(0,0,0,0.75);
         border-radius: 8px;
     }
     
-    .post-title{
+    & .post-title{
+        transition: all .3s ease-in-out;
+        background-color: var(--secondary-color);
+        //background: linear-gradient(270deg, rgba(88,120,243,1) 0%, rgba(253,187,45,1) 70%);
+        //background: linear-gradient(270deg, rgba(19,243,185,1) 0%, rgba(88,120,243,1) 100%);;
+        border-radius: 0 0 8px 8px;
         & h1{
             font-size: 3.5rem;
             width: 100%;
             text-align: center;
             padding: 2rem;
             color: white;
-            border-radius: 0 0 8px 8px;
-            background-color: var(--primary-color);
+        }
+
+        &.sticky{
+            position: fixed;
+            top: 2rem;
+            left: 0;
+            width: 100%;
+            opacity: .95;
+            z-index: 100;
+            -webkit-box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+            -moz-box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+            box-shadow: 2px 3px 12px -2px rgba(0,0,0,0.75);
+
+            & h1{
+                white-space: nowrap;
+                overflow-x: auto;
+            }
         }
     }
     
-    .post-date{
+    & .post-date{
         margin: 2rem auto;
         width: fit-content;
         //color: var(--tertiary-color);
@@ -67,33 +85,41 @@
         }
     }
 
-    .tag-list-wrapper{
+    & .tag-list-wrapper{
         & .tag-list{
             text-align: center;
         }
     }
     
     @media all and( max-width: 600px ){
-        .post-title{
+        & .post-title{
             & h1{
                 font-size: 2.5rem;
             }
         }
     }
-    
-    @media all and ( min-width: 1124px ){
-        .blog-post-wrapper{
-            width: 70%;
-        }
-        .image-filter-wrapper{
+
+    @media all and ( max-width: 1124px ) and ( min-width: 768px ) {
+        & .image-filter-wrapper{
             width: 70%;
             margin: 0 auto;
         }
     }
     
-    @media all and ( max-width: 1124px ) and ( min-width: 768px ) {
-        .image-filter-wrapper{
-            width: 70%;
+    @media all and ( min-width: 1124px ){
+        width: 70%;
+
+        & .image-filter-wrapper{
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    @media all and ( min-width: 1400px ){
+        // width: 60%;
+
+        & .image-filter-wrapper{
+            width: 65%;
             margin: 0 auto;
         }
     }

@@ -3,6 +3,7 @@
 
     & main{
         margin: 0 auto;
+        width: 95%;
     }
 
     & ul.posts-list{
@@ -90,6 +91,12 @@
         }
     }
     
+    @media all and ( max-width: 768px ) and ( min-width: 500px ) {
+        main{
+            width: 70%;
+        }
+    }
+
     @media all and ( min-width: 768px ){
         ul.posts-list{
             flex-flow: row;
@@ -100,12 +107,6 @@
             width: 45%;
         }
     
-    }
-    
-    @media all and ( max-width: 768px ) and ( min-width: 500px ) {
-        main{
-            width: 70%;
-        }
     }
     
     @media screen and ( hover: hover ){

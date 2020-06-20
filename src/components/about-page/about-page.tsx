@@ -4,9 +4,10 @@ import seoConfig from '../../global/seo-config';
 import { SeoTagsData } from 'dlc-seo-tags';
 
 const seoData: SeoTagsData = {
-  title: seoConfig.about.title,
+  title: seoConfig.about.title + seoConfig.titleSuffix,
   meta: [
     { name: 'description', content: seoConfig.about.description },
+    { property: 'og:title', content: seoConfig.about.title },
     { property: 'og:description', content: seoConfig.about.description },
     { property: 'og:image', content: seoConfig.about.image },
     { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },

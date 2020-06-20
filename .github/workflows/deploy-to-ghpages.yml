@@ -19,13 +19,6 @@ jobs:
         run: npm run blog
       - name: Build static site
         run: npm run build
-      # - name: Deploy
-      #   uses: s0/git-publish-subdir-action@master # https://github.com/s0/git-publish-subdir-action
-      #   env:
-      #     REPO: self
-      #     BRANCH: master
-      #     FOLDER: www
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
