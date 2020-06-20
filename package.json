@@ -10,14 +10,15 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
-    "blog": "NODE_ENV=production node scripts/parse-blog.js",
+    "blog": "NODE_ENV=PRODUCTION node scripts/parse-blog.js",
     "build:deploy": "npm run blog && npm run deploy",
     "scripts:test": "jest --verbose ./scripts/tests"
   },
   "dependencies": {
     "dlc-css-terminal": "0.0.6",
     "dlc-seo-tags": "0.0.73",
-    "ionicons": "5.0.1"
+    "ionicons": "5.0.1",
+    "markdown-toc": "^1.2.0"
   },
   "devDependencies": {
     "@stencil/core": "^1.14.0",

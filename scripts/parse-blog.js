@@ -1,21 +1,22 @@
 const fs = require('fs-extra');
 const matter = require('gray-matter');
 const Remarkable = require('remarkable');
-const crypto = require('crypto');
 const dotenv = require('dotenv');
 const unsplashRandomImage = require('./unsplash-random-image');
 const codehightlight = require('./codehighlight');
 const processImages = require('./processImages');
+const toc = require('markdown-toc');
 const md = new Remarkable();
 md.set({
     html: true
 });
-
-const randomString = () => {
-    const curDate = (new Date()).valueOf().toString();
-    const random = Math.random().toString();
-    return crypto.createHash('sha1').update(curDate + random).digest('hex');
-};
+// Anyadir ids a los headings
+md.use(function(remarkable) {
+    remarkable.renderer.rules.heading_open = function(tokens, idx) {
+      //return '<h' + tokens[idx].hLevel + ' id=' + toc.slugify(tokens[idx + 1].content) + '>';
+      return '<h' + tokens[idx].hLevel + '>' + '<span class="h-anchor" id="' + toc.slugify(tokens[idx + 1].content) + '">' + '</span>';
+    };
+  });
 
 const readConfigFile = () => {
     return new Promise( (resolve, reject) => {
@@ -69,6 +70,9 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
     if (!fs.existsSync(blogMdDir)) {
         fs.mkdirSync(blogMdDir);
     }
+    if (!fs.existsSync(imagesBlogDir)) {
+        fs.mkdirSync(imagesBlogDir);
+    }
     console.log(`Starting blog parse... `);
     fs.readdir(blogMdDir, async(err, files) => {
         console.log(`> Reading files from ${blogMdDir}`);
@@ -100,7 +104,9 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
         for( let _file of files ){
             let fileContent = fs.readFileSync(`${blogMdDir}/${_file}`, 'utf8');
             let contentMatter = matter(fileContent);
-            let contentHtml = md.render(contentMatter.content);
+            // Insertar tabla de contenidos etiquetada con <!-- toc -->
+            let mdContent = toc.insert(contentMatter.content);
+            let contentHtml = md.render(mdContent);
             contentHtml = processImages.convertImagesSources( contentHtml, `/${imagesDirPath}`, true );
             contentHtml = codehightlight.highlight( contentHtml );
             try {
