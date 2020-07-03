@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const matter = require('gray-matter');
 const Remarkable = require('remarkable');
 const dotenv = require('dotenv');
+const ert = require('estimated-reading-time');
 const unsplashRandomImage = require('./unsplash-random-image');
 const codehightlight = require('./codehighlight');
 const processImages = require('./processImages');
@@ -109,8 +110,10 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             let contentHtml = md.render(mdContent);
             contentHtml = processImages.convertImagesSources( contentHtml, `/${imagesDirPath}`, true );
             contentHtml = codehightlight.highlight( contentHtml );
+            const estimatedReadingTime = ert.estimatedReadingTime( contentHtml, ert.TextFormat.HTML, { isTechnical: true } );
             try {
                 let metadata = contentMatter.data;
+                metadata.estimatedReadingTime = estimatedReadingTime;
                 let fileNameNoExtension = _file.substring(0,_file.lastIndexOf('.')); 
                 let fileName = fileNameNoExtension + '.html';
                 // Guardar el html en el directorio correspondiente

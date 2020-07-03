@@ -28,6 +28,7 @@
     "axios": "^0.19.2",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
+    "estimated-reading-time": "0.0.1",
     "fs-extra": "^9.0.0",
     "gray-matter": "^4.0.1",
     "highlight.js": "^9.18.1",

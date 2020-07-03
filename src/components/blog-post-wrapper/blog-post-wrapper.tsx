@@ -126,6 +126,10 @@ export class BlogPostWrapper {
               <h3 class="post-date">
                 {this.formatDate(this.metadata.date)}
               </h3>
+              <h4 class="ert">
+                <ion-icon name="book-outline"></ion-icon><ion-icon name="hourglass-outline"></ion-icon>&nbsp;
+                {this.metadata.estimatedReadingTime.roundedMinutes} min.
+              </h4>
               <div class="tag-list-wrapper" innerHTML={tagsToHtmlList(this.metadata.tags)}>
               </div>
             </div>

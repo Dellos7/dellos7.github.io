@@ -2,9 +2,28 @@ import { Component, Prop, h, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { BlogService } from '../../services/blog-service';
 import { Post } from '../../model/interfaces';
-import{ Helmet } from '@stencil/helmet';
 import seoConfig from '../../global/seo-config';
+import { SeoTagsData } from 'dlc-seo-tags';
 import { tagsToHtmlList } from '../../global/utils';
+
+const seoData: SeoTagsData = {
+  title: seoConfig.blog.title + seoConfig.titleSuffix,
+  meta: [
+    { name: 'description', content: seoConfig.blog.description },
+    { property: 'og:title', content: seoConfig.blog.title },
+    { property: 'og:description', content: seoConfig.blog.description },
+    { property: 'og:image', content: seoConfig.blog.image },
+    { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },
+    { name: 'twitter:title', content: seoConfig.blog.title },
+    { name: 'twitter:description', content: seoConfig.blog.description },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:site', content: seoConfig.twitterUser },
+    { name: 'twitter:creator', content: seoConfig.twitterUser },
+  ],
+  links: [
+    { rel: 'canonical', href: `${window.location.origin}${window.location.pathname}` }
+  ]
+};
 
 @Component({
   tag: 'blog-page',
@@ -59,7 +78,7 @@ export class BlogPage {
   render() {
     return (
       <div class="blog-page">
-        <Helmet>
+        {/* <Helmet>
           <title>{seoConfig.blog.title}</title>
           <meta property="og:title" content={seoConfig.blog.title} />
           <meta property="og:image" content={seoConfig.blog.image} />
@@ -72,7 +91,8 @@ export class BlogPage {
           <meta name="twitter:card" content={seoConfig.blog.image} />
           <meta name="twitter:site" content={seoConfig.twitterUser} />
           <meta name="twitter:image" content={seoConfig.blog.image} />
-        </Helmet>
+        </Helmet> */}
+        <dlc-seo-tags data={seoData}></dlc-seo-tags>
         <header>
           <user-name content="Blog" showDomain={true}></user-name>
         </header>
@@ -91,6 +111,7 @@ export class BlogPage {
                 </stencil-route-link>
                   <div class="posts-list__item-tags" innerHTML={tagsToHtmlList(post.metadata.tags)}></div>
                   <div class="posts-list__item-date texto-gradiente-1">{this.formatDate(post.metadata.date)}</div>
+                  <div class="posts-list__item-ert"><ion-icon name="book-outline"></ion-icon><ion-icon name="hourglass-outline"></ion-icon>&nbsp;{post.metadata.estimatedReadingTime.roundedMinutes} min.</div>
                   <div class="posts-list__item-summary">{post.metadata.summary}</div>
               </li>
             ) : <p class="no-posts">- No hay posts -</p>}
