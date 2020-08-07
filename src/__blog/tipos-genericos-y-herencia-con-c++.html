@@ -1,0 +1,109 @@
+<h2><span class="h-anchor" id="tabla-de-contenidos"></span>Tabla de contenidos:</h2>
+<!-- toc -->
+<ul>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#tipos-genericos-en-c">Tipos genéricos en C++</a>
+<ul>
+<li><a href="#%C2%BFque-son-los-tipos-genericos">¿Qué son los tipos genéricos?</a></li>
+<li><a href="#function-templates-en-c"><em>Function Templates</em> en C++</a></li>
+<li><a href="#class-templates-en-c"><em>Class Templates</em> en C++</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusión</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span class="h-anchor" id="introduccion"></span>Introducción</h2>
+<p>Como parte de mi proceso de formación como profesor de informática y programación, últimamente estoy tratando de abarcar diversos lenguajes de programación que no he tenido el gusto (o desgracia) de utilizar a lo largo de estos años desde que comencé a aprender a programar en la carrera. En la actualidad estoy tratando de comprender y aprender a utilizar el <strong>lenguaje C++</strong>, una tarea que, por ahora, no ha sido del todo satisfactoria debido a las singularidades que presenta este lenguaje, pese a tener actualmente (o eso creo) una base sólida tanto de Java como de C.</p>
+<blockquote>
+<p><strong>Disclaimer</strong>: pese a no ser (al menos, por ahora) un gran fan de C++, creo que es interesante poder conocer diferentes lenguajes y aprender ideas de todos ellos, ya que cada uno enriquecerá, de una u otra forma, nuestro conocimiento. ¿Y qué mejor forma de aprender algo que escribiendo acerca de ello?</p>
+</blockquote>
+<p>En este artículo de introducción hacemos <strong>un pequeño repaso del uso de tipos genéricos en C++, tanto en la definición de funciones como en la definición de clases</strong>.</p>
+<p>Si quieres ver un <strong>uso más avanzado y útil de los tipos genéricos</strong>, mezclado con herencia y con un poco de algoritmia, no dejes de visitar el siguiente artículo que he escrito sobre <a href="algoritmos-ordenacion-genericos-herencia-c++"><strong>algoritmos de ordenación con genéricos y herencia en C++</strong></a>.</p>
+<h2><span class="h-anchor" id="tipos-genericos-en-c"></span>Tipos genéricos en C++</h2>
+<h3><span class="h-anchor" id="¿que-son-los-tipos-genericos"></span>¿Qué son los tipos genéricos?</h3>
+<p>Antes de saber cómo aplicar y utilizar los tipos genéricos, es evidente que debemos entender <strong>qué son los tipos genéricos</strong> primero.</p>
+<blockquote>
+<p>Los tipos genéricos permiten a un lenguaje de programación (normalmente un lenguaje compilado, ya que los lenguajes interpretados suelen ser <strong>no tipados</strong>) definir clases (en el caso de C++, también funciones aisladas) que podrán realizar su trabajo y ejecutar su código de forma independiente al tipo concreto que datos que se quiera utilizar en cada momento.</p>
+</blockquote>
+<p>Imaginemos que queremos definir una función que reciba por parámetro dos enteros, y que queremos que calcule el máximo de ambos y lo devuelva. Esto sería sencillo, ¿no? Imaginemos, ahora, que queremos también definir una función que reciba dos parámetros de tipo decimal (ej. <em>float</em>) y que calcule, también, su máximo. Sencillo, también. Pero... queremos otra para el tipo <em>double</em>. También otra para el tipo <em>string</em>. Se va &quot;complicando&quot;, puesto que las funciones son muy sencillas, pero tenemos que definir una para cada tipo. Pues bien, <strong>esto es precisamente lo que resuelven los tipos genéricos</strong>.</p>
+<p>De esta forma, bastaría con definir una función e indicarle que el tipo de los parámetros a recibir y el tipo de parámetro de retorno es de tipo genérico y listo.</p>
+<p><img src="/assets/blog/genericos-c++.jpg" loading="lazy" alt="Una función con tipos específicos y tipos genéricos" style="max-height: 40rem"></p>
+<h3><span class="h-anchor" id="function-templates-en-c"></span><em>Function Templates</em> en C++</h3>
+<p>Pero, <strong>para muestra, un botón</strong>. Vamos a programar el anterior ejemplo en C++ utilizando tipos genéricos. En C++, para definir una función que acepte tipos genéricos, tenemos que definir, en realidad, una <strong>function template</strong> (literalmente, una plantilla de función). Es decir, una función que funcione como una plantilla para que el lenguaje pueda utilizar, en cada caso, el tipo necesario que se vaya a utilizar.</p>
+<blockquote>
+<p>Lo que hace en realidad el compilador de C++ es que <strong>crea una función para cada tipo específico que se vaya a utilizar a lo largo de la ejecución del programa</strong>, y utilizará en cada caso dicha definición concreta para ejecutar la lógica (y no la función genérica).</p>
+</blockquote>
+<p>Para <strong>definir una función como <code>template</code></strong>, simplemente anteponemos la siguiente sintaxis a la definición de la función:</p>
+<pre><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+</code></pre>
+<p>o bien:</p>
+<pre><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token operator">></span>
+</code></pre>
+<p>Ambas sintaxis hacen exactamente lo mismo. En este caso, <strong>estamos indicando que la función recibirá un tipo de parámetro genérico</strong> identificado con la <strong>letra <code>T</code></strong>.</p>
+<p>El ejemplo prometido sería el siguiente:</p>
+<pre><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+T <span class="token function">genericMax</span><span class="token punctuation">(</span> T e1<span class="token punctuation">,</span> T e2 <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> e1 <span class="token operator">></span> e2 <span class="token punctuation">)</span> <span class="token keyword">return</span> e1<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> e2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> e1 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> e2 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> res1 <span class="token operator">=</span> genericMax<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span> e1<span class="token punctuation">,</span> e2 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El máximo de "</span> <span class="token operator">&lt;&lt;</span> e1 <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> e2 <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> res1 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+
+    <span class="token keyword">float</span> f1 <span class="token operator">=</span> <span class="token number">2.1</span><span class="token punctuation">,</span> f2 <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> res2 <span class="token operator">=</span> genericMax<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token punctuation">(</span> f1<span class="token punctuation">,</span> f2 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El máximo de "</span> <span class="token operator">&lt;&lt;</span> f1 <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> f2 <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> res2 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Ejecución:</p>
+<pre><code>El máximo de 5 y 10 es: 10
+El máximo de 2.1 y 0.5 es: 2.1
+</code></pre>
+<p>Podríamos utilizar el mismo código con los tipos <code>string</code>, <code>double</code>... y cualquier tipo específico que hayamos creado (por ejemplo, una clase propia) y para el cual hayamos <a href="https://www.codingunit.com/cplusplus-binary-operator-overloading-greater-or-less-than">sobrecargado los operadores de comparación</a>.</p>
+<p>En realidad, en la llamada a la función no es necesario especificar el tipo concreto con la sintaxis <code>&lt;int&gt;</code> (o <code>&lt;float&gt;</code>)..., ya que el compilador es capaz de inferir el tipo en base al tipo concreto recibido por parámetro.</p>
+<p>Es decir, que esto:</p>
+<pre><code class="language-cpp"><span class="token keyword">int</span> e1 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> e2 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> res1 <span class="token operator">=</span> genericMax<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span> e1<span class="token punctuation">,</span> e2 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>podría simplificarse perfectamente por esto:</p>
+<pre><code class="language-cpp"><span class="token keyword">int</span> e1 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> e2 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> res1 <span class="token operator">=</span> <span class="token function">genericMax</span><span class="token punctuation">(</span> e1<span class="token punctuation">,</span> e2 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3><span class="h-anchor" id="class-templates-en-c"></span><em>Class Templates</em> en C++</h3>
+<p>Todos los anteriores conceptos pueden aplicarse también para la <strong>definición de clases que utilizan tipos genéricos</strong> en C++. En este caso, <strong>añadiremos un poco de dificultad</strong>: utilizaremos dos tipos en lugar de uno, con el objetivo de poder comparar, también, elementos de tipo diferente.</p>
+<p>Lo veremos directamente con un ejemplo. Imaginemos que queremos definir una nueva clase que implemente funciones matemáticas, pero queremos que pueda utilizarse indistintamente para los tipos <code>int</code>, <code>float</code> y <code>double</code>, y que puedan compararse y aplicarse las funciones entre ellos.</p>
+<p>En este caso, los nombres escogidos para los tipos genéricos serán <code>T</code> y <code>U</code>. Implementaremos algunas funciones para poder ver la utilidad de esto:</p>
+<pre><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token punctuation">,</span> <span class="token keyword">typename</span> U<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">MiMatematica</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        T <span class="token function">max</span><span class="token punctuation">(</span> T e1<span class="token punctuation">,</span> U e2 <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span> e1 <span class="token operator">></span> e2 <span class="token punctuation">)</span> <span class="token keyword">return</span> e1<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> e2<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        T <span class="token function">min</span><span class="token punctuation">(</span> T e1<span class="token punctuation">,</span> U e2 <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span> e1 <span class="token operator">&lt;</span> e2 <span class="token punctuation">)</span> <span class="token keyword">return</span> e1<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> e2<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    MiMatematica<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> matematica<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> f1 <span class="token operator">=</span> <span class="token number">5.3</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> e1 <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> res <span class="token operator">=</span> matematica<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span> f1<span class="token punctuation">,</span> e1 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El menor de "</span> <span class="token operator">&lt;&lt;</span> f1 <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> e1 <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> res <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Quizá el ejemplo es un poco raro, porque al definir las funciones de mínimo y máximo entre dos tipos diferentes, ¿de qué tipo decidimos que tiene que ser el valor de retorno, del tipo del primer elemento, del tipo del segundo...? De cualquier manera, <strong>espero que se entienda la idea de la potencia que nos brinda la utilización de tipos genéricos</strong> en las clases y funciones que definamos, ya que de esta forma <strong>evitamos duplicar gran cantidad de código y, por tanto, introducir bugs</strong>, entre otras muchas ventajas.</p>
+<h2><span class="h-anchor" id="conclusion"></span>Conclusión</h2>
+<p>Como conclusión simplemente decir que espero que esta pequeña aportación haya sido de utilidad a alguien, y recordaos que, si queréis ver un <strong>uso más avanzado de los tipos genéricos en C++</strong>, no dejéis de visitar mi artículo <a href="algoritmos-ordenacion-genericos-herencia-c++"><strong>algoritmos de ordenación con genéricos y herencia en C++</strong></a>.</p>
+<p>¡Saludos y buen día (o noche) a todos!</p>
+<p><strong><em>David</em></strong>.</p>

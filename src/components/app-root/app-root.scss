@@ -48,6 +48,12 @@ body{
       padding: .2rem 1rem;
       margin: .5rem;
       color: #3c3c3c;
+      &:first-child{
+          margin-left: 0;
+      }
+      &:last-child{
+          margin-right: 0;
+      }
   }
   & li[class*="c"]{
       background: var(--c);

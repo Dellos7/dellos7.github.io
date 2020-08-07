@@ -35,4 +35,6 @@ git push origin source --tags
 - Filtro de posts por etiqueta
 - Mantener la página del blog al entrar y salir de un post
 - Página "about"
-- Página "contact"
+- Comentarios al final del post
+- Botones para compartir por redes sociales en cada post
+- ~~Página "contact"~~

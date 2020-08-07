@@ -14,7 +14,6 @@ md.set({
 // Anyadir ids a los headings
 md.use(function(remarkable) {
     remarkable.renderer.rules.heading_open = function(tokens, idx) {
-      //return '<h' + tokens[idx].hLevel + ' id=' + toc.slugify(tokens[idx + 1].content) + '>';
       return '<h' + tokens[idx].hLevel + '>' + '<span class="h-anchor" id="' + toc.slugify(tokens[idx + 1].content) + '">' + '</span>';
     };
   });
