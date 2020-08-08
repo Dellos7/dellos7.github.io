@@ -37,4 +37,5 @@ git push origin source --tags
 - Página "about"
 - Comentarios al final del post
 - Botones para compartir por redes sociales en cada post
+- Editar artículo en Github (PR)
 - ~~Página "contact"~~
