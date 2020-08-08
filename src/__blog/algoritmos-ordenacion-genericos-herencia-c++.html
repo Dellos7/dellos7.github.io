@@ -5,8 +5,107 @@
 <!-- toc -->
 <ul>
 <li><a href="#introduccion">Introducción</a></li>
+<li><a href="#herencia-en-c">Herencia en C++</a></li>
+<li><a href="#algoritmos-de-ordenacion">Algoritmos de ordenación</a>
+<ul>
+<li><a href="#bubble-sort"><em>Bubble sort</em></a></li>
+<li><a href="#selection-sort"><em>Selection sort</em></a></li>
+<li><a href="#insertion-sort"><em>Insertion sort</em></a></li>
+<li><a href="#quick-sort"><em>Quick sort</em></a></li>
+<li><a href="#merge-sort"><em>Merge sort</em></a></li>
+</ul></li>
+<li><a href="#polimorfismo">Polimorfismo</a></li>
 </ul>
 <!-- tocstop -->
 <h2><span class="h-anchor" id="introduccion"></span>Introducción</h2>
-<p>Tratando de repasar también los distintos <strong>algoritmos de ordenación</strong> que existen (o, al menos, los más conocidos), me propuse crear en C++ una clase genérica que permitiera ordenar un array de datos (en este caso, utilizaremos la clase <strong><em>vector</em></strong> de C++) de cualquier tipo (es decir, utilizando tipos genéricos) y utilizando, además, cualquiera de los distintos algoritmos de ordenación, pudiendo escogerlos incluso en tiempo de ejecución.</p>
-<p>Una tarea que resultaría sencilla para muchos, pero que incluye, como digo, muchos conceptos y aspectos, tanto de C++ como de algoritmia, que conviene tener dominados para poder utilizarlos con soltura.</p>
+<p>Como comenté en <strong>mi primer post sobre C++</strong>: <a href="tipos-genericos-con-c++">utilizando tipos genéricos en C++</a>, como parte de mi proceso de formación como profesor de informática y programación <strong>estoy tratando de aprender</strong>, al menos de forma básica, <strong>las entrañas del lenguaje C++</strong>.</p>
+<p>Para ello, y aprovechando para repasar también los distintos <strong>algoritmos de ordenación</strong> que existen (o, al menos, los más conocidos), me propuse crear en C++ una clase genérica que permitiera ordenar un array de datos (en este caso, utilizando la clase <code>vector</code>) de cualquier tipo (es decir, utilizando tipos genéricos) y utilizando, además, cualquiera de los distintos algoritmos de ordenación, pudiendo escogerlos incluso en tiempo de ejecución. Para esto último, aprovechamos los conceptos de <strong>herencia y polimorfismo</strong> que ofrece este lenguaje.</p>
+<p>En este artículo <strong>no comentaré cómo funciona la herencia en C++</strong>, puesto que para ello ya dispones de un <a href="tipos-genericos-con-c++">artículo mucho más detallado que escribí acerca de este mismo concepto</a>.</p>
+<h2><span class="h-anchor" id="herencia-en-c"></span>Herencia en C++</h2>
+<p>Explicaremos los <strong>conceptos básicos de la herencia en C++</strong> diseñando el esqueleto de nuestro programa que permitirá ordenar arrays de datos utilizando los diferentes algoritmos de ordenación que nosotros mismos programaremos.</p>
+<p>Pero, para empezar, <strong>¿qué es o qué permite la herencia?</strong></p>
+<blockquote>
+<p>Básicamente, la herencia, en cualquier lenguaje de programación, permite definir una clase (a la cual denominaremos <strong>superclase</strong>) con una serie de definiciones de métodos y atributos (en algunos casos dichos métodos podrían no estar implementados, y se les denomina <strong>métodos virtuales en C++</strong> o <strong>abstractos en Java</strong>). Después, podríamos definir una o diversas <strong>clases que hereden de la superclase</strong> (las <strong>subclases</strong>), y <strong>adquirirían la estructura y comportamiento de la superclase</strong> (esto es, sus atributos y métodos). Estas subcases deben implementar los métodos virtuales o abstractos, mientras que podrían simplemente utilizar o sobreescribir aquellos que sí disponen de una implementación en la superclase.</p>
+</blockquote>
+<p>Podemos ver la herencia entre clases como una <strong>jeraquía</strong> de las mismas, siendo cada subclase una especialización de la clase padre. Esto podría verse, por ejemplo, con el ejemplo de los animales: tenemos, por un lado, los carnívoros (como el león) y los herbívoros (como el conejo). Además, los omnívoros pueden considerarse tanto carnívoros como herbívoros, y como ejemplo podemos poner al oso.</p>
+<p><img src="/assets/blog/herencia-animales.jpg" loading="lazy" alt="Una función con tipos específicos y tipos genéricos" style="max-height: 40rem"></p>
+<p>Lo mismo haremos con la jerarquía de clases de nuestros algoritmos de ordenación. Tendremos una clase base (la superclase), que será la clase <code>Ordenador</code>. Esta clase dispondrá de una definición del método <code>ordenar</code>, especificado como <code>virtual</code> ya que la clase genérica <code>Ordenador</code> no sabe cómo ordenar un array (serán las subclases específicas las que implementarán cada uno de los métodos de ordenación en base a algoritmos concretos). En este caso, las clases <code>OrdenadorBubbleSort</code>, <code>OrdenadorSelectionSort</code>, <code>OrdenadorInsertionSort</code>, <code>OrdenadorQuickSort</code> y <code>OrdenadorMergeSort</code>.</p>
+<p><img src="/assets/blog/herencia-algo-ordenacion.jpg" loading="lazy" alt="Una función con tipos específicos y tipos genéricos" style="max-height: 60rem"></p>
+<p>Vamos a hacerlo en C++:</p>
+<pre><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">Ordenador</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token comment">/* Definimos el método como virtual.
+        * Esto indicará al compilador que la implementación
+        * dependerá de las subclases que extiendan de esta clase.
+        * Lo igualamos a 0 para indicarle que este método no tiene 
+        * implementación en esta clase
+        */</span>
+        <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">ordenar</span><span class="token punctuation">(</span> vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">&amp;</span>arr <span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">OrdenadorBubbleSort</span><span class="token operator">:</span> <span class="token keyword">public</span> Ordenador<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">ordenar</span><span class="token punctuation">(</span> vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">&amp;</span>arr <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// aquí incluiremos la implementación concreta bubble sort</span>
+        <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">OrdenadorInsertionSort</span><span class="token operator">:</span> <span class="token keyword">public</span> Ordenador<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">ordenar</span><span class="token punctuation">(</span> vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">&amp;</span>arr <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// aquí incluiremos la implementación concreta insertion sort</span>
+        <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ...</span>
+
+<span class="token comment">/* Haremos exactamente lo mismo que para OrdenadorBubbleSort
+   y OrdenadorInsertionSort con todo el resto de clases específicas para ordenar * /
+</span></code></pre>
+<p>Como vemos, <strong>para especificar que una clase hereda de otra</strong> lo hacemos con la siguiente sintaxis:</p>
+<pre><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">MiSubclase</span><span class="token operator">:</span> <span class="token keyword">public</span> MiSuperclase <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>El especificador de visibilidad, en este caso <code>public</code>, determina cómo expondrá la clase derivada (<code>MiSubclase</code>) los métodos y atributos derivados de la superclase (<code>MiSuperclase</code>). En este caso, los métodos públicos (<code>public</code>) de la superclase serán públicos en la subclase y los métodos protegidos (<code>protected</code>) serán, a su vez, protegidos. Los privados simplemente no pueden ser accedidos por una clase derivada de otra. Para más información: <a href="https://www.tutorialspoint.com/cplusplus/cpp_inheritance.htm">herencia en C++ y especificadores de visibilidad</a></p>
+<h2><span class="h-anchor" id="algoritmos-de-ordenacion"></span>Algoritmos de ordenación</h2>
+<p>Una vez repasados los conceptos básicos de herencia y cómo la usaremos en este ejemplo, pasamos a explicar el funcionamiento de cada uno de los algoritmos de ordenación siguientes.</p>
+<blockquote>
+<p><strong>Disclaimer</strong>: las siguientes implementaciones las he realizado yo mismo, y seguramente no sean ni las mejores, ni las más eficientes, ni quizá las más populares o reconocidas. Sin embargo, he intentado llegar a una implementación comprensible en cada uno de los algoritmos, y en todos los casos sin la utilización de arrays extra (memoria extra); esto es, se utiliza siempre el array recibido por parámetro y se mueven los elementos en ese mismo array sin la necesidad de emplear y crear en cada paso nuevos arrays de soporte.</p>
+</blockquote>
+<h3><span class="h-anchor" id="bubble-sort"></span><em>Bubble sort</em></h3>
+<p><strong>Explicación:</strong></p>
+<p><strong>Implementación:</strong></p>
+<pre><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token operator">></span>
+<span class="token keyword">class</span> <span class="token class-name">OrdenadorBurbuja</span><span class="token operator">:</span> <span class="token keyword">public</span> Ordenador<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        <span class="token keyword">void</span> <span class="token function">ordenar</span><span class="token punctuation">(</span> vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">&amp;</span>lista <span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> lista<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> lista<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span> lista<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> lista<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        T temp <span class="token operator">=</span> lista<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        lista<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> lista<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        lista<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><span class="h-anchor" id="selection-sort"></span><em>Selection sort</em></h3>
+<h3><span class="h-anchor" id="insertion-sort"></span><em>Insertion sort</em></h3>
+<h3><span class="h-anchor" id="quick-sort"></span><em>Quick sort</em></h3>
+<h3><span class="h-anchor" id="merge-sort"></span><em>Merge sort</em></h3>
+<h2><span class="h-anchor" id="polimorfismo"></span>Polimorfismo</h2>
