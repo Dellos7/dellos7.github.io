@@ -5,8 +5,6 @@ summary: En este artículo hacemos un repaso a los principales algoritmos de ord
 tags: c++, algoritmia, poo
 ---
 
-> en construcción
-
 ## Tabla de contenidos:
 
 <!-- toc -->
@@ -17,7 +15,7 @@ Como comenté en **mi primer post sobre C++**: [utilizando tipos genéricos en C
 
 Para ello, y aprovechando para repasar también los distintos **algoritmos de ordenación** que existen (o, al menos, los más conocidos), me propuse crear en C++ una clase genérica que permitiera ordenar un array de datos (en este caso, utilizando la clase `vector`) de cualquier tipo (es decir, utilizando tipos genéricos) y utilizando, además, cualquiera de los distintos algoritmos de ordenación, pudiendo escogerlos incluso en tiempo de ejecución. Para esto último, aprovechamos los conceptos de **herencia y polimorfismo** que ofrece este lenguaje.
 
-En este artículo **no comentaré cómo funciona la herencia en C++**, puesto que para ello ya dispones de un [artículo mucho más detallado que escribí acerca de este mismo concepto](tipos-genericos-con-c++).
+En este artículo **no comentaré cómo funciona genericidad en C++**, puesto que para ello ya dispones de un [artículo mucho más detallado que escribí acerca de este mismo concepto](tipos-genericos-con-c++).
 
 ## Herencia en C++
 
@@ -35,7 +33,7 @@ Lo mismo haremos con la jerarquía de clases de nuestros algoritmos de ordenaci�
 
 <img src="../blog-imgs-test/herencia-algo-ordenacion.jpg" alt="Jerarquía de herencia en los algoritmos de ordenación" style="max-height: 60rem">
 
-Vamos a hacerlo en C++:
+Vamos a hacerlo en C++ (he añadido un método para imprimir los elementos del array, lo cual nos permitirá hacer después las pruebas):
 
 ```cpp
 #include <iostream>
@@ -52,6 +50,16 @@ class Ordenador {
         * implementación en esta clase
         */
         virtual void ordenar( vector<T> &arr ) = 0;
+
+        void imprimir( vector<T> &lista ){
+            cout << "[";
+            int i = 0;
+            for( T elem: lista  ){
+                cout << elem << ( i < lista.size() -1 ? ", " : "" );                
+                i++;
+            }
+            cout << "]" << endl;
+        }
 
 }
 
@@ -77,8 +85,7 @@ class OrdenadorInsertionSort: public Ordenador<T> {
 
 // ...
 
-/* Haremos exactamente lo mismo que para OrdenadorBubbleSort
-   y OrdenadorInsertionSort con todo el resto de clases específicas para ordenar * /
+/* Haremos exactamente lo mismo que para OrdenadorBubbleSort y OrdenadorInsertionSort con todo el resto de clases específicas para ordenar * /
 ```
 
 Como vemos, **para especificar que una clase hereda de otra** lo hacemos con la siguiente sintaxis:
@@ -109,7 +116,7 @@ Se puede entender mucho mejor el algoritmo aprenciando la siguiente animación:
 
 <img src="../blog-imgs-test/bubblesort.gif" alt="Animación del funcionamiento del algoritmo bubble sort" >
 
-Fuente: [Wikipedia](href="https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja")
+Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja)
 
 Puesto que en cada iteración se debe volver a hacer una pasada al array, desde el principio hasta "n" - i (debido a que siempre se colocan al final del array los elementos mayores, y estos ya no debemos recorrerlos), la **complejidad computacional** de este algoritmo será de `O(n^2)`.
 
@@ -139,13 +146,13 @@ class OrdenadorBubbleSort: public Ordenador<T> {
 
 <u> **Explicación:** </u>
 
-En algoritmo de ordenamiento Selection Sort, en castellano denominado **ordenamiento por selección**, consiste en recorrer, también, el array "n" veces, buscando en cada iteración el elemento menor. Cuando ha finalizado la iteración, se intercambia la primera posición no ordenada del array (primero será la 0, luego la 1, luego la 2...) por la posición del elemento menor que se haya encontrado.
+El algoritmo de ordenamiento Selection Sort, en castellano denominado **ordenamiento por selección**, consiste en recorrer, también, el array "n" veces, buscando en cada iteración el elemento menor. Cuando ha finalizado la iteración, se intercambia la primera posición no ordenada del array (primero será la 0, luego la 1, luego la 2...) por la posición del elemento menor que se haya encontrado.
 
 <img src="../blog-imgs-test/selectionsort.gif" alt="Animación del funcionamiento del algoritmo selection sort">
 
 Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_por_selecci%C3%B3n)
 
-Puesto que en cada iteración se debe encontrar el menor elemento del array, el algoritmo tendrá también una **complejidad computacional** de `O(n^2)`.
+Puesto que en cada iteración se debe encontrar el menor elemento del array (y, por tanto, recorrerlo), el algoritmo tendrá también una **complejidad computacional** de `O(n^2)`.
 
 <u> **Implementación:** </u>
 
@@ -251,7 +258,7 @@ Para entender en acción la anterior animación que muestra el funcionamiento de
 
 <u> **Implementación:** </u>
 
-La implementación del algoritmo anterior es la siguiente. Como vemos, creamos un método adicional en la clase `OrdenadorQuickSort`, que será la función recursiva a la que llamaremos cada vez que queramos aplicar quick sort sobre un subarray. Como podemos ver, para comenzar con el algoritmo, llamaos a esta función con el array completo (desde la posición 0 hasta la posición "n -1", siendo "n" el tamaño del array).
+La implementación del algoritmo anterior es la siguiente. Como vemos, creamos un método adicional en la clase `OrdenadorQuickSort`, que será la función recursiva a la que llamaremos cada vez que queramos aplicar quick sort sobre un subarray. Como podemos ver, para comenzar con el algoritmo, llamamos a esta función con el array completo (desde la posición 0 hasta la posición "n -1", siendo "n" el tamaño del array).
 
 A continuación, simplemente pasamos los elementos menores o iguales que el pivote a su derecha, y los elementos mayores a su izquierda. Una vez completado esto, llamamos a la función de forma recursiva con el subarray izquierdo y derecho. Debemos tener en cuenta que la función no realizará ningún cálculo ni procesamiento si `posIni >= posFin` (esto es, si el subarray recibido tiene 0 o 1 elementos, en cuyo caso se considerará ya ordenado).
 
@@ -274,8 +281,9 @@ class OrdenadorQuicksort: public Ordenador<T>{
                 if( lista[i] <= pivote ){
                     // Ponemos el elemento menor en la posición del pivote
                     lista[posPivote] = lista[i];
-                    // Ponemos el pivote 1 posición más a la derecha de la que tenía
+                    // Ponemos en la posición del elemento el elemento que tiene el pivote justo a la derecha
                     lista[i] = lista[posPivote+1];
+                    // Ponemos el pivote 1 posición más a la derecha de la que tenía
                     lista[posPivote+1] = pivote;
                     posPivote++;
                 }
@@ -287,8 +295,9 @@ class OrdenadorQuicksort: public Ordenador<T>{
                 if( lista[j] > pivote ){
                     // Ponemos el elemento mayor en la posición del pivote
                     lista[posPivote] = lista[j];
-                    // Ponemos el pivote 1 posición más a la izquierda de la que tenía
+                    // Ponemos en la posición del elemento el elemento que tiene el pivote justo a la izquierda
                     lista[j] = lista[posPivote-1];
+                    // Ponemos el pivote 1 posición más a la izquierda de la que tenía
                     lista[posPivote-1] = pivote;
                     posPivote--;
                 }
@@ -307,6 +316,172 @@ class OrdenadorQuicksort: public Ordenador<T>{
 
 ### *Merge sort*
 
+<u> **Explicación:** </u>
 
+Por último, el algoritmo de ordenación Merge Sort, en castellano denominado **ordenamiento por mezcla**, es, como Quick Sort, un algoritmo de ordenación rápido: la complejidad computacional del mismo es `O(n^logn)`.
+
+> Sin embargo, en realidad, y **sin utilizar memoria extra**, la complejidad computacional del algoritmo para el peor caso es de `O(n^2)`, debido a la necesidad de recorrer el subarray derecho `n*n` veces para desplazar los elementos y recolocarlos si estos deben ser colocados en el subarray izquierdo, como veremos a continuación. En el caso en que lo resolviéramos utilizando memoria extra, con arrays adicionales, su complejidad sí que sería, aún para el peor caso, de `O(n^logn)`.
+
+El algoritmo también se basa en la **técnica de divide y vencerás** para su resolución:
+1. Se divide el array en dos subarrays, generalmente se parte el mismo por la mitad.
+2. En este punto, se llama de nuevo a la función recursiva con ambos subarrays: se hace la **suposición** de que la función se encargará de ordenar cada una de las partes (la recursividad consiste, muchas veces, en suponer que la función hará cosas XD).
+3. Una vez se tienen los dos subarrays ordenados, debemos proceder a **mezclarlos**. Para ello, se recorren los dos subarrays a la vez, y se van colocando, en orden, los elementos menores encontrados en uno u otro subarray, hasta que se han acabado de recorrer ambos subarrays.
+4. ¿Cuál es, en este caso, el **caso base** o **caso trivial**? Pues, evidentemente, un subarray con 0 o 1 elementos ya se considerará ordenado, por lo que, cuando la función recursiva determine que el subarray recibido tiene 0 o 1 elementos, dejará de llamarse a sí misma.
+
+<img src="../blog-imgs-test/mergesort.gif" alt="Animación del funcionamiento del algoritmo merge sort">
+
+Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_por_mezcla)
+
+<u> **Implementación:** </u>
+
+La implementación resulta bastante sencilla utilizando arrays extra de soporte, aunque tampoco es demasiado complicada realizando todas las operaciones sobre el mismo array inicial. 
+
+Como con Quick Sort, creamos una función adicional en la clase, que será la función recursiva, y la llamamos inicialmente con el array entero. Esta función, primero deberá obtener la posición central, y llamarse a sí misma con los subarrays izquierdo y derecho, como se ha comentado antes.
+
+A continuación, se deben mezclar los dos subarrays ya ordenados. Para ello, se recorren ambos a la vez, con las siguientes premisas:
+- Si el elemento de la izquierda es menor o igual que el de la derecha, se deja este, y se avanza por la izquierda.
+- Si el elemento de la derecha (subarray derecho) es menor, entonces es éste el que se debe colocar en la izquierda (subarray izquierdo). Se coloca en el subarray izquierdo, pero debemos colocar ahora el elemento que estaba en esta posición en el subarray derecho, en la posición que le corresponda. Para ello, recorremos el subarray derecho, buscando la posición correspondiente, y desplazando los elementos 1 posición a la izquierda hasta que se encuentra la posición del elemento. En este punto, habremos colocado el elemento correspondiente en la izquierda, y seguiremos teniendo el subarray derecho ordenado.
+
+```cpp
+template <typename T>
+class OrdenadorMergeSort: public Ordenador<T>{
+    
+    void ordenar( vector<T> &lista ){
+        this->ordenar( lista, 0, lista.size()-1 );
+    }
+    
+    void ordenar( vector<T> &lista, int posIni, int posFin ){
+        if( posIni < posFin ){
+            // Ordenamos la parte izq. y derecha del array
+            int posCentral = (posIni+posFin)/2;
+            this->ordenar( lista, posIni, posCentral );
+            this->ordenar( lista, posCentral+1, posFin );
+            
+            // Mezclamos
+            int i = posIni, j = posCentral+1;
+            while( i <= posCentral && j <= posFin ){
+                // Cuando en la derecha haya un elemento menor, lo colocamos en la parte izq.
+                // Y recolocamos el elemento de la izq. donde le corresponda en la derecha
+                if( lista[j] < lista[i] ){
+                    // Colocamos el elemento de la derecha en la posición correspondiente de la izq.
+                    T temp = lista[i];
+                    lista[i] = lista[j];
+                    // Buscamos la posición que le corresponde al elemento de la izq. en la derecha
+                    // Este bucle es el que nos lleva a complejidad O(n^2) para el peor caso
+                    int k = j;
+                    for(; k <= posFin; k++ ){
+                        if( temp > lista[k] ){
+                            lista[k] = lista[k+1];
+                        } else{
+                            break;
+                        }
+                    }
+                    lista[k-1] = temp;
+                }
+                i++;
+            }
+        }
+    }
+    
+};
+```
+
+> **Nota**: puede que me anime y publique también la versión real `O(n^logn)` de Merge Sort utilizando arrays extra, para ver la diferencia entre ambos.
 
 ## Polimorfismo
+
+Por último, vamos a ver cómo podemos **utilizar el polimorfismo en C++** para poder **utilizar, indistintamente, un algoritmo de ordenación u otro gracias a la jerarquía de herencia** que hemos creado previamente.
+
+> El **polimorfismo** es la capacidad que tiene un lenguaje de programación para permitir utilizar objetos (y, por ende, sus métodos y atributos) que podrían esconder, en realidad, un tipo diferente.
+
+Esto permite que una función pueda recibir por parámetro un objeto de un tipo (por ejemplo, la superclase `Ordenador`) y ejecutar un método definido en esa clase. Sin embargo, gracias al polimorfismo, el **tipo específico de `Ordenador`** podría ser `OrdenadorBubbleSort`, `OrdenadorInsertionSort`, `OrdenadorMergeSort`... y, por tanto, la implementación del método (que está disponible en todos ellos por ser subclases de `Ordenador`) permitirá que, **según el tipo del objeto concreto y en tiempo de ejecución** ([late binding](https://en.wikipedia.org/wiki/Late_binding)), se ejecute una u otra implementación del método.
+
+Lo podemos ver en el siguiente ejemplo concreto:
+
+```cpp
+void ordenarArrayEnteros( Ordenador<int>* ordenador, vector<int> &vec ){
+    ordenador->ordenar(vec);
+}
+
+int main() {
+   Ordenador<int> *ord;
+   
+   cout << "Array DESORDENADO" << endl << "-------------------" << endl;
+   vector<int> array {3, 1, 5, 10, 12, 4, 7, 20, 16, 0, 2, 1};
+   ord->imprimir(array);
+
+   OrdenadorBurbuja<int> burb;
+   OrdenadorSeleccion<int> selec;
+   OrdenadorInsercion<int> inser;
+   OrdenadorQuicksort<int> quicksort;
+   OrdenadorMergeSort<int> mergesort;
+   
+   cout << "¿Con que algoritmo quieres ordenar el array?" << endl;
+   cout << "1. BubbleSort" << endl;
+   cout << "2. SelectionSort" << endl;
+   cout << "3. InsertionSort" << endl;
+   cout << "4. QuickSort" << endl;
+   cout << "5. MergeSort" << endl;
+   cout << "----------------" << endl;
+   cout << "Introduce una opción: ";
+   int opt;
+   cin >> opt;
+   
+   switch(opt){
+       case 1:
+           ord = &burb;
+           break;
+       case 2:
+           ord = &selec;
+           break;
+       case 3:
+           ord = &inser;
+           break;
+       case 4:
+           ord = &quicksort;
+           break;
+       case 5:
+           ord = &mergesort;
+   }
+   
+   ordenarArrayEnteros(ord, array);
+   
+   cout << "Array ORDENADO" << endl << "-------------------" << endl;
+   ord->imprimir(array);
+   
+   return 0;
+}
+```
+
+Como vemos, la utilización es sencilla. Definimos una función, `ordenarArrayEnteros`, que recibe por parámetro el objeto ordenador (como vemos, de tipo `Ordenador`) y el array que ordenará. Aquí podemos ver claramente que esta función no tiene ni idea de cómo se ordenará el array: simplemente, utiliza la interfaz de la función `ordenar` de la clase `Ordenador`.
+
+Por otro lado, definimos un objeto **puntero** de tipo `Ordenador`, y será este puntero el que modifiquemos según el algoritmo que decidamos que queremos utilizar para ordenar: apuntará a un objeto específico u otro, de tipo `OrdenadorSelectionSort`, `OrdenadorQuickSort`, etc., al que se apuntará en tiempo de ejecución.
+
+Ejemplo:
+
+```
+Array DESORDENADO
+-------------------
+[3, 1, 5, 10, 12, 4, 7, 20, 16, 0, 2, 1]
+¿Con que algoritmo quieres ordenar el array?
+1. BubbleSort
+2. SelectionSort
+3. InsertionSort
+4. QuickSort
+5. MergeSort
+----------------
+Introduce una opción: 5
+Array ORDENADO
+-------------------
+[0, 1, 1, 2, 3, 4, 5, 7, 10, 12, 16, 20]
+```
+
+## Conclusión
+
+Uff, un artículo un poco largo, que me ha costado bastantes horas escribir y preparar, sobre todo la animación del funcionamiento de Quick Sort, ya que de las existentes no me agradaba ninguna, porque la mayoría utilizan como elemento pivote el primer elemento de la lista, o suponen la utilización de arrays extra para mover los elementos.
+
+Sin embargo, he aprendido y practicado muchos conceptos mientras redactaba el post, y espero que le pueda servir de ayuda a alguien en el futuro.
+
+Muy buenos días o noches,
+
+***David***.
