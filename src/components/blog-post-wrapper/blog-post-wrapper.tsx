@@ -35,8 +35,10 @@ export class BlogPostWrapper {
     this.postTitleElInitialOffsetTop = this.postTitleEl.offsetTop;
     this.scrollIndicatorEl = this.el.querySelector('.scroll-indicator');
     const computedStyleLeft = getComputedStyle( this.scrollIndicatorEl ).left;
-    if( computedStyleLeft.includes('%') ) this.computedStyleLeftPercentage = true;
-    this.scrollIndicatorInitialLeft = Number.parseInt( ( this.computedStyleLeftPercentage ? computedStyleLeft.split('%') : computedStyleLeft.split('px') )[0]);
+    if( computedStyleLeft ){
+      if( computedStyleLeft.includes('%') ) this.computedStyleLeftPercentage = true;
+      this.scrollIndicatorInitialLeft = Number.parseInt( ( this.computedStyleLeftPercentage ? computedStyleLeft.split('%') : computedStyleLeft.split('px') )[0]);
+    }
     
     setTimeout( _ => window.scrollTo(0,0) , 100 );
   }
