@@ -1,6 +1,6 @@
 ---
 title: Algoritmos de ordenación en C++. Utilizando genéricos, herencia y polimorfismo
-date: 2020-08-07 11:30:00
+date: 2020-08-16 12:30:00
 summary: En este artículo hacemos un repaso a los principales algoritmos de ordenación para practicar un poco los mecanismos de genericidad, herencia y polimorfismo en C++.
 tags: c++, algoritmia, poo
 ---
