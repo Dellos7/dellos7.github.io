@@ -17,7 +17,7 @@ Como parte de mi proceso de formación como profesor de informática y programac
 
 En este artículo de introducción hacemos **un pequeño repaso del uso de tipos genéricos en C++, tanto en la definición de funciones como en la definición de clases**.
 
-Si quieres ver un **uso más avanzado y útil de los tipos genéricos**, mezclado con herencia y con un poco de algoritmia, no dejes de visitar el siguiente artículo que he escrito sobre [**algoritmos de ordenación con genéricos y herencia en C++**](algoritmos-ordenacion-genericos-herencia-c++).
+Si quieres ver un **uso más avanzado y útil de los tipos genéricos**, mezclado con herencia y con un poco de algoritmia, no dejes de visitar el siguiente artículo que he escrito sobre [**algoritmos de ordenación con genéricos y herencia en C++**](/blog/algoritmos-ordenacion-genericos-herencia-c++).
 
 ## Tipos genéricos en C++
 
@@ -138,7 +138,7 @@ Quizá el ejemplo es un poco raro, porque al definir las funciones de mínimo y 
 
 ## Conclusión
 
-Como conclusión simplemente decir que espero que esta pequeña aportación haya sido de utilidad a alguien, y recordaos que, si queréis ver un **uso más avanzado de los tipos genéricos en C++**, no dejéis de visitar mi artículo [**algoritmos de ordenación con genéricos y herencia en C++**](algoritmos-ordenacion-genericos-herencia-c++).
+Como conclusión simplemente decir que espero que esta pequeña aportación haya sido de utilidad a alguien, y recordaos que, si queréis ver un **uso más avanzado de los tipos genéricos en C++**, no dejéis de visitar mi artículo [**algoritmos de ordenación con genéricos y herencia en C++**](/blog/algoritmos-ordenacion-genericos-herencia-c++).
 
 ¡Saludos y buen día (o noche) a todos!
 
