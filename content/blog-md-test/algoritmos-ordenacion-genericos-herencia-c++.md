@@ -110,7 +110,7 @@ Una vez repasados los conceptos básicos de herencia y cómo la usaremos en este
 
 El algoritmo Bubble Sort, en castellano denominado **ordenamiento de burbuja**, consiste en recorrer el array que queramos ordenar "n" veces (siendo "n" el tamaño total de array), buscando en cada una de estas iteraciones el elemento máximo del array y colocándolo al final del mismo.
 
-Para ello, se realizan comparaciones de un elemento (elemento "j") con el elemento anterior (elemento "j-1"), y si el elemento "j" es menor que el elemento "j-1" se intercambian. De esta forma, se consigue ir subiendo el elemento mayor del array hasta el final del mismo, al igual que las burbujas de aire intentan siempre subir hacia el techo de la habitación en la que se encuentran.
+Para ello, en cada iteración se realizan comparaciones de un elemento (elemento "j") con el elemento anterior (elemento "j-1"), y si el elemento "j" es menor que el elemento "j-1" se intercambian. De esta forma, se consigue ir subiendo el elemento mayor del array hasta el final del mismo, al igual que las burbujas de aire intentan siempre subir hacia el techo de la habitación en la que se encuentran.
 
 Se puede entender mucho mejor el algoritmo aprenciando la siguiente animación:
 
@@ -118,7 +118,7 @@ Se puede entender mucho mejor el algoritmo aprenciando la siguiente animación:
 
 Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja)
 
-Puesto que en cada iteración se debe volver a hacer una pasada al array, desde el principio hasta "n" - i (debido a que siempre se colocan al final del array los elementos mayores, y estos ya no debemos recorrerlos), la **complejidad computacional** de este algoritmo será de `O(n^2)`.
+Puesto que en cada iteración se debe volver a hacer una pasada al array para encontrar el máximo, desde el principio hasta "n" - i (debido a que siempre se colocan al final del array los elementos mayores, y estos ya no debemos recorrerlos), la **complejidad computacional** (es decir, la [eficiencia](https://es.wikipedia.org/wiki/Eficiencia_algor%C3%ADtmica) del mismo, utilizando la notación `O`) de este algoritmo será de `O(n^2)`.
 
 <u> **Implementación:** </u>
 
@@ -131,6 +131,7 @@ class OrdenadorBubbleSort: public Ordenador<T> {
         void ordenar( vector<T> &lista ){
             for( int i = 0; i < lista.size(); i++ ){
                 for( int j = 1; j < lista.size() - i; j++ ){
+                    // Intercambiamos
                     if( lista[j] < lista[j-1] ){
                         T temp = lista[j];
                         lista[j] = lista[j-1];
@@ -146,7 +147,7 @@ class OrdenadorBubbleSort: public Ordenador<T> {
 
 <u> **Explicación:** </u>
 
-El algoritmo de ordenamiento Selection Sort, en castellano denominado **ordenamiento por selección**, consiste en recorrer, también, el array "n" veces, buscando en cada iteración el elemento menor. Cuando ha finalizado la iteración, se intercambia la primera posición no ordenada del array (primero será la 0, luego la 1, luego la 2...) por la posición del elemento menor que se haya encontrado.
+El algoritmo de ordenamiento Selection Sort, en castellano denominado **ordenamiento por selección**, consiste en recorrer, también, el array "n" veces, buscando en cada iteración el elemento menor. Cuando ha finalizado la iteración, se intercambia la primera posición no ordenada del array (primero será la 0, luego la 1, luego la 2..., es decir, la posición "i") por la posición del elemento menor que se haya encontrado.
 
 <img src="../blog-imgs-test/selectionsort.gif" alt="Animación del funcionamiento del algoritmo selection sort">
 
@@ -190,6 +191,8 @@ Consiste en recorrer el array de "n" elementos, y para cada uno de estos element
 
 Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ordenamiento_por_inserci%C3%B3n)
 
+Podemos deducir que la complejidad computacional es de `O(n^2)` ya que, en cada iteración, se debe volver a recorrer el array, hasta encontrar la posición que le corresponde al elemento en el mismo.
+
 <u> **Implementación:** </u>
 
 Quizá lo más "complicado" de la implementación de este algoritmo es el hecho de desplazar a la derecha todos los elementos que son mayores que el elemento que vamos a insertar en la posición "j". 
@@ -204,13 +207,14 @@ class OrdenadorInsertionSort: public Ordenador<T>{
             for( int i = 0; i < lista.size(); i++ ){
                 bool insertado = false;
                 for( int j = 0; j < i && !insertado; j++ ){
-                    if( lista[j] >= lista[i] ){ // Insertar "i" en la pos. de "j"
+                    if( lista[j] >= lista[i] ){ // Debemos insertar elemento "i" en la pos. de "j"
                         T temp = lista[i];
                         // Mover todos los elementos desde "j" hasta "i-1" una pos. a la derecha
+                        // Resulta más fácil desplazarlos si recorremos desde "i" hasta "j+1" (es decir, al revés, de arriba a abajo)
                         for( int k = i; k >= j+1; k-- ){
                             lista[k] = lista[k-1];
                         }
-                        // Reemplazamos el elemento
+                        // Reemplazamos el elemento: colocamos el elemento "i" en la posición de "j"
                         lista[j] = temp;
                         insertado = true;
                     }
@@ -229,7 +233,7 @@ Los **Quick Sort** y **Merge Sort** son los denominados **algoritmos rápidos de
 
 Para poder lograr esta complejidad computacional, muy útil cuando debemos ordenar arrays de datos muy grandes (para los arrays pequeños la diferencia de coste es inapreciable), estos algoritmos se basan en la técnica de [**divide y vencerás**](https://es.wikipedia.org/wiki/Algoritmo_divide_y_vencer%C3%A1s).
 
-> La técnica de **divide y vencerás** permite resolver problemas a través de la subdivisión de un problema en múltiples subproblemas más pequeños, consistiendo la solución al problema grande en la mezcla o unión de las soluciones paraciales obtenidas de la resolución de los subproblemas. Para ello, se utilizan, por lo general, **técnicas recursivas** para la implementación de los algoritmos, ya que permiten que una misma función sea reutilizada para la resolución tanto del problema general como de los subproblemas, que suelen ser instancias más pequeñas (más simples) del propio problema general.
+> La técnica de **divide y vencerás** permite resolver problemas a través de la subdivisión de un problema en múltiples subproblemas más pequeños, consistiendo la solución al problema grande en la mezcla o unión de las soluciones parciales obtenidas de la resolución de los subproblemas. Para ello, se utilizan, por lo general, **técnicas recursivas** para la implementación de los algoritmos, ya que permiten que una misma función sea reutilizada para la resolución tanto del problema general como de los subproblemas, que suelen ser instancias más pequeñas (más simples) del propio problema general.
 
 En concreto, el **algoritmo de ordenación *Quick Sort*** consiste en aplicar los siguientes pasos:
 
@@ -320,8 +324,6 @@ class OrdenadorQuicksort: public Ordenador<T>{
 
 Por último, el algoritmo de ordenación Merge Sort, en castellano denominado **ordenamiento por mezcla**, es, como Quick Sort, un algoritmo de ordenación rápido: la complejidad computacional del mismo es `O(n^logn)`.
 
-> Sin embargo, en realidad, y **sin utilizar memoria extra**, la complejidad computacional del algoritmo para el peor caso es de `O(n^2)`, debido a la necesidad de recorrer el subarray derecho `n*n` veces para desplazar los elementos y recolocarlos si estos deben ser colocados en el subarray izquierdo, como veremos a continuación. En el caso en que lo resolviéramos utilizando memoria extra, con arrays adicionales, su complejidad sí que sería, aún para el peor caso, de `O(n^logn)`.
-
 El algoritmo también se basa en la **técnica de divide y vencerás** para su resolución:
 1. Se divide el array en dos subarrays, generalmente se parte el mismo por la mitad.
 2. En este punto, se llama de nuevo a la función recursiva con ambos subarrays: se hace la **suposición** de que la función se encargará de ordenar cada una de las partes (la recursividad consiste, muchas veces, en suponer que la función hará cosas XD).
@@ -340,7 +342,9 @@ Como con Quick Sort, creamos una función adicional en la clase, que será la fu
 
 A continuación, se deben mezclar los dos subarrays ya ordenados. Para ello, se recorren ambos a la vez, con las siguientes premisas:
 - Si el elemento de la izquierda es menor o igual que el de la derecha, se deja este, y se avanza por la izquierda.
-- Si el elemento de la derecha (subarray derecho) es menor, entonces es éste el que se debe colocar en la izquierda (subarray izquierdo). Se coloca en el subarray izquierdo, pero debemos colocar ahora el elemento que estaba en esta posición en el subarray derecho, en la posición que le corresponda. Para ello, recorremos el subarray derecho, buscando la posición correspondiente, y desplazando los elementos 1 posición a la izquierda hasta que se encuentra la posición del elemento. En este punto, habremos colocado el elemento correspondiente en la izquierda, y seguiremos teniendo el subarray derecho ordenado.
+- Si el elemento de la derecha (subarray derecho) es menor, entonces es éste el que se debe colocar en la izquierda (subarray izquierdo). Se coloca en el subarray izquierdo (en la posición actual), pero debemos colocar ahora el elemento que estaba en esta posición en el subarray derecho, en la posición que le corresponda. Para ello, recorremos el subarray derecho, buscando la posición correspondiente, y desplazando los elementos 1 posición a la izquierda hasta que se encuentra la posición del elemento. Una vez realizado, habremos colocado el elemento correspondiente en la izquierda, y además seguiremos teniendo el subarray derecho ordenado.
+
+> En realidad, y solo para la implementación **sin utilización de memoria extra**, la complejidad computacional del algoritmo para el peor caso, e incluso un caso promedio, es de `O(n^2)`. Esto es debido a la necesidad de recorrer el subarray derecho desde el inicio cada vez que colocamos un elemento de este subarray en el subarray izquierdo, para reordenar el subarray derecho al introducir el elemento que se ha reemplazado en el izquierdo. En el caso en que lo resolviéramos utilizando memoria extra, con arrays adicionales, su complejidad sí que sería, aún para el peor caso, de `O(n^logn)`.
 
 ```cpp
 template <typename T>
@@ -478,7 +482,7 @@ Array ORDENADO
 
 ## Conclusión
 
-Uff, un artículo un poco largo, que me ha costado bastantes horas escribir y preparar, sobre todo la animación del funcionamiento de Quick Sort, ya que de las existentes no me agradaba ninguna, porque la mayoría utilizan como elemento pivote el primer elemento de la lista, o suponen la utilización de arrays extra para mover los elementos.
+Bueno, un artículo un poco largo, que me ha costado bastantes horas escribir y preparar, sobre todo la animación del funcionamiento de Quick Sort, ya que de las existentes no me agradaba ninguna, porque la mayoría utilizan como elemento pivote el primer elemento de la lista, o suponen la utilización de arrays extra para mover los elementos.
 
 Sin embargo, he aprendido y practicado muchos conceptos mientras redactaba el post, y espero que le pueda servir de ayuda a alguien en el futuro.
 
