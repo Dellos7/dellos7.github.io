@@ -1,8 +1,9 @@
 ---
 title: Utilizando tipos genéricos en C++
-date: 2020-08-15 13:30:00
+date: 2020-08-15
 summary: En este artículo vemos como podemos hacer uso de los tipos genéricos en C++ utilizando templates tanto en la definición de clases como funciones.
 tags: c++
+is_technical: true
 ---
 
 ## Tabla de contenidos:

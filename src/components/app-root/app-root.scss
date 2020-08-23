@@ -1,95 +1,108 @@
 @import "../../style/link.scss";
 @import "../../style/gradientes.scss";
 
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
+body {
   //background-image: linear-gradient(to left bottom, #24909c, #238792, #227e88, #21757f, #206c75);
   background-image: linear-gradient(to left bottom, #61bdc5, #238792);
 }
 
 :root {
-    --primary-color: #24909c;
-    --secondary-color: #206c75;
-    --tertiary-color: #61bdc5;
-    --amarillo: #fdbb2d;
-    --quaternary-color: #86f3fc;
-    --fifth-color: rgb(19,243,185);
-  
-    --javascript: #f7df1e;
-    --c: #419a49;
-    --java: #f73737;
-    --css: #2caddd;
-    --html: #ff4800;
-    --typescript: #006fc5;
-    --cpp: #5a92cd;
-    --python: linear-gradient( to right, #2d6396, #ffce39 );
-    --shell: #222245;
-    --docker: rgb(52,153,239);
-    --sql: rgb(0,103,191);
-  
-    // --dlc-cssterminal-content-bgcolor: #27656d;
-    // --dlc-cssterminal-hem: 1rem;
-    // --dlc-cssterminal-primary-font-color: #fff;
-  }
+  --primary-color: #24909c;
+  --secondary-color: #206c75;
+  --tertiary-color: #61bdc5;
+  --amarillo: #fdbb2d;
+  --quaternary-color: #86f3fc;
+  --fifth-color: rgb(19, 243, 185);
 
-.no-footer{
+  --javascript: #f7df1e;
+  --c: #419a49;
+  --java: #f73737;
+  --css: #2caddd;
+  --html: #ff4800;
+  --typescript: #006fc5;
+  --cpp: #5a92cd;
+  --python: linear-gradient(to right, #2d6396, #ffce39);
+  --shell: #222245;
+  --docker: rgb(52, 153, 239);
+  --sql: rgb(0, 103, 191);
+  --algoritmia: var(--amarillo);
+  --poo: var(--fifth-color);
+  --blogging: var(--quaternary-color);
+
+  // --dlc-cssterminal-content-bgcolor: #27656d;
+  // --dlc-cssterminal-hem: 1rem;
+  // --dlc-cssterminal-primary-font-color: #fff;
+}
+
+.no-footer {
   min-height: 100vh;
 }
 
-.tag-list{
+.tag-list {
   list-style-type: none;
 
-  & li[class*="tag-"]{
-      border-radius: 5px;
-      display: inline-block;
-      padding: .2rem 1rem;
-      margin: .5rem;
-      color: #3c3c3c;
-      background: #fff;
-      &:first-child{
-          margin-left: 0;
-      }
-      &:last-child{
-          margin-right: 0;
-      }
+  & li[class*="tag-"] {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    margin: 0.5rem;
+    color: #3c3c3c;
+    background: #fff;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
-  & li[class*="c"]{
-      background: var(--c);
+  & li[class*="c"] {
+    background: var(--c);
   }
-  & li[class*="java"]{
-      background: var(--java);
+  & li[class*="java"] {
+    background: var(--java);
   }
-  & li[class*="javascript"]{
-      background: var(--javascript);
+  & li[class*="javascript"] {
+    background: var(--javascript);
   }
-  & li[class*="html"]{
-      background: var(--html);
+  & li[class*="html"] {
+    background: var(--html);
   }
-  & li[class*="css"]{
-      background: var(--css);
+  & li[class*="css"] {
+    background: var(--css);
   }
-  & li[class*="typescript"]{
-      background: var(--typescript);
+  & li[class*="typescript"] {
+    background: var(--typescript);
   }
-  & li[class*="cpp"]{
-      background: var(--cpp);
-  }
-  & li[class*="c++"]{
+  & li[class*="cpp"] {
     background: var(--cpp);
-}
-  & li[class*="python"]{
-      background: var(--python);
   }
-  & li[class*="shell"]{
-      background: var(--shell);
-      color: white;
-      border: .5px solid white;
+  & li[class*="c++"] {
+    background: var(--cpp);
   }
-  & li[class*="docker"], & li[class*="dockerfile"]{
-      background: var(--docker);
-      color: white;
+  & li[class*="python"] {
+    background: var(--python);
+  }
+  & li[class*="shell"] {
+    background: var(--shell);
+    color: white;
+    border: 0.5px solid white;
+  }
+  & li[class*="docker"],
+  & li[class*="dockerfile"] {
+    background: var(--docker);
+    color: white;
+  }
+  & li[class*="algoritmia"] {
+    background: var(--algoritmia);
+  }
+  & li[class*="poo"] {
+    background: var(--poo);
+  }
+  & li[class*="blogging"] {
+    background: var(--blogging);
   }
 }

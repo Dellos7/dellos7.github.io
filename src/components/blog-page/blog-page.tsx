@@ -106,7 +106,7 @@ export class BlogPage {
               this.posts.map((post) =>
               <li class="posts-list__item">
                 <stencil-route-link url={"/" + BlogService.config.posts_route + "/" + post.unique_link}>
-                  <image-filter doNotApplyFilter={post.metadata.doNotApplyImageFilter} fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={post.metadata.image}></image-filter>
+                  <image-filter doNotApplyFilter={post.metadata.do_not_apply_image_filter} fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={post.metadata.image}></image-filter>
                   <h2 class="posts-list__item-title">{post.metadata.title}</h2>
                 </stencil-route-link>
                   <div class="posts-list__item-tags" innerHTML={tagsToHtmlList(post.metadata.tags)}></div>

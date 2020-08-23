@@ -109,10 +109,10 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
             let contentHtml = md.render(mdContent);
             contentHtml = processImages.convertImagesSources( contentHtml, `/${imagesDirPath}`, true );
             contentHtml = codehightlight.highlight( contentHtml );
-            const estimatedReadingTime = ert.estimatedReadingTime( contentHtml, ert.TextFormat.HTML, { isTechnical: true } );
+            let metadata = contentMatter.data;
+            const estimatedReadingTime = ert.estimatedReadingTime( contentHtml, ert.TextFormat.HTML, { isTechnical: !!metadata.is_technical } );
+            metadata.estimatedReadingTime = estimatedReadingTime;
             try {
-                let metadata = contentMatter.data;
-                metadata.estimatedReadingTime = estimatedReadingTime;
                 let fileNameNoExtension = _file.substring(0,_file.lastIndexOf('.')); 
                 let fileName = fileNameNoExtension + '.html';
                 // Guardar el html en el directorio correspondiente
@@ -137,6 +137,7 @@ const parseBlog = async (blogMdDir, blogDir, projectSrc, postsRoute, imagesBlogD
                     imageSourcePath = `${imagesBlogDir}/${metadata.image}`;
                     imageContentDir = `${imagesContentDir}/${metadata.image}`;
                     image = `/${imagesDirPath}/${metadata.image}`;
+                    fs.copyFileSync( imageSourcePath, imageContentDir );
                 } else{
                     image = metadata.image;
                 }

@@ -120,7 +120,7 @@ export class BlogPostWrapper {
           <blog-post uniqueLink={this.uniqueLink}>
             <div slot="before">
               <div class="image-filter-wrapper">
-                <image-filter doNotApplyFilter={this.metadata.doNotApplyImageFilter} fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}></image-filter>
+                <image-filter doNotApplyFilter={this.metadata.do_not_apply_image_filter} fromColor={this.imgFilterFromColor} toColor={this.imgFilterToColor} src={this.metadata.image}></image-filter>
                 <div class="post-title">
                     <h1>{this.metadata.title}</h1>
                 </div>
