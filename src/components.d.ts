@@ -42,6 +42,7 @@ export namespace Components {
     interface FooterComponent {
     }
     interface ImageFilter {
+        "doNotApplyFilter": boolean;
         "fromColor": string;
         "src": string;
         "toColor": string;
@@ -264,6 +265,7 @@ declare namespace LocalJSX {
     interface FooterComponent {
     }
     interface ImageFilter {
+        "doNotApplyFilter"?: boolean;
         "fromColor"?: string;
         "src"?: string;
         "toColor"?: string;

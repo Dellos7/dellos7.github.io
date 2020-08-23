@@ -13,6 +13,7 @@ export class ImageFilter {
   @Prop() src: string;
   @Prop() fromColor: string;
   @Prop() toColor: string;
+  @Prop() doNotApplyFilter: boolean;
 
   componentDidLoad(){
     if( this.el && this.el.shadowRoot ){
@@ -22,7 +23,11 @@ export class ImageFilter {
 
   render() {
     if( this.imgFilterEl ){
-      this.imgFilterEl.style.backgroundImage = `linear-gradient( to right bottom, ${this.fromColor}, ${this.toColor}), url(${this.src})`;
+      if( !this.doNotApplyFilter ){
+        this.imgFilterEl.style.backgroundImage = `linear-gradient( to right bottom, ${this.fromColor}, ${this.toColor}), url(${this.src})`;
+      } else{
+        this.imgFilterEl.style.backgroundImage = `url(${this.src})`;
+      }
     }
     return (
       <div class="img-filter" part="img">

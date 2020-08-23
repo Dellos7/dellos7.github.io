@@ -13,7 +13,7 @@ let seoConfig = {
     blog: {
         title: "📖 Blog" + titleSuffix,
         description: "Blog enfocado a la programación, el desarrollo web y móvil y la educación.",
-        image: rootImage
+        image: "/assets/blog.png"
     },
     contact: {
         title: "📧 Contacto" + titleSuffix,
