@@ -1,7 +1,7 @@
 ---
 title: ¿Cuánto me costó escribir mi primer post?
 date: 2020-08-24
-summary: He escrito mi primer post. En este ya tercer artículo describo a groso modo cuánto me costó escribir mi primer post y por qué creo que me costó tanto (pero valió la pena).
+summary: En este ya tercer artículo describo a groso modo todo lo que me costó escribir mi primer post y por qué creo que valió la pena. Además, cuento por qué decidí abrir el blog y por qué decidí hacerlo en mi propia plataforma.
 image: blog_cuanto-me-costo-primer-post.png
 do_not_apply_image_filter: true
 tags: blogging
