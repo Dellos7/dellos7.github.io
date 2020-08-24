@@ -1,5 +1,4 @@
 const titleSuffix = " - David López Castellote 💻 👨‍🏫";
-const rootImage = "/assets/profile.jpeg";
 const twitterUser = "@_dlopezcast";
 
 let seoConfig = {
@@ -8,7 +7,7 @@ let seoConfig = {
     root: {
         title: "David López Castellote 💻 👨‍🏫",
         description: "Página web personal de David López Castellote: programador y proyecto de futuro profesor 💻 👨‍🏫",
-        image: rootImage
+        image:  "/assets/profile.jpeg"
     },
     blog: {
         title: "📖 Blog" + titleSuffix,
@@ -18,12 +17,12 @@ let seoConfig = {
     contact: {
         title: "📧 Contacto" + titleSuffix,
         description: "¡Contacta conmigo!",
-        image: rootImage
+        image:  "/assets/contact.png"
     },
     about: {
         title: "🧐 Sobre mí" + titleSuffix,
         description: "Descubre un poco acerca de mí.",
-        image: rootImage
+        image:  "/assets/about.png"
     }
 };
 

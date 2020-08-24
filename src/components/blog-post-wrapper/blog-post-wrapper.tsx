@@ -105,6 +105,7 @@ export class BlogPostWrapper {
           { name: 'twitter:card', content: 'summary' },
           { name: 'twitter:site', content: seoConfig.twitterUser },
           { name: 'twitter:creator', content: seoConfig.twitterUser },
+          { name: 'twitter:image', content: this.imageUrl(this.metadata.image) },
         ],
         links: [
           { rel: 'canonical', href: window.location.origin+window.location.pathname }

@@ -16,6 +16,7 @@ const seoData: SeoTagsData = {
     { name: 'twitter:card', content: 'summary' },
     { name: 'twitter:site', content: seoConfig.twitterUser },
     { name: 'twitter:creator', content: seoConfig.twitterUser },
+    { name: 'twitter:image', content: seoConfig.about.image },
   ],
   links: [
     { rel: 'canonical', href: `${window.location.origin}${window.location.pathname}` }
