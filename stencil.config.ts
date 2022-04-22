@@ -20,6 +20,7 @@ export const config: Config = {
     { src: '__blog/' },
     { src: 'posts.json' },
     { src: 'assets/blog/' }
+    //{ src: 'assets/' }
   ],
   plugins: [
     sass({

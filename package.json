@@ -10,7 +10,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "deploy": "./deploy-site-to-master.sh",
     "blog:dev": "node scripts/parse-blog.js",
-    "blog": "NODE_ENV=PRODUCTION node scripts/parse-blog.js",
+    "blog": "cross-env NODE_ENV=PRODUCTION node scripts/parse-blog.js",
     "build:deploy": "npm run blog && npm run deploy",
     "scripts:test": "jest --verbose ./scripts/tests"
   },
@@ -36,7 +36,8 @@
     "jest": "^26.0.1",
     "prismjs": "^1.20.0",
     "remarkable": "^1.7.1",
-    "workbox-build": "4.3.1"
+    "workbox-build": "4.3.1",
+    "cross-env": "latest"
   },
   "author": "David López Castellote",
   "license": "ISC"

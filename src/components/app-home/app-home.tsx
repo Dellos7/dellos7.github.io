@@ -21,7 +21,7 @@ export class AppHome {
           { seoConfig.root.description ? <meta name="og:description" property="og:description" content={seoConfig.root.description} /> : '' }
           { seoConfig.root.description ? <meta name="twitter:description" content={seoConfig.root.description} /> : '' }
           <meta name="twitter:title" content={seoConfig.root.title} />
-          <meta name="twitter:card" content={seoConfig.root.image} />
+          <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content={seoConfig.twitterUser} />
           <meta name="twitter:image" content={seoConfig.root.image} />
         </Helmet>

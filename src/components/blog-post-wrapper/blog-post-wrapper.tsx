@@ -102,7 +102,7 @@ export class BlogPostWrapper {
           { property: 'og:url', content: window.location.origin+window.location.pathname },
           { name: 'twitter:title', content: this.metadata.title },
           { name: 'twitter:description', content: this.metadata.summary },
-          { name: 'twitter:card', content: 'summary' },
+          { name: 'twitter:card', content: 'summary_large_image' },
           { name: 'twitter:site', content: seoConfig.twitterUser },
           { name: 'twitter:creator', content: seoConfig.twitterUser },
           { name: 'twitter:image', content: this.imageUrl(this.metadata.image) },

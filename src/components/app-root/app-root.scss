@@ -32,6 +32,7 @@ body {
   --algoritmia: var(--amarillo);
   --poo: var(--fifth-color);
   --blogging: var(--quaternary-color);
+  --educacion: #3f51b5;
 
   // --dlc-cssterminal-content-bgcolor: #27656d;
   // --dlc-cssterminal-hem: 1rem;
@@ -104,5 +105,9 @@ body {
   }
   & li[class*="blogging"] {
     background: var(--blogging);
+  }
+  & li[class*="educación"] {
+    background: var(--educacion);
+    color: white;
   }
 }

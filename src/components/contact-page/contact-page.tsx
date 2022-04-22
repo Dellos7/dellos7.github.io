@@ -12,7 +12,7 @@ const seoData: SeoTagsData = {
     { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },
     { name: 'twitter:title', content: seoConfig.contact.title },
     { name: 'twitter:description', content: seoConfig.contact.description },
-    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: seoConfig.twitterUser },
     { name: 'twitter:creator', content: seoConfig.twitterUser },
     { name: 'twitter:image', content: seoConfig.contact.image },
@@ -38,7 +38,7 @@ export class ContactPage {
         <main>
           <p>Puedes contactarme en el correo: <a href="mailto:contacto@dlopezcastellote.dev">contacto@dlopezcastellote.dev</a> o a través del siguiente formulario:</p>
           <div class="form-wrapper">
-            <form method="POST" action="https://script.google.com/macros/s/AKfycbzeaoJMzc0Ed1B3RPa7Np8kvhAWFBHfraB3rqkc/exec">
+            <form method="POST" action="https://formspree.io/f/mzbokpje">
               <input type="text" name="name" placeholder="Nombre:" required />
               <input type="email" name="email" placeholder="Email:" required />
               <textarea name="message" placeholder="Mensaje:" required rows={8}></textarea>
