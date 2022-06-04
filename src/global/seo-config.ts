@@ -6,7 +6,7 @@ let seoConfig = {
     titleSuffix,
     root: {
         title: "David López Castellote - Informática y Educación 💻 👨‍🏫",
-        description: "Página web personal de David López Castellote: programador y proyecto de futuro profesor 💻 👨‍🏫",
+        description: "Página web personal de David López Castellote: programador y profesor de informática 💻 👨‍🏫",
         image:  window.location.origin + "/assets/profile.jpeg"
     },
     blog: {

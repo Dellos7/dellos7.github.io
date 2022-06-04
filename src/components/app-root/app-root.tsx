@@ -15,7 +15,7 @@ export class AppRoot {
     return (
       <div>
         <div class="no-footer">
-          <rrss-navbar githubUser="Dellos7" twitterUser="_dlopezcast" codepenUser="dellos7" linkedinUser="david-lopez-castellote"></rrss-navbar>
+          <rrss-navbar githubUser="Dellos7" twitterUser="_dlopezcast" codepenUser="dellos7" linkedinUser="david-lopez-castellote" youtubeChannel="UClgetxt24JcBwMRYQnYh05g"></rrss-navbar>
           <navigation-bar></navigation-bar>
           <stencil-router>
             <stencil-route-switch>

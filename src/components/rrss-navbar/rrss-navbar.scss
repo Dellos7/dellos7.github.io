@@ -61,6 +61,11 @@
                         color: rgb(16, 116, 175	);
                     }
                 }
+                &__youtube {
+                    &:hover {
+                        color: rgb(204,0,0);
+                    }
+                }
 
             }
         }

@@ -60,6 +60,7 @@ export namespace Components {
         "githubUser": string;
         "linkedinUser": string;
         "twitterUser": string;
+        "youtubeChannel": string;
     }
     interface ScrollToTopButton {
     }
@@ -292,6 +293,7 @@ declare namespace LocalJSX {
         "githubUser"?: string;
         "linkedinUser"?: string;
         "twitterUser"?: string;
+        "youtubeChannel"?: string;
     }
     interface ScrollToTopButton {
     }
