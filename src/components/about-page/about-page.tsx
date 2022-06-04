@@ -13,7 +13,7 @@ const seoData: SeoTagsData = {
     { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },
     { name: 'twitter:title', content: seoConfig.about.title },
     { name: 'twitter:description', content: seoConfig.about.description },
-    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: seoConfig.twitterUser },
     { name: 'twitter:creator', content: seoConfig.twitterUser },
     { name: 'twitter:image', content: seoConfig.about.image },
@@ -51,7 +51,8 @@ export class AboutPage {
           <user-name content="Sobre mí" showDomain={true}></user-name>
         </header>
         <main>
-          <p style={ {textAlign: 'center'} }>🔨</p>
+          <p style={ {textAlign: 'justify'} }>Actualmente soy profesor de informática en la Comunidad Valenciana.</p>
+          <img class="imagen-yo" src="/assets/profile.jpeg" alt="Yo con mi pareja" />
         </main>
       </div>
     );

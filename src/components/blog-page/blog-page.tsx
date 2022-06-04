@@ -16,7 +16,7 @@ const seoData: SeoTagsData = {
     { property: 'og:url', content: `${window.location.origin}${window.location.pathname}` },
     { name: 'twitter:title', content: seoConfig.blog.title },
     { name: 'twitter:description', content: seoConfig.blog.description },
-    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: seoConfig.twitterUser },
     { name: 'twitter:creator', content: seoConfig.twitterUser },
     { name: 'twitter:image', content: seoConfig.blog.image },

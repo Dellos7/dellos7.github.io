@@ -5,24 +5,29 @@ let seoConfig = {
     twitterUser,
     titleSuffix,
     root: {
-        title: "David López Castellote 💻 👨‍🏫",
+        title: "David López Castellote - Informática y Educación 💻 👨‍🏫",
         description: "Página web personal de David López Castellote: programador y proyecto de futuro profesor 💻 👨‍🏫",
-        image:  "/assets/profile.jpeg"
+        image:  window.location.origin + "/assets/profile.jpeg"
     },
     blog: {
-        title: "📖 Blog" + titleSuffix,
+        title: "📖 Blog",
         description: "Blog enfocado a la programación, el desarrollo web y móvil y la educación.",
-        image: "/assets/blog.png"
+        image: window.location.origin + "/assets/blog.png"
     },
     contact: {
-        title: "📧 Contacto" + titleSuffix,
+        title: "📧 Contacto",
         description: "¡Contacta conmigo!",
-        image:  "/assets/contact.png"
+        image:  window.location.origin + "/assets/contact.png"
     },
     about: {
-        title: "🧐 Sobre mí" + titleSuffix,
+        title: "🧐 Sobre mí",
         description: "Descubre un poco acerca de mí.",
-        image:  "/assets/about.png"
+        image:  window.location.origin + "/assets/about.png"
+    },
+    servicios: {
+        title: "💼 Servicios",
+        description: "¿Qué puedo hacer por ti?",
+        image:  window.location.origin + "/assets/servicios.png"
     }
 };
 

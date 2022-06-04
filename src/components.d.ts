@@ -65,6 +65,8 @@ export namespace Components {
     }
     interface SectionTitle {
     }
+    interface ServiciosPage {
+    }
     interface UserName {
         "content": string;
         "link": string;
@@ -198,6 +200,12 @@ declare global {
         prototype: HTMLSectionTitleElement;
         new (): HTMLSectionTitleElement;
     };
+    interface HTMLServiciosPageElement extends Components.ServiciosPage, HTMLStencilElement {
+    }
+    var HTMLServiciosPageElement: {
+        prototype: HTMLServiciosPageElement;
+        new (): HTMLServiciosPageElement;
+    };
     interface HTMLUserNameElement extends Components.UserName, HTMLStencilElement {
     }
     var HTMLUserNameElement: {
@@ -226,6 +234,7 @@ declare global {
         "rrss-navbar": HTMLRrssNavbarElement;
         "scroll-to-top-button": HTMLScrollToTopButtonElement;
         "section-title": HTMLSectionTitleElement;
+        "servicios-page": HTMLServiciosPageElement;
         "user-name": HTMLUserNameElement;
     }
 }
@@ -288,6 +297,8 @@ declare namespace LocalJSX {
     }
     interface SectionTitle {
     }
+    interface ServiciosPage {
+    }
     interface UserName {
         "content"?: string;
         "link"?: string;
@@ -315,6 +326,7 @@ declare namespace LocalJSX {
         "rrss-navbar": RrssNavbar;
         "scroll-to-top-button": ScrollToTopButton;
         "section-title": SectionTitle;
+        "servicios-page": ServiciosPage;
         "user-name": UserName;
     }
 }
@@ -343,6 +355,7 @@ declare module "@stencil/core" {
             "rrss-navbar": LocalJSX.RrssNavbar & JSXBase.HTMLAttributes<HTMLRrssNavbarElement>;
             "scroll-to-top-button": LocalJSX.ScrollToTopButton & JSXBase.HTMLAttributes<HTMLScrollToTopButtonElement>;
             "section-title": LocalJSX.SectionTitle & JSXBase.HTMLAttributes<HTMLSectionTitleElement>;
+            "servicios-page": LocalJSX.ServiciosPage & JSXBase.HTMLAttributes<HTMLServiciosPageElement>;
             "user-name": LocalJSX.UserName & JSXBase.HTMLAttributes<HTMLUserNameElement>;
         }
     }

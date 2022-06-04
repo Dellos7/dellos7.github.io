@@ -43,6 +43,9 @@ export class NavigationBar {
             <li onClick={ (e: UIEvent) => this.navElementClick(e) }>
               <stencil-route-link url="/contact" activeClass="link-active">/contact</stencil-route-link>
             </li>
+            <li onClick={ (e: UIEvent) => this.navElementClick(e) }>
+              <stencil-route-link url="/services" activeClass="link-active">/services</stencil-route-link>
+            </li>
           </ul>
         </nav>
       </div>

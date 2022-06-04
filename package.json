@@ -12,7 +12,8 @@
     "blog:dev": "node scripts/parse-blog.js",
     "blog": "cross-env NODE_ENV=PRODUCTION node scripts/parse-blog.js",
     "build:deploy": "npm run blog && npm run deploy",
-    "scripts:test": "jest --verbose ./scripts/tests"
+    "scripts:test": "jest --verbose ./scripts/tests",
+    "generate": "stencil generate"
   },
   "dependencies": {
     "dlc-css-terminal": "0.0.6",

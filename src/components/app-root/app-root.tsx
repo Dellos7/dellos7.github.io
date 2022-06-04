@@ -23,6 +23,7 @@ export class AppRoot {
               <stencil-route url={['/blog', '/blog/']} component='blog-page' exact={true}/>
               <stencil-route url={['/about', '/about/']} component='about-page' exact={true}></stencil-route>
               <stencil-route url={['/contact', '/contact/']} component='contact-page' exact={true}/>
+              <stencil-route url={['/services', '/services/']} component='servicios-page' exact={true}/>
               <stencil-route url={'/blog/:unique_link'}
                 routeRender={({ match }) => (
                   <blog-post-wrapper uniqueLink={match.params.unique_link}></blog-post-wrapper>
